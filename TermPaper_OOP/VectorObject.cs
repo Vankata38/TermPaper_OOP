@@ -1,24 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace TermPaper_OOP
+﻿namespace TermPaper_OOP
 {
     public abstract class VectorObject
     {
-        private float X { get; set; }
-        private float Y { get; set; }
+        protected Pen Pen { get; }
+        public float X { get; set; }
+        public float Y { get; set; }
 
-        public VectorObject(float x, float y)
+        public VectorObject(float x, float y, Color color)
         {
             X = x;
             Y = y;
+            Pen = new Pen(color);
         }
 
-        public abstract void Perimeter();
-        public abstract void Area();
-        public abstract void Draw();
+        public abstract float Perimeter();
+        public abstract float Area();
+        public abstract void Draw(Graphics graph);
     }
 }
