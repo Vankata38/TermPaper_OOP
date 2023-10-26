@@ -49,5 +49,10 @@ namespace TermPaper_OOP
                 vectorObjects.Add(rect);
             }
         }
+
+        private void MainWindow_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
