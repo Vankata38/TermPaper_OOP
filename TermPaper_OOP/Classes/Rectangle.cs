@@ -7,7 +7,7 @@ using TermPaper_OOP.Interfaces;
 
 namespace TermPaper_OOP.Classes
 {
-    public class Rectangle : IPositionable, ISurface, IPerimeter
+    public class Rectangle : IPositionable, ISurface, IPerimeter, IDrawable
     {
         public Point Position;
         public decimal Width { get; set; }
@@ -38,6 +38,11 @@ namespace TermPaper_OOP.Classes
         public override string ToString()
         {
             return $"Rectangle at {Position} with width of {Width} and height of {Height}";
+        }
+
+        public void Draw(Graphics graphics, Color color, DrawType drawType, float thickness)
+        {
+            throw new NotImplementedException();
         }
     }
 }

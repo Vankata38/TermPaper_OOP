@@ -12,6 +12,12 @@ namespace TermPaper_OOP.Classes
         public decimal X { get; set; }
         public decimal Y { get; set; }
 
+        public Point(decimal x, decimal y)
+        {
+            X = x;
+            Y = y;
+        }
+
         public override string ToString()
         {
             return $"({X}, {Y})";

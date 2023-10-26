@@ -1,8 +1,10 @@
+using TermPaper_OOP.Interfaces;
+
 namespace TermPaper_OOP
 {
     public partial class MainWindow : Form
     {
-        private readonly List<VectorObject> vectorObjects = new List<VectorObject>();
+        private readonly List<IPositionable> _objects = new List<IPositionable>();
         private readonly Random _random = new();
 
         public MainWindow()
@@ -19,9 +21,9 @@ namespace TermPaper_OOP
         override protected void OnPaint(PaintEventArgs e)
         {
             Graphics graph = e.Graphics;
-            foreach (var vectorObject in vectorObjects)
+            foreach (var obj in _objects)
             {
-                vectorObject.Draw(graph);
+                obj.Draw(graph);
             }
         }
 
