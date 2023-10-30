@@ -7,18 +7,26 @@ using TermPaper_OOP.Interfaces;
 
 namespace TermPaper_OOP.Classes
 {
-    public class Circle : IPositionable, ISurface, IPerimeter, IDrawable
+    public class Circle : IShape
     {
         public Point Position;
         public decimal Radius { get; set; }
+        public Color Color;
 
-        public decimal X
+        public Circle(decimal x, decimal y, decimal radius, Color color)
+        {
+            Position = new Point(x, y);
+            Radius = radius;
+            Color = color;
+        }
+
+        decimal IPositionable.X
         {
             get { return Position.X; }
             set { Position.X = value; }
         }
 
-        public decimal Y
+        decimal IPositionable.Y
         {
             get { return Position.Y; }
             set { Position.Y = value; }
@@ -39,20 +47,20 @@ namespace TermPaper_OOP.Classes
             return $"Circle at {Position} with radius of {Radius}";
         }
 
-        public void Draw(Graphics graphics, Color color, DrawType drawType, float thickness = 1.0f) {
+        public void Draw(Graphics graphics, DrawType drawType, float thickness) {
             if (graphics == null) return;
             
             switch (drawType)
             {
                 case DrawType.Pen:
-                    graphics.DrawEllipse(new Pen(color, thickness),
+                    graphics.DrawEllipse(new Pen(Color, thickness),
                         (float)Position.X, (float)Position.Y,
                         (float)Radius, (float)Radius
                     ); 
                     break;
 
                 case DrawType.Brush:
-                    graphics.FillEllipse(new SolidBrush(color),
+                    graphics.FillEllipse(new SolidBrush(Color),
                         (float)Position.X, (float)Position.Y,
                         (float)Radius, (float)Radius
                     );

@@ -7,11 +7,20 @@ using TermPaper_OOP.Interfaces;
 
 namespace TermPaper_OOP.Classes
 {
-    public class Rectangle : IPositionable, ISurface, IPerimeter, IDrawable
+    public class Rectangle : IShape
     {
         public Point Position;
         public decimal Width { get; set; }
         public decimal Height { get; set; }
+        public Color Color { get; set; }
+
+        public Rectangle(decimal x, decimal y, decimal width, decimal height, Color color)
+        {
+            Position = new Point(x, y);
+            Width = width;
+            Height = height;
+            Color = color;
+        }
 
         public decimal X
         {
@@ -40,9 +49,9 @@ namespace TermPaper_OOP.Classes
             return $"Rectangle at {Position} with width of {Width} and height of {Height}";
         }
 
-        public void Draw(Graphics graphics, Color color, DrawType drawType, float thickness)
+        public void Draw(Graphics graphics, DrawType drawType, float thickness)
         {
-            throw new NotImplementedException();
+            graphics.DrawRectangle(new Pen(Color, thickness), (float)X, (float)Y, (float)Width, (float)Height);
         }
     }
 }

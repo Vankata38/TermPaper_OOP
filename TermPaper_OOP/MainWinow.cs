@@ -1,10 +1,11 @@
+using TermPaper_OOP.Classes;
 using TermPaper_OOP.Interfaces;
 
 namespace TermPaper_OOP
 {
     public partial class MainWindow : Form
     {
-        private readonly List<IPositionable> _objects = new List<IPositionable>();
+        private readonly List<IDrawable> _objects = new List<IDrawable>();
         private readonly Random _random = new();
 
         public MainWindow()
@@ -23,7 +24,7 @@ namespace TermPaper_OOP
             Graphics graph = e.Graphics;
             foreach (var obj in _objects)
             {
-                obj.Draw(graph);
+                obj.Draw(graph, DrawType.Pen, 5f);
             }
         }
 
@@ -32,23 +33,23 @@ namespace TermPaper_OOP
             for (int i = 0; i < 10; i++)
             {
                 Line line = new Line(
-                    _random.Next(0, 1900),
-                    _random.Next(0, 1900),
-                    _random.Next(0, 500),
-                    _random.Next(0, 500),
+                    _random.Next(0, Size.Width - 150),
+                    _random.Next(0, Size.Height - 150),
+                    _random.Next(0, Size.Width - 150),
+                    _random.Next(0, Size.Height - 150),
                     Color.Blue
                     );
 
-                Rectangle rect = new Rectangle(
-                    _random.Next(0, 1900),
-                    _random.Next(0, 1900),
-                    _random.Next(0, 500),
-                    _random.Next(0, 500),
+                var rect = new Classes.Rectangle(
+                    _random.Next(0, Size.Width - 150),
+                    _random.Next(0, Size.Height - 150),
+                    _random.Next(0, 200),
+                    _random.Next(0, 200),
                     Color.Red
                     );
 
-                vectorObjects.Add(line);
-                vectorObjects.Add(rect);
+                _objects.Add(line);
+                _objects.Add(rect);
             }
         }
 

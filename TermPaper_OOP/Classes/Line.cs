@@ -11,10 +11,12 @@ namespace TermPaper_OOP.Classes
     {
         public Point StartPoint;
         public Point EndPoint;
+        public Color Color;
 
-        public Line(decimal x, decimal y, decimal endX, decimal endY) {
+        public Line(decimal x, decimal y, decimal endX, decimal endY, Color color) {
             StartPoint = new Point(x, y);
             EndPoint = new Point(endX, endY);
+            Color = color;
         }
 
         public decimal X
@@ -43,13 +45,13 @@ namespace TermPaper_OOP.Classes
 
         public override string ToString() { return $"Line starting at {StartPoint} and ending at {EndPoint}"; }
 
-        public void Draw(Graphics graphics, Color color, DrawType drawType, float thickness = 1.0f)
+        public void Draw(Graphics graphics, DrawType drawType, float thickness)
         {
             if (graphics == null) return;
             if (drawType != DrawType.Pen) return;
 
             graphics.DrawLine(
-                new Pen(color, thickness),
+                new Pen(Color, thickness),
                 new PointF((float)StartPoint.X, (float)StartPoint.Y),
                 new PointF((float)EndPoint.X, (float)EndPoint.Y)
             );

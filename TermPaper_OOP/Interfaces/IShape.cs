@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace TermPaper_OOP.Interfaces
 {
-    public interface ISurface
+    public interface IShape : IPositionable, IDrawable
     {
+        decimal CalculatePerimeter();
         decimal CalculateArea();
     }
 }

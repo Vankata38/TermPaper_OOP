@@ -14,6 +14,6 @@ namespace TermPaper_OOP.Interfaces
 
     public interface IDrawable
     {
-        void Draw(Graphics graphics, Color color, DrawType drawType, float thickness);
+        void Draw(Graphics graphics, DrawType drawType, float thickness = 1.0f);
     }
 }
