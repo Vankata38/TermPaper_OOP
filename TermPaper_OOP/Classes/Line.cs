@@ -19,26 +19,24 @@ namespace TermPaper_OOP.Classes
             Color = color;
         }
 
-        decimal IPositionable.X
+        public decimal X
         {
             get { return StartPoint.X; }
             set { StartPoint.X = value; }
         }
 
-        decimal IPositionable.Y
+        public decimal Y
         {
             get { return StartPoint.Y; }
             set { StartPoint.Y = value; }
         }
 
-        // TODO: Fix the implementation
         public decimal EndX
         {
             get { return EndPoint.X; }
             set { EndPoint.X = value; }
         }
 
-        // TODO: Fix the implementation
         public decimal EndY
         {
             get { return EndPoint.Y; }

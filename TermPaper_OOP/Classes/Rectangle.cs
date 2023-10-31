@@ -57,13 +57,13 @@ namespace TermPaper_OOP.Classes
             {
                 case DrawType.Pen:
                     graphics.DrawRectangle(new Pen(Color, thickness),
-                        (float)X, (float)Y,
+                        (float)Position.X, (float)Position.Y,
                         (float)Width, (float)Height);
                     break;
 
                 case DrawType.Brush:
                     graphics.FillRectangle(new SolidBrush(Color),
-                        (float)X, (float)Y,
+                        (float)Position.X, (float)Position.Y,
                         (float)Width, (float)Height);
                     break;
             }
