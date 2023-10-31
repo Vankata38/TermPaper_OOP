@@ -9,9 +9,9 @@ namespace TermPaper_OOP.Classes
 {
     public class Circle : IShape
     {
-        public Point Position;
+        private Point Position;
         public decimal Radius { get; set; }
-        public Color Color;
+        public Color Color { get; set; }
 
         public Circle(decimal x, decimal y, decimal radius, Color color)
         {

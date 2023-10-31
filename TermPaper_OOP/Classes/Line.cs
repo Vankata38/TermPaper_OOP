@@ -9,9 +9,9 @@ namespace TermPaper_OOP.Classes
 {
     public class Line : IPositionable, IDrawable
     {
-        public Point StartPoint;
-        public Point EndPoint;
-        public Color Color;
+        private Point StartPoint;
+        private Point EndPoint;
+        public Color Color { get; set; }
 
         public Line(decimal x, decimal y, decimal endX, decimal endY, Color color) {
             StartPoint = new Point(x, y);
@@ -19,24 +19,26 @@ namespace TermPaper_OOP.Classes
             Color = color;
         }
 
-        public decimal X
+        decimal IPositionable.X
         {
             get { return StartPoint.X; }
             set { StartPoint.X = value; }
         }
 
-        public decimal Y
+        decimal IPositionable.Y
         {
             get { return StartPoint.Y; }
             set { StartPoint.Y = value; }
         }
 
+        // TODO: Fix the implementation
         public decimal EndX
         {
             get { return EndPoint.X; }
             set { EndPoint.X = value; }
         }
 
+        // TODO: Fix the implementation
         public decimal EndY
         {
             get { return EndPoint.Y; }

@@ -3,12 +3,13 @@ using TermPaper_OOP.Interfaces;
 
 namespace TermPaper_OOP
 {
-    public partial class MainWindow : Form
+    public partial class Scene : Form
     {
         private readonly List<IDrawable> _objects = new List<IDrawable>();
         private readonly Random _random = new();
+        private int selecterButton = 0;
 
-        public MainWindow()
+        public Scene()
         {
             InitializeComponent();
         }
@@ -24,7 +25,7 @@ namespace TermPaper_OOP
             Graphics graph = e.Graphics;
             foreach (var obj in _objects)
             {
-                obj.Draw(graph, DrawType.Pen, 5f);
+                obj.Draw(graph, DrawType.Pen, 2f);
             }
         }
 
@@ -56,6 +57,12 @@ namespace TermPaper_OOP
         private void MainWindow_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void BtnMove_Click(object sender, EventArgs e)
+        {
+            Button button = (Button)sender;
+            // button.Name
         }
     }
 }

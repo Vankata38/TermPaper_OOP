@@ -9,7 +9,7 @@ namespace TermPaper_OOP.Classes
 {
     public class Rectangle : IShape
     {
-        public Point Position;
+        private Point Position;
         public decimal Width { get; set; }
         public decimal Height { get; set; }
         public Color Color { get; set; }
@@ -22,13 +22,13 @@ namespace TermPaper_OOP.Classes
             Color = color;
         }
 
-        public decimal X
+        decimal IPositionable.X
         {
             get { return Position.X; }
             set { Position.X = value; }
         }
 
-        public decimal Y
+        decimal IPositionable.Y
         {
             get { return Position.Y; }
             set { Position.Y = value; }
@@ -51,7 +51,22 @@ namespace TermPaper_OOP.Classes
 
         public void Draw(Graphics graphics, DrawType drawType, float thickness)
         {
-            graphics.DrawRectangle(new Pen(Color, thickness), (float)X, (float)Y, (float)Width, (float)Height);
+            if (graphics == null) return;
+
+            switch (drawType)
+            {
+                case DrawType.Pen:
+                    graphics.DrawRectangle(new Pen(Color, thickness),
+                        (float)X, (float)Y,
+                        (float)Width, (float)Height);
+                    break;
+
+                case DrawType.Brush:
+                    graphics.FillRectangle(new SolidBrush(Color),
+                        (float)X, (float)Y,
+                        (float)Width, (float)Height);
+                    break;
+            }
         }
     }
 }
