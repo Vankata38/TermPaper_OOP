@@ -30,58 +30,99 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Scene));
             _btnMove = new Button();
-            _btnDrawLine = new Button();
-            _btnDrawRectangle = new Button();
-            _btnDrawTriangle = new Button();
+            _btnLine = new Button();
+            _btnRectangle = new Button();
+            _btnTriangle = new Button();
+            DrawPanel = new Panel();
+            _btnSelect = new Button();
+            _btnCircle = new Button();
+            _btnEllipse = new Button();
             SuspendLayout();
             // 
             // _btnMove
             // 
             _btnMove.BackColor = SystemColors.Control;
-            _btnMove.BackgroundImage = Properties.Resources.Mouse;
             resources.ApplyResources(_btnMove, "_btnMove");
-            _btnMove.Cursor = Cursors.Hand;
             _btnMove.ForeColor = SystemColors.ControlText;
+            _btnMove.Image = Properties.Resources.Mouse;
             _btnMove.Name = "_btnMove";
             _btnMove.UseVisualStyleBackColor = false;
-            _btnMove.Click += BtnMove_Click;
+            _btnMove.Click += Btn_Click;
             // 
-            // _btnDrawLine
+            // _btnLine
             // 
-            _btnDrawLine.BackColor = SystemColors.Control;
-            _btnDrawLine.BackgroundImage = Properties.Resources.Line;
-            resources.ApplyResources(_btnDrawLine, "_btnDrawLine");
-            _btnDrawLine.Cursor = Cursors.Hand;
-            _btnDrawLine.Name = "_btnDrawLine";
-            _btnDrawLine.UseVisualStyleBackColor = false;
+            _btnLine.BackColor = SystemColors.Control;
+            resources.ApplyResources(_btnLine, "_btnLine");
+            _btnLine.Cursor = Cursors.Hand;
+            _btnLine.Image = Properties.Resources.Line;
+            _btnLine.Name = "_btnLine";
+            _btnLine.UseVisualStyleBackColor = false;
+            _btnLine.Click += Btn_Click;
             // 
-            // _btnDrawRectangle
+            // _btnRectangle
             // 
-            _btnDrawRectangle.BackColor = SystemColors.Control;
-            _btnDrawRectangle.BackgroundImage = Properties.Resources.Rectangle;
-            resources.ApplyResources(_btnDrawRectangle, "_btnDrawRectangle");
-            _btnDrawRectangle.Cursor = Cursors.Hand;
-            _btnDrawRectangle.Name = "_btnDrawRectangle";
-            _btnDrawRectangle.UseVisualStyleBackColor = false;
+            _btnRectangle.BackColor = SystemColors.Control;
+            resources.ApplyResources(_btnRectangle, "_btnRectangle");
+            _btnRectangle.Cursor = Cursors.Hand;
+            _btnRectangle.Image = Properties.Resources.Rectangle;
+            _btnRectangle.Name = "_btnRectangle";
+            _btnRectangle.UseVisualStyleBackColor = false;
+            _btnRectangle.Click += Btn_Click;
             // 
-            // _btnDrawTriangle
+            // _btnTriangle
             // 
-            _btnDrawTriangle.BackgroundImage = Properties.Resources.Triangle;
-            resources.ApplyResources(_btnDrawTriangle, "_btnDrawTriangle");
-            _btnDrawTriangle.Cursor = Cursors.Hand;
-            _btnDrawTriangle.Name = "_btnDrawTriangle";
-            _btnDrawTriangle.UseVisualStyleBackColor = true;
+            resources.ApplyResources(_btnTriangle, "_btnTriangle");
+            _btnTriangle.Cursor = Cursors.Hand;
+            _btnTriangle.Image = Properties.Resources.Triangle;
+            _btnTriangle.Name = "_btnTriangle";
+            _btnTriangle.UseVisualStyleBackColor = false;
+            _btnTriangle.Click += Btn_Click;
+            // 
+            // DrawPanel
+            // 
+            resources.ApplyResources(DrawPanel, "DrawPanel");
+            DrawPanel.BackColor = SystemColors.ButtonShadow;
+            DrawPanel.Name = "DrawPanel";
+            DrawPanel.Paint += DrawPanel_Paint;
+            DrawPanel.MouseDown += DrawPanel_MouseDown;
+            // 
+            // _btnSelect
+            // 
+            resources.ApplyResources(_btnSelect, "_btnSelect");
+            _btnSelect.Image = Properties.Resources.Select;
+            _btnSelect.Name = "_btnSelect";
+            _btnSelect.UseVisualStyleBackColor = false;
+            _btnSelect.Click += Btn_Click;
+            // 
+            // _btnCircle
+            // 
+            resources.ApplyResources(_btnCircle, "_btnCircle");
+            _btnCircle.Image = Properties.Resources.Circle;
+            _btnCircle.Name = "_btnCircle";
+            _btnCircle.UseVisualStyleBackColor = false;
+            _btnCircle.Click += Btn_Click;
+            // 
+            // _btnEllipse
+            // 
+            resources.ApplyResources(_btnEllipse, "_btnEllipse");
+            _btnEllipse.Image = Properties.Resources.Ellipse;
+            _btnEllipse.Name = "_btnEllipse";
+            _btnEllipse.UseVisualStyleBackColor = false;
+            _btnEllipse.Click += Btn_Click;
             // 
             // Scene
             // 
             resources.ApplyResources(this, "$this");
             AutoScaleMode = AutoScaleMode.Font;
-            Controls.Add(_btnDrawTriangle);
-            Controls.Add(_btnDrawRectangle);
-            Controls.Add(_btnDrawLine);
+            Controls.Add(_btnEllipse);
+            Controls.Add(_btnCircle);
+            Controls.Add(_btnSelect);
+            Controls.Add(DrawPanel);
+            Controls.Add(_btnTriangle);
+            Controls.Add(_btnRectangle);
+            Controls.Add(_btnLine);
             Controls.Add(_btnMove);
             Name = "Scene";
-            Load += MainWindow_Load;
             ResumeLayout(false);
         }
 
@@ -91,5 +132,17 @@
         private Button _btnDrawLine;
         private Button _btnDrawRectangle;
         private Button _btnDrawTriangle;
+        private Panel panel1;
+        private Panel DrawPanel;
+        private Button button1;
+        private Button button2;
+        private Button button3;
+        private Button _btnLine;
+        private Button _btnRectangle;
+        private Button _btnTriangle;
+        private Button Select;
+        private Button _btnCircle;
+        private Button _btnEllipse;
+        private Button _btnSelect;
     }
 }

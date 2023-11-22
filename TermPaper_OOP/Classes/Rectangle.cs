@@ -9,37 +9,37 @@ namespace TermPaper_OOP.Classes
 {
     public class Rectangle : IShape
     {
-        private Point Position;
-        public decimal Width { get; set; }
-        public decimal Height { get; set; }
+        private PointF Position;
+        public float Width { get; set; }
+        public float Height { get; set; }
         public Color Color { get; set; }
 
-        public Rectangle(decimal x, decimal y, decimal width, decimal height, Color color)
+        public Rectangle(float x, float y, float width, float height, Color color)
         {
-            Position = new Point(x, y);
+            Position = new PointF(x, y);
             Width = width;
             Height = height;
             Color = color;
         }
 
-        decimal IPositionable.X
+        public float X
         {
             get { return Position.X; }
             set { Position.X = value; }
         }
 
-        decimal IPositionable.Y
+        public float Y
         {
             get { return Position.Y; }
             set { Position.Y = value; }
         }
 
-        public decimal CalculatePerimeter()
+        public float CalculatePerimeter()
         {
             return 2 * (Width + Height);
         }
 
-        public decimal CalculateArea()
+        public float CalculateArea()
         {
             return Width * Height;
         }
@@ -47,6 +47,12 @@ namespace TermPaper_OOP.Classes
         public override string ToString()
         {
             return $"Rectangle at {Position} with width of {Width} and height of {Height}";
+        }
+        
+        public bool pointIsInside(PointF point)
+        {
+            return point.X >= Position.X && point.X <= Position.X + Width 
+                && point.Y >= Position.Y && point.Y <= Position.Y + Height;
         }
 
         public void Draw(Graphics graphics, DrawType drawType, float thickness)
@@ -57,14 +63,14 @@ namespace TermPaper_OOP.Classes
             {
                 case DrawType.Pen:
                     graphics.DrawRectangle(new Pen(Color, thickness),
-                        (float)Position.X, (float)Position.Y,
-                        (float)Width, (float)Height);
+                        Position.X, Position.Y,
+                        Width, Height);
                     break;
 
                 case DrawType.Brush:
                     graphics.FillRectangle(new SolidBrush(Color),
-                        (float)Position.X, (float)Position.Y,
-                        (float)Width, (float)Height);
+                        Position.X, Position.Y,
+                        Width, Height);
                     break;
             }
         }

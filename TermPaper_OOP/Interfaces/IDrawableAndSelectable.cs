@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace TermPaper_OOP.Interfaces
 {
-    public interface IShape : IPositionable, IDrawableAndSelectable
+    public interface IDrawableAndSelectable
     {
-        float CalculatePerimeter();
-        float CalculateArea();
+        bool pointIsInside(PointF point);
+        void Draw(Graphics graphics, DrawType drawType, float thickness = 1.0f);
     }
 }

@@ -5,9 +5,13 @@ namespace TermPaper_OOP
 {
     public partial class Scene : Form
     {
-        private readonly List<IDrawable> _objects = new List<IDrawable>();
+        private readonly List<IDrawableAndSelectable> _objects = new();
+        private IDrawableAndSelectable? _selectedObject = null;
         private readonly Random _random = new();
-        private int selecterButton = 0;
+        private int _currentAction = (int)ActionType.Select;
+        private PointF offset;
+
+        private readonly Brush _brush = new SolidBrush(Color.Black);
 
         public Scene()
         {
@@ -16,11 +20,47 @@ namespace TermPaper_OOP
 
         override protected void OnLoad(EventArgs e)
         {
-            CreateLines();
             base.OnLoad(e);
         }
 
-        override protected void OnPaint(PaintEventArgs e)
+        private void Btn_Click(object sender, EventArgs e)
+        {
+            Button button = (Button)sender;
+            switch (button.TabIndex)
+            {
+                case (int)ActionType.Move:
+                    if (_selectedObject != null)
+                        _currentAction = (int)ActionType.Select;
+                    break;
+
+                case (int)ActionType.Select:
+                    _selectedObject = null;
+                    _currentAction = (int)ActionType.Select;
+                    break;
+
+                case (int)ActionType.Line:
+                    _currentAction = (int)ActionType.Line;
+                    break;
+
+                case (int)ActionType.Rectangle:
+                    _currentAction = (int)ActionType.Rectangle;
+                    break;
+
+                case (int)ActionType.Triangle:
+                    _currentAction = (int)ActionType.Triangle;
+                    break;
+
+                case (int)ActionType.Circle:
+                    _currentAction = (int)ActionType.Circle;
+                    break;
+
+                case (int)ActionType.Ellipse:
+                    _currentAction = (int)ActionType.Ellipse;
+                    break;
+            }
+        }
+
+        private void DrawPanel_Paint(object sender, PaintEventArgs e)
         {
             Graphics graph = e.Graphics;
             foreach (var obj in _objects)
@@ -29,40 +69,18 @@ namespace TermPaper_OOP
             }
         }
 
-        private void CreateLines()
+        protected void DrawPanel_MouseDown(object sender, MouseEventArgs e)
         {
-            for (int i = 0; i < 10; i++)
+            base.OnMouseDown(e);
+            if (e.Button == MouseButtons.Left)
             {
-                Line line = new Line(
-                    _random.Next(0, Size.Width - 150),
-                    _random.Next(0, Size.Height - 150),
-                    _random.Next(0, Size.Width - 150),
-                    _random.Next(0, Size.Height - 150),
-                    Color.Blue
-                    );
 
-                var rect = new Classes.Rectangle(
-                    _random.Next(0, Size.Width - 150),
-                    _random.Next(0, Size.Height - 150),
-                    _random.Next(0, 200),
-                    _random.Next(0, 200),
-                    Color.Red
-                    );
-
-                _objects.Add(line);
-                _objects.Add(rect);
             }
         }
 
-        private void MainWindow_Load(object sender, EventArgs e)
+        private void _btnEllipse_Click(object sender, EventArgs e)
         {
 
-        }
-
-        private void BtnMove_Click(object sender, EventArgs e)
-        {
-            Button button = (Button)sender;
-            // button.Name
         }
     }
 }

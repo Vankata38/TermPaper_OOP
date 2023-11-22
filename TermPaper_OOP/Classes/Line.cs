@@ -7,43 +7,58 @@ using TermPaper_OOP.Interfaces;
 
 namespace TermPaper_OOP.Classes
 {
-    public class Line : IPositionable, IDrawable
+    public class Line : IPositionable, IDrawableAndSelectable
     {
-        private Point StartPoint;
-        private Point EndPoint;
+        private PointF StartPoint;
+        private PointF EndPoint;
         public Color Color { get; set; }
 
-        public Line(decimal x, decimal y, decimal endX, decimal endY, Color color) {
-            StartPoint = new Point(x, y);
-            EndPoint = new Point(endX, endY);
+        public Line(float x, float y, float endX, float endY, Color color) {
+            StartPoint = new PointF(x, y);
+            EndPoint = new PointF(endX, endY);
             Color = color;
         }
 
-        public decimal X
+        public float X
         {
             get { return StartPoint.X; }
             set { StartPoint.X = value; }
         }
 
-        public decimal Y
+        public float Y
         {
             get { return StartPoint.Y; }
             set { StartPoint.Y = value; }
         }
 
-        public decimal EndX
+        public float EndX
         {
             get { return EndPoint.X; }
             set { EndPoint.X = value; }
         }
 
-        public decimal EndY
+        public float EndY
         {
             get { return EndPoint.Y; }
             set { EndPoint.Y = value; }
         }
 
         public override string ToString() { return $"Line starting at {StartPoint} and ending at {EndPoint}"; }
+
+        public bool pointIsInside(PointF current)
+        {
+            // Calculate the coefficients of the line equation Ax + By + C = 0
+            float A = EndY - Y;
+            float B = X - EndX;
+            float C = EndX * Y - X * EndY;
+
+            // Calculate the distance from the point to the line
+            float distance = MathF.Abs(A * current.X + B * current.Y + C) / MathF.Sqrt(A * A + B * B);
+
+            // Check if the distance is within the specified thickness
+            float thickness = 5f;
+            return distance <= thickness;
+        }
 
         public void Draw(Graphics graphics, DrawType drawType, float thickness)
         {
@@ -52,8 +67,8 @@ namespace TermPaper_OOP.Classes
 
             graphics.DrawLine(
                 new Pen(Color, thickness),
-                new PointF((float)StartPoint.X, (float)StartPoint.Y),
-                new PointF((float)EndPoint.X, (float)EndPoint.Y)
+                new PointF(StartPoint.X, StartPoint.Y),
+                new PointF(EndPoint.X, EndPoint.Y)
             );
         }
     }

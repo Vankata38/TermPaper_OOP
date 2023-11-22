@@ -9,42 +9,48 @@ namespace TermPaper_OOP.Classes
 {
     public class Circle : IShape
     {
-        private Point Position;
-        public decimal Radius { get; set; }
+        private PointF Position;
+        public float Radius { get; set; }
         public Color Color { get; set; }
 
-        public Circle(decimal x, decimal y, decimal radius, Color color)
+        public Circle(float x, float y, float radius, Color color)
         {
-            Position = new Point(x, y);
+            Position = new PointF(x, y);
             Radius = radius;
             Color = color;
         }
 
-        decimal IPositionable.X
+        float IPositionable.X
         {
             get { return Position.X; }
             set { Position.X = value; }
         }
 
-        decimal IPositionable.Y
+        float IPositionable.Y
         {
             get { return Position.Y; }
             set { Position.Y = value; }
         }
 
-        public decimal CalculatePerimeter()
+        public float CalculatePerimeter()
         {
-            return 2 * (decimal)Math.PI * Radius;
+            return 2 * MathF.PI * Radius;
         }
 
-        public decimal CalculateArea()
+        public float CalculateArea()
         {
-            return (decimal)Math.PI * Radius * Radius;
+            return MathF.PI * Radius * Radius;
         }
 
         public override string ToString()
         {
             return $"Circle at {Position} with radius of {Radius}";
+        }
+
+        public bool pointIsInside(PointF point)
+        {
+            return MathF.Sqrt(MathF.Pow(point.X - Position.X, 2) + 
+                   MathF.Pow(point.Y - Position.Y, 2)) <= Radius;
         }
 
         public void Draw(Graphics graphics, DrawType drawType, float thickness) {
@@ -54,15 +60,15 @@ namespace TermPaper_OOP.Classes
             {
                 case DrawType.Pen:
                     graphics.DrawEllipse(new Pen(Color, thickness),
-                        (float)Position.X, (float)Position.Y,
-                        (float)Radius, (float)Radius
+                        Position.X, Position.Y,
+                        Radius, Radius
                     ); 
                     break;
 
                 case DrawType.Brush:
                     graphics.FillEllipse(new SolidBrush(Color),
-                        (float)Position.X, (float)Position.Y,
-                        (float)Radius, (float)Radius
+                        Position.X, Position.Y,
+                        Radius, Radius
                     );
                     break;
             }
