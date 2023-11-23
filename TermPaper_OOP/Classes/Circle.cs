@@ -61,6 +61,7 @@ namespace TermPaper_OOP.Classes
             return $"Circle at {_position} with radius of {Radius}";
         }
 
+        // TODO: - Fix a bug where the circle is selected with the mouse outside of it
         public bool PointIsInside(PointF point)
         {
             return MathF.Sqrt(MathF.Pow(point.X - _position.X, 2) + 

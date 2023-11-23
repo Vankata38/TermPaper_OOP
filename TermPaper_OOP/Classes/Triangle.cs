@@ -75,9 +75,7 @@ namespace TermPaper_OOP.Classes
             set
             {
                 _height = value;
-
-                // TODO: check if this is correct
-                _leftBottom.Y = _rightBottom.Y = _leftBottom.Y + value; 
+                _top.Y = _leftBottom.Y - _height;
             }
         }
 

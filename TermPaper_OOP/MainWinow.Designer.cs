@@ -72,6 +72,10 @@
             label5 = new Label();
             _labelPerimetar = new Label();
             _labelArea = new Label();
+            label6 = new Label();
+            label7 = new Label();
+            label8 = new Label();
+            label9 = new Label();
             SuspendLayout();
             // 
             // _btnMove
@@ -334,12 +338,36 @@
             resources.ApplyResources(_labelArea, "_labelArea");
             _labelArea.Name = "_labelArea";
             // 
+            // label6
+            // 
+            resources.ApplyResources(label6, "label6");
+            label6.Name = "label6";
+            // 
+            // label7
+            // 
+            resources.ApplyResources(label7, "label7");
+            label7.Name = "label7";
+            // 
+            // label8
+            // 
+            resources.ApplyResources(label8, "label8");
+            label8.Name = "label8";
+            // 
+            // label9
+            // 
+            resources.ApplyResources(label9, "label9");
+            label9.Name = "label9";
+            // 
             // Scene
             // 
             resources.ApplyResources(this, "$this");
             AutoScaleMode = AutoScaleMode.Font;
             Controls.Add(_labelArea);
             Controls.Add(_labelPerimetar);
+            Controls.Add(label7);
+            Controls.Add(label9);
+            Controls.Add(label8);
+            Controls.Add(label6);
             Controls.Add(label3);
             Controls.Add(_fillCheckBox);
             Controls.Add(_labelCurrentSelection);
@@ -434,5 +462,9 @@
         private Label label5;
         private Label _labelPerimetar;
         private Label _labelArea;
+        private Label label6;
+        private Label label7;
+        private Label label8;
+        private Label label9;
     }
 }

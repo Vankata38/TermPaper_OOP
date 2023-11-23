@@ -7,10 +7,11 @@ namespace TermPaper_OOP
     {
         // TODO: - Implement undo/redo
         // TODO : - Implement save/load
+        // Fix a bug while selecting moves triangle down
 
         private readonly List<IDrawableAndSelectable> _objects = new();
         private IDrawableAndSelectable? _selectedObject = null;
-        private int _currentAction = (int)ActionType.Select;
+        private ActionType _currentAction = ActionType.Select;
         private PointF _startingPosition;
         private PointF _offset;
 
@@ -29,50 +30,19 @@ namespace TermPaper_OOP
         private void Btn_Click(object sender, EventArgs e)
         {
             Button button = (Button)sender;
-            switch (button.TabIndex)
+
+            _currentAction = (ActionType)button.TabIndex;
+
+            if (_currentAction == ActionType.Select && _selectedObject != null)
             {
-                case (int)ActionType.Select:
-                    _selectedObject = null;
-                    _currentAction = (int)ActionType.Select;
-                    break;
+                _selectedObject = null;
+                updateUI();
+            }
 
-                case (int)ActionType.Move:
-                    if (_selectedObject == null)
-                    {
-                        _currentAction = (int)ActionType.Select;
-                        return;
-                    }
-                    _currentAction = (int)ActionType.Move;
-                    break;
-
-                case (int)ActionType.Copy:
-                    if (_selectedObject == null)
-                    {
-                        _currentAction = (int)ActionType.Select;
-                        return;
-                    }
-                    _currentAction = (int)ActionType.Copy;
-                    break;
-
-                case (int)ActionType.Line:
-                    _currentAction = (int)ActionType.Line;
-                    break;
-
-                case (int)ActionType.Rectangle:
-                    _currentAction = (int)ActionType.Rectangle;
-                    break;
-
-                case (int)ActionType.Triangle:
-                    _currentAction = (int)ActionType.Triangle;
-                    break;
-
-                case (int)ActionType.Circle:
-                    _currentAction = (int)ActionType.Circle;
-                    break;
-
-                case (int)ActionType.Ellipse:
-                    _currentAction = (int)ActionType.Ellipse;
-                    break;
+            if ((_currentAction == ActionType.Move || _currentAction == ActionType.Copy)
+                && _selectedObject == null)
+            {
+                _currentAction = ActionType.Select;
             }
         }
 
@@ -93,7 +63,7 @@ namespace TermPaper_OOP
             {
                 _startingPosition = e.Location;
 
-                if (_currentAction == (int)ActionType.Move)
+                if (_currentAction == ActionType.Move)
                 {
                     _offset = new PointF(e.X - _selectedObject!.X,
                                          e.Y - _selectedObject.Y);
@@ -109,38 +79,39 @@ namespace TermPaper_OOP
                 // TODO: - Check if we need to parse or its filled
                 switch (_currentAction)
                 {
-                    case (int)ActionType.Select:
+                    case ActionType.Select:
                         _selectedObject = _objects.LastOrDefault(
                             obj => obj.PointIsInside(_startingPosition) == true);
 
-                        if (_selectedObject != null)
-                            updateUI();
-
                         break;
 
-                    case (int)ActionType.Move:
+                    case ActionType.Move:
                         if (_selectedObject == null) return;
 
                         // TODO: - Fix moving for lines
                         _selectedObject.X = e.X - _offset.X;
                         _selectedObject.Y = e.Y - _offset.Y;
+
                         break;
 
-                    case (int)ActionType.Copy:
+                    case ActionType.Copy:
                         if (_selectedObject == null) return;
 
                         IDrawableAndSelectable copy = _selectedObject.Copy();
                         copy.X = e.X - _offset.X;
                         copy.Y = e.Y - _offset.Y;
                         _objects.Add(copy);
+
+                        _selectedObject = copy;
+
                         break;
 
-                    case (int)ActionType.Line:
+                    case ActionType.Line:
                         if (float.TryParse(_thicknessTextBox.Text, out float thickness))
                             _objects.Add(new Line(_startingPosition, e.Location, _colorPicker.Color, thickness));
                         break;
 
-                    case (int)ActionType.Rectangle:
+                    case ActionType.Rectangle:
                         float.TryParse(_thicknessTextBox.Text, out thickness);
 
                         Classes.Rectangle rect = new(
@@ -150,10 +121,12 @@ namespace TermPaper_OOP
                             MathF.Abs(e.Location.Y - _startingPosition.Y),
                             _fillCheckBox.Checked, _colorPicker.Color, thickness);
 
+                        _selectedObject = rect;
+
                         _objects.Add(rect);
                         break;
 
-                    case (int)ActionType.Triangle:
+                    case ActionType.Triangle:
                         float.TryParse(_thicknessTextBox.Text, out thickness);
 
                         Triangle triangle = new(
@@ -163,10 +136,12 @@ namespace TermPaper_OOP
                             MathF.Abs(e.Location.Y - _startingPosition.Y),
                             _fillCheckBox.Checked, _colorPicker.Color, thickness);
 
+                        _selectedObject = triangle;
+
                         _objects.Add(triangle);
                         break;
 
-                    case (int)ActionType.Circle:
+                    case ActionType.Circle:
                         float.TryParse(_thicknessTextBox.Text, out thickness);
 
                         Circle circle = new(
@@ -175,26 +150,46 @@ namespace TermPaper_OOP
                             MathF.Abs(e.Location.X - _startingPosition.X),
                             _fillCheckBox.Checked, _colorPicker.Color, thickness);
 
+                        _selectedObject = circle;
+
                         _objects.Add(circle);
                         break;
 
-                    case (int)ActionType.Ellipse:
+                    case ActionType.Ellipse:
                         throw new NotImplementedException();
                         break;
 
 
                 }
             }
-            Refresh();
+            updateUI();
         }
 
         // TODO: - Optimize the nesting, might not need all the casts
         private void updateUI()
         {
-            // Unhide all
             _hTextBox.Visible = true;
             _labelH.Visible = true;
 
+            if (_selectedObject == null)
+            {
+                _labelCurrentSelection.Text = $"Select an object";
+
+                _xTextBox.Text = "";
+                _yTextBox.Text = "";
+                _wTextBox.Text = "";
+                _hTextBox.Text = "";
+                _fillCheckBox.Checked = false;
+                _thicknessTextBox.Text = "";
+
+                _labelPerimetar.Text = $"The perimetar of the shape is: px";
+                _labelArea.Text = $"The area of the shape is: sq. px.";
+
+                return;
+            }
+
+            _labelCurrentSelection.Text = $"Current selection: {_selectedObject.GetType().Name}";
+            
             _xTextBox.Text = _selectedObject!.X.ToString();
             _yTextBox.Text = _selectedObject!.Y.ToString();
 
@@ -202,8 +197,13 @@ namespace TermPaper_OOP
             {
                 if (_selectedObject is Circle)
                 {
+                    _labelW.Text = "R:";
+
                     _hTextBox.Visible = false;
                     _labelH.Visible = false;
+                } else
+                {
+                    _labelW.Text = "W:";
                 }
 
                 _wTextBox.Text = ((IResizable)_selectedObject).Width.ToString();
