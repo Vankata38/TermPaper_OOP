@@ -6,9 +6,12 @@ using System.Threading.Tasks;
 
 namespace TermPaper_OOP.Interfaces
 {
-    public interface IDrawableAndSelectable
+    public interface IDrawableAndSelectable : IPositionable, ICopyable<IDrawableAndSelectable>
     {
-        bool pointIsInside(PointF point);
-        void Draw(Graphics graphics, DrawType drawType, float thickness = 1.0f);
+        float Thickness { get; set; }
+        Color Color { get; set; }
+
+        bool PointIsInside(PointF point);
+        void Draw(Graphics graphics);
     }
 }

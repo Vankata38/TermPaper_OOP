@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TermPaper_OOP
+namespace TermPaper_OOP.Interfaces
 {
-    public enum DrawType
+    public interface IResizable
     {
-        Pen,
-        Brush
+        float Width { get; set; }
+        float Height { get; set; }
     }
 }

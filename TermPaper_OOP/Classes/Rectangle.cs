@@ -9,29 +9,40 @@ namespace TermPaper_OOP.Classes
 {
     public class Rectangle : IShape
     {
-        private PointF Position;
+        private PointF _position;
+
+        public bool IsFilled { get; set; }
         public float Width { get; set; }
         public float Height { get; set; }
+        public float Thickness { get; set; }
         public Color Color { get; set; }
 
-        public Rectangle(float x, float y, float width, float height, Color color)
+        public Rectangle(float x, float y, float width, float height, 
+                         bool isFilled, Color color, float thickness = 1.0f)
         {
-            Position = new PointF(x, y);
+            _position = new PointF(x, y);
+            IsFilled = isFilled;
             Width = width;
             Height = height;
+            Thickness = thickness;
             Color = color;
+        }
+
+        public IDrawableAndSelectable Copy()
+        {
+            return new Rectangle(_position.X, _position.Y, Width, Height, IsFilled, Color, Thickness);
         }
 
         public float X
         {
-            get { return Position.X; }
-            set { Position.X = value; }
+            get { return _position.X; }
+            set { _position.X = value; }
         }
 
         public float Y
         {
-            get { return Position.Y; }
-            set { Position.Y = value; }
+            get { return _position.Y; }
+            set { _position.Y = value; }
         }
 
         public float CalculatePerimeter()
@@ -46,32 +57,31 @@ namespace TermPaper_OOP.Classes
 
         public override string ToString()
         {
-            return $"Rectangle at {Position} with width of {Width} and height of {Height}";
+            return $"Rectangle at {_position} with width of {Width} and height of {Height}";
         }
         
-        public bool pointIsInside(PointF point)
+        public bool PointIsInside(PointF point)
         {
-            return point.X >= Position.X && point.X <= Position.X + Width 
-                && point.Y >= Position.Y && point.Y <= Position.Y + Height;
+            return point.X >= _position.X && point.X <= _position.X + Width 
+                && point.Y >= _position.Y && point.Y <= _position.Y + Height;
         }
 
-        public void Draw(Graphics graphics, DrawType drawType, float thickness)
+        public void Draw(Graphics graphics)
         {
             if (graphics == null) return;
 
-            switch (drawType)
+            if (IsFilled)
             {
-                case DrawType.Pen:
-                    graphics.DrawRectangle(new Pen(Color, thickness),
-                        Position.X, Position.Y,
+                DrawingResources.SetBrushColor(Color);
+                graphics.FillRectangle(DrawingResources.SharedBrush,
+                        _position.X, _position.Y,
                         Width, Height);
-                    break;
-
-                case DrawType.Brush:
-                    graphics.FillRectangle(new SolidBrush(Color),
-                        Position.X, Position.Y,
+            } else
+            {
+                DrawingResources.SetPen(Color, Thickness);
+                graphics.DrawRectangle(DrawingResources.SharedPen,
+                        _position.X, _position.Y,
                         Width, Height);
-                    break;
             }
         }
     }

@@ -37,6 +37,41 @@
             _btnSelect = new Button();
             _btnCircle = new Button();
             _btnEllipse = new Button();
+            button4 = new Button();
+            button5 = new Button();
+            _saveFile = new SaveFileDialog();
+            _colorPicker = new ColorDialog();
+            _openFile = new OpenFileDialog();
+            _xTextBox = new TextBox();
+            _yTextBox = new TextBox();
+            _labelX = new Label();
+            _labelY = new Label();
+            _labelW = new Label();
+            _labelH = new Label();
+            _wTextBox = new TextBox();
+            _hTextBox = new TextBox();
+            Color = new Label();
+            Devider = new Label();
+            _btnBGColorPicker = new Button();
+            _colorPicker2 = new ColorDialog();
+            Devider2 = new Label();
+            _btnColorPicker = new Button();
+            _btnClear = new Button();
+            label1 = new Label();
+            label2 = new Label();
+            _btnCopy = new Button();
+            _labelBorder = new Label();
+            Devider4 = new Label();
+            label4 = new Label();
+            button1 = new Button();
+            button2 = new Button();
+            _thicknessTextBox = new TextBox();
+            _labelCurrentSelection = new Label();
+            _fillCheckBox = new CheckBox();
+            label3 = new Label();
+            label5 = new Label();
+            _labelPerimetar = new Label();
+            _labelArea = new Label();
             SuspendLayout();
             // 
             // _btnMove
@@ -81,10 +116,11 @@
             // DrawPanel
             // 
             resources.ApplyResources(DrawPanel, "DrawPanel");
-            DrawPanel.BackColor = SystemColors.ButtonShadow;
+            DrawPanel.BackColor = SystemColors.AppWorkspace;
             DrawPanel.Name = "DrawPanel";
             DrawPanel.Paint += DrawPanel_Paint;
             DrawPanel.MouseDown += DrawPanel_MouseDown;
+            DrawPanel.MouseUp += DrawPanel_MouseUp;
             // 
             // _btnSelect
             // 
@@ -110,10 +146,229 @@
             _btnEllipse.UseVisualStyleBackColor = false;
             _btnEllipse.Click += Btn_Click;
             // 
+            // button4
+            // 
+            resources.ApplyResources(button4, "button4");
+            button4.Name = "button4";
+            button4.UseVisualStyleBackColor = true;
+            // 
+            // button5
+            // 
+            resources.ApplyResources(button5, "button5");
+            button5.Name = "button5";
+            button5.UseVisualStyleBackColor = true;
+            // 
+            // _openFile
+            // 
+            _openFile.FileName = "openFileDialog1";
+            // 
+            // _xTextBox
+            // 
+            resources.ApplyResources(_xTextBox, "_xTextBox");
+            _xTextBox.Name = "_xTextBox";
+            _xTextBox.TextChanged += _xTextBox_TextChanged;
+            // 
+            // _yTextBox
+            // 
+            resources.ApplyResources(_yTextBox, "_yTextBox");
+            _yTextBox.Name = "_yTextBox";
+            _yTextBox.TextChanged += _yTextBox_TextChanged;
+            // 
+            // _labelX
+            // 
+            resources.ApplyResources(_labelX, "_labelX");
+            _labelX.Name = "_labelX";
+            // 
+            // _labelY
+            // 
+            resources.ApplyResources(_labelY, "_labelY");
+            _labelY.Name = "_labelY";
+            // 
+            // _labelW
+            // 
+            resources.ApplyResources(_labelW, "_labelW");
+            _labelW.Name = "_labelW";
+            // 
+            // _labelH
+            // 
+            resources.ApplyResources(_labelH, "_labelH");
+            _labelH.Name = "_labelH";
+            // 
+            // _wTextBox
+            // 
+            resources.ApplyResources(_wTextBox, "_wTextBox");
+            _wTextBox.Name = "_wTextBox";
+            _wTextBox.TextChanged += _wTextBox_TextChanged;
+            // 
+            // _hTextBox
+            // 
+            resources.ApplyResources(_hTextBox, "_hTextBox");
+            _hTextBox.Name = "_hTextBox";
+            _hTextBox.TextChanged += _hTextBox_TextChanged;
+            // 
+            // Color
+            // 
+            resources.ApplyResources(Color, "Color");
+            Color.Name = "Color";
+            // 
+            // Devider
+            // 
+            resources.ApplyResources(Devider, "Devider");
+            Devider.BorderStyle = BorderStyle.FixedSingle;
+            Devider.Name = "Devider";
+            // 
+            // _btnBGColorPicker
+            // 
+            resources.ApplyResources(_btnBGColorPicker, "_btnBGColorPicker");
+            _btnBGColorPicker.Name = "_btnBGColorPicker";
+            _btnBGColorPicker.UseVisualStyleBackColor = true;
+            _btnBGColorPicker.Click += _btnColorPicker2_Click;
+            // 
+            // Devider2
+            // 
+            resources.ApplyResources(Devider2, "Devider2");
+            Devider2.BorderStyle = BorderStyle.FixedSingle;
+            Devider2.Name = "Devider2";
+            // 
+            // _btnColorPicker
+            // 
+            resources.ApplyResources(_btnColorPicker, "_btnColorPicker");
+            _btnColorPicker.Name = "_btnColorPicker";
+            _btnColorPicker.UseVisualStyleBackColor = true;
+            _btnColorPicker.Click += btnColorPicker_Click;
+            // 
+            // _btnClear
+            // 
+            resources.ApplyResources(_btnClear, "_btnClear");
+            _btnClear.Name = "_btnClear";
+            _btnClear.UseVisualStyleBackColor = true;
+            _btnClear.Click += _btnClear_Click;
+            // 
+            // label1
+            // 
+            resources.ApplyResources(label1, "label1");
+            label1.BorderStyle = BorderStyle.Fixed3D;
+            label1.Name = "label1";
+            // 
+            // label2
+            // 
+            resources.ApplyResources(label2, "label2");
+            label2.BorderStyle = BorderStyle.Fixed3D;
+            label2.Name = "label2";
+            // 
+            // _btnCopy
+            // 
+            resources.ApplyResources(_btnCopy, "_btnCopy");
+            _btnCopy.Image = Properties.Resources.Copy1;
+            _btnCopy.Name = "_btnCopy";
+            _btnCopy.UseVisualStyleBackColor = true;
+            _btnCopy.Click += Btn_Click;
+            // 
+            // _labelBorder
+            // 
+            resources.ApplyResources(_labelBorder, "_labelBorder");
+            _labelBorder.Name = "_labelBorder";
+            // 
+            // Devider4
+            // 
+            resources.ApplyResources(Devider4, "Devider4");
+            Devider4.BorderStyle = BorderStyle.FixedSingle;
+            Devider4.Name = "Devider4";
+            // 
+            // label4
+            // 
+            resources.ApplyResources(label4, "label4");
+            label4.BorderStyle = BorderStyle.Fixed3D;
+            label4.Name = "label4";
+            // 
+            // button1
+            // 
+            resources.ApplyResources(button1, "button1");
+            button1.Image = Properties.Resources.Undo;
+            button1.Name = "button1";
+            button1.UseVisualStyleBackColor = true;
+            // 
+            // button2
+            // 
+            resources.ApplyResources(button2, "button2");
+            button2.Image = Properties.Resources.Redo;
+            button2.Name = "button2";
+            button2.UseVisualStyleBackColor = true;
+            // 
+            // _thicknessTextBox
+            // 
+            resources.ApplyResources(_thicknessTextBox, "_thicknessTextBox");
+            _thicknessTextBox.Name = "_thicknessTextBox";
+            _thicknessTextBox.TextChanged += _thicknessTextBox_TextChanged;
+            // 
+            // _labelCurrentSelection
+            // 
+            resources.ApplyResources(_labelCurrentSelection, "_labelCurrentSelection");
+            _labelCurrentSelection.Name = "_labelCurrentSelection";
+            // 
+            // _fillCheckBox
+            // 
+            resources.ApplyResources(_fillCheckBox, "_fillCheckBox");
+            _fillCheckBox.Name = "_fillCheckBox";
+            _fillCheckBox.UseVisualStyleBackColor = true;
+            _fillCheckBox.CheckedChanged += _fillCheckBox_CheckedChanged;
+            // 
+            // label3
+            // 
+            resources.ApplyResources(label3, "label3");
+            label3.Name = "label3";
+            // 
+            // label5
+            // 
+            resources.ApplyResources(label5, "label5");
+            label5.BorderStyle = BorderStyle.FixedSingle;
+            label5.Name = "label5";
+            // 
+            // _labelPerimetar
+            // 
+            resources.ApplyResources(_labelPerimetar, "_labelPerimetar");
+            _labelPerimetar.Name = "_labelPerimetar";
+            // 
+            // _labelArea
+            // 
+            resources.ApplyResources(_labelArea, "_labelArea");
+            _labelArea.Name = "_labelArea";
+            // 
             // Scene
             // 
             resources.ApplyResources(this, "$this");
             AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(_labelArea);
+            Controls.Add(_labelPerimetar);
+            Controls.Add(label3);
+            Controls.Add(_fillCheckBox);
+            Controls.Add(_labelCurrentSelection);
+            Controls.Add(_thicknessTextBox);
+            Controls.Add(button2);
+            Controls.Add(button1);
+            Controls.Add(_labelBorder);
+            Controls.Add(_btnCopy);
+            Controls.Add(label4);
+            Controls.Add(label2);
+            Controls.Add(label1);
+            Controls.Add(_btnClear);
+            Controls.Add(_btnColorPicker);
+            Controls.Add(_btnBGColorPicker);
+            Controls.Add(Devider2);
+            Controls.Add(label5);
+            Controls.Add(Devider4);
+            Controls.Add(Devider);
+            Controls.Add(Color);
+            Controls.Add(_hTextBox);
+            Controls.Add(_wTextBox);
+            Controls.Add(_labelH);
+            Controls.Add(_labelW);
+            Controls.Add(_labelY);
+            Controls.Add(_labelX);
+            Controls.Add(_yTextBox);
+            Controls.Add(_xTextBox);
+            Controls.Add(button5);
+            Controls.Add(button4);
             Controls.Add(_btnEllipse);
             Controls.Add(_btnCircle);
             Controls.Add(_btnSelect);
@@ -123,7 +378,9 @@
             Controls.Add(_btnLine);
             Controls.Add(_btnMove);
             Name = "Scene";
+            KeyUp += Scene_KeyUp;
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -144,5 +401,38 @@
         private Button _btnCircle;
         private Button _btnEllipse;
         private Button _btnSelect;
+        private Button button4;
+        private Button button5;
+        private SaveFileDialog _saveFile;
+        private ColorDialog _colorPicker;
+        private OpenFileDialog _openFile;
+        private TextBox _xTextBox;
+        private TextBox _yTextBox;
+        private Label _labelX;
+        private Label _labelY;
+        private Label _labelW;
+        private Label _labelH;
+        private TextBox _wTextBox;
+        private TextBox _hTextBox;
+        private Label Color;
+        private Label Devider;
+        private Button _btnBGColorPicker;
+        private ColorDialog _colorPicker2;
+        private Label Devider2;
+        private Button _btnColorPicker;
+        private Button _btnClear;
+        private Label label1;
+        private Label label2;
+        private Button _btnCopy;
+        private Label _labelBorder;
+        private Label Devider4;
+        private Label label4;
+        private TextBox _thicknessTextBox;
+        private Label _labelCurrentSelection;
+        private CheckBox _fillCheckBox;
+        private Label label3;
+        private Label label5;
+        private Label _labelPerimetar;
+        private Label _labelArea;
     }
 }

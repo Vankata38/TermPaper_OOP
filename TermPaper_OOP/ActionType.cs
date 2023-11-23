@@ -10,6 +10,7 @@ namespace TermPaper_OOP
     {
         Select,
         Move,
+        Copy,
         Line,
         Rectangle,
         Triangle,

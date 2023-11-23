@@ -125,10 +125,6 @@
   <data name="_btnMove.Location" type="System.Drawing.Point, System.Drawing">
     <value>154, 0</value>
   </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="_btnMove.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>0, 0, 0, 0</value>
-  </data>
   <data name="_btnMove.MinimumSize" type="System.Drawing.Size, System.Drawing">
     <value>100, 100</value>
   </data>
@@ -155,7 +151,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;_btnMove.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>38</value>
   </data>
   <data name="_btnLine.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
     <value>Stretch</value>
@@ -164,10 +160,7 @@
     <value>Flat</value>
   </data>
   <data name="_btnLine.Location" type="System.Drawing.Point, System.Drawing">
-    <value>306, 0</value>
-  </data>
-  <data name="_btnLine.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>0, 0, 0, 5</value>
+    <value>458, 0</value>
   </data>
   <data name="_btnLine.MinimumSize" type="System.Drawing.Size, System.Drawing">
     <value>100, 100</value>
@@ -176,7 +169,7 @@
     <value>150, 150</value>
   </data>
   <data name="_btnLine.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
+    <value>3</value>
   </data>
   <data name="_btnLine.Text" xml:space="preserve">
     <value>Line</value>
@@ -194,7 +187,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;_btnLine.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>37</value>
   </data>
   <data name="_btnRectangle.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
     <value>Stretch</value>
@@ -203,10 +196,7 @@
     <value>Flat</value>
   </data>
   <data name="_btnRectangle.Location" type="System.Drawing.Point, System.Drawing">
-    <value>458, 0</value>
-  </data>
-  <data name="_btnRectangle.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>0, 0, 0, 5</value>
+    <value>610, 0</value>
   </data>
   <data name="_btnRectangle.MinimumSize" type="System.Drawing.Size, System.Drawing">
     <value>100, 100</value>
@@ -215,7 +205,7 @@
     <value>150, 150</value>
   </data>
   <data name="_btnRectangle.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
+    <value>4</value>
   </data>
   <data name="_btnRectangle.Text" xml:space="preserve">
     <value>Rectangle</value>
@@ -233,7 +223,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;_btnRectangle.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>36</value>
   </data>
   <data name="_btnTriangle.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
     <value>Stretch</value>
@@ -245,16 +235,13 @@
     <value>NoControl</value>
   </data>
   <data name="_btnTriangle.Location" type="System.Drawing.Point, System.Drawing">
-    <value>610, 0</value>
-  </data>
-  <data name="_btnTriangle.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>0, 0, 0, 5</value>
+    <value>762, 0</value>
   </data>
   <data name="_btnTriangle.Size" type="System.Drawing.Size, System.Drawing">
     <value>150, 150</value>
   </data>
   <data name="_btnTriangle.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
+    <value>5</value>
   </data>
   <data name="_btnTriangle.Text" xml:space="preserve">
     <value>Triangle</value>
@@ -272,7 +259,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;_btnTriangle.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>35</value>
   </data>
   <data name="DrawPanel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Bottom, Left, Right</value>
@@ -283,11 +270,12 @@
   <data name="DrawPanel.Location" type="System.Drawing.Point, System.Drawing">
     <value>2, 152</value>
   </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="DrawPanel.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>0, 0, 0, 0</value>
   </data>
   <data name="DrawPanel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1570, 975</value>
+    <value>1463, 975</value>
   </data>
   <data name="DrawPanel.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
@@ -302,7 +290,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;DrawPanel.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>34</value>
   </data>
   <data name="_btnSelect.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
@@ -311,7 +299,7 @@
     <value>2, 0</value>
   </data>
   <data name="_btnSelect.Size" type="System.Drawing.Size, System.Drawing">
-    <value>150, 150</value>
+    <value>149, 150</value>
   </data>
   <data name="_btnSelect.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -332,19 +320,19 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;_btnSelect.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>33</value>
   </data>
   <data name="_btnCircle.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
   </data>
   <data name="_btnCircle.Location" type="System.Drawing.Point, System.Drawing">
-    <value>762, 0</value>
+    <value>914, 0</value>
   </data>
   <data name="_btnCircle.Size" type="System.Drawing.Size, System.Drawing">
     <value>150, 150</value>
   </data>
   <data name="_btnCircle.TabIndex" type="System.Int32, mscorlib">
-    <value>5</value>
+    <value>6</value>
   </data>
   <data name="_btnCircle.Text" xml:space="preserve">
     <value>Circle</value>
@@ -362,19 +350,19 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;_btnCircle.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>32</value>
   </data>
   <data name="_btnEllipse.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
   </data>
   <data name="_btnEllipse.Location" type="System.Drawing.Point, System.Drawing">
-    <value>914, 0</value>
+    <value>1066, 0</value>
   </data>
   <data name="_btnEllipse.Size" type="System.Drawing.Size, System.Drawing">
     <value>150, 150</value>
   </data>
   <data name="_btnEllipse.TabIndex" type="System.Int32, mscorlib">
-    <value>6</value>
+    <value>7</value>
   </data>
   <data name="_btnEllipse.Text" xml:space="preserve">
     <value>Ellipse</value>
@@ -392,6 +380,934 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;_btnEllipse.ZOrder" xml:space="preserve">
+    <value>31</value>
+  </data>
+  <data name="button4.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Right</value>
+  </data>
+  <data name="button4.Location" type="System.Drawing.Point, System.Drawing">
+    <value>1625, 8</value>
+  </data>
+  <data name="button4.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 0, 0, 0</value>
+  </data>
+  <data name="button4.Size" type="System.Drawing.Size, System.Drawing">
+    <value>140, 70</value>
+  </data>
+  <data name="button4.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
+  </data>
+  <data name="button4.Text" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="&gt;&gt;button4.Name" xml:space="preserve">
+    <value>button4</value>
+  </data>
+  <data name="&gt;&gt;button4.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;button4.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;button4.ZOrder" xml:space="preserve">
+    <value>30</value>
+  </data>
+  <data name="button5.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Right</value>
+  </data>
+  <data name="button5.Location" type="System.Drawing.Point, System.Drawing">
+    <value>1625, 80</value>
+  </data>
+  <data name="button5.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 0, 0, 0</value>
+  </data>
+  <data name="button5.Size" type="System.Drawing.Size, System.Drawing">
+    <value>140, 70</value>
+  </data>
+  <data name="button5.TabIndex" type="System.Int32, mscorlib">
+    <value>9</value>
+  </data>
+  <data name="button5.Text" xml:space="preserve">
+    <value>Load</value>
+  </data>
+  <data name="&gt;&gt;button5.Name" xml:space="preserve">
+    <value>button5</value>
+  </data>
+  <data name="&gt;&gt;button5.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;button5.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;button5.ZOrder" xml:space="preserve">
+    <value>29</value>
+  </data>
+  <metadata name="_saveFile.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>602, 24</value>
+  </metadata>
+  <metadata name="_colorPicker.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>42, 17</value>
+  </metadata>
+  <metadata name="_openFile.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>431, 20</value>
+  </metadata>
+  <data name="_xTextBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Right</value>
+  </data>
+  <data name="_xTextBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>1510, 217</value>
+  </data>
+  <data name="_xTextBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>110, 39</value>
+  </data>
+  <data name="_xTextBox.TabIndex" type="System.Int32, mscorlib">
+    <value>12</value>
+  </data>
+  <data name="&gt;&gt;_xTextBox.Name" xml:space="preserve">
+    <value>_xTextBox</value>
+  </data>
+  <data name="&gt;&gt;_xTextBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;_xTextBox.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;_xTextBox.ZOrder" xml:space="preserve">
+    <value>28</value>
+  </data>
+  <data name="_yTextBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Right</value>
+  </data>
+  <data name="_yTextBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>1653, 217</value>
+  </data>
+  <data name="_yTextBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>110, 39</value>
+  </data>
+  <data name="_yTextBox.TabIndex" type="System.Int32, mscorlib">
+    <value>13</value>
+  </data>
+  <data name="&gt;&gt;_yTextBox.Name" xml:space="preserve">
+    <value>_yTextBox</value>
+  </data>
+  <data name="&gt;&gt;_yTextBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;_yTextBox.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;_yTextBox.ZOrder" xml:space="preserve">
+    <value>27</value>
+  </data>
+  <data name="_labelX.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Right</value>
+  </data>
+  <data name="_labelX.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="_labelX.Location" type="System.Drawing.Point, System.Drawing">
+    <value>1468, 220</value>
+  </data>
+  <data name="_labelX.Size" type="System.Drawing.Size, System.Drawing">
+    <value>33, 32</value>
+  </data>
+  <data name="_labelX.TabIndex" type="System.Int32, mscorlib">
+    <value>11</value>
+  </data>
+  <data name="_labelX.Text" xml:space="preserve">
+    <value>X:</value>
+  </data>
+  <data name="&gt;&gt;_labelX.Name" xml:space="preserve">
+    <value>_labelX</value>
+  </data>
+  <data name="&gt;&gt;_labelX.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;_labelX.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;_labelX.ZOrder" xml:space="preserve">
+    <value>26</value>
+  </data>
+  <data name="_labelY.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Right</value>
+  </data>
+  <data name="_labelY.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="_labelY.Location" type="System.Drawing.Point, System.Drawing">
+    <value>1620, 220</value>
+  </data>
+  <data name="_labelY.Size" type="System.Drawing.Size, System.Drawing">
+    <value>32, 32</value>
+  </data>
+  <data name="_labelY.TabIndex" type="System.Int32, mscorlib">
+    <value>12</value>
+  </data>
+  <data name="_labelY.Text" xml:space="preserve">
+    <value>Y:</value>
+  </data>
+  <data name="&gt;&gt;_labelY.Name" xml:space="preserve">
+    <value>_labelY</value>
+  </data>
+  <data name="&gt;&gt;_labelY.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;_labelY.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;_labelY.ZOrder" xml:space="preserve">
+    <value>25</value>
+  </data>
+  <data name="_labelW.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Right</value>
+  </data>
+  <data name="_labelW.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="_labelW.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="_labelW.Location" type="System.Drawing.Point, System.Drawing">
+    <value>1468, 278</value>
+  </data>
+  <data name="_labelW.Size" type="System.Drawing.Size, System.Drawing">
+    <value>41, 32</value>
+  </data>
+  <data name="_labelW.TabIndex" type="System.Int32, mscorlib">
+    <value>13</value>
+  </data>
+  <data name="_labelW.Text" xml:space="preserve">
+    <value>W:</value>
+  </data>
+  <data name="&gt;&gt;_labelW.Name" xml:space="preserve">
+    <value>_labelW</value>
+  </data>
+  <data name="&gt;&gt;_labelW.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;_labelW.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;_labelW.ZOrder" xml:space="preserve">
+    <value>24</value>
+  </data>
+  <data name="_labelH.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Right</value>
+  </data>
+  <data name="_labelH.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="_labelH.Location" type="System.Drawing.Point, System.Drawing">
+    <value>1620, 278</value>
+  </data>
+  <data name="_labelH.Size" type="System.Drawing.Size, System.Drawing">
+    <value>36, 32</value>
+  </data>
+  <data name="_labelH.TabIndex" type="System.Int32, mscorlib">
+    <value>14</value>
+  </data>
+  <data name="_labelH.Text" xml:space="preserve">
+    <value>H:</value>
+  </data>
+  <data name="&gt;&gt;_labelH.Name" xml:space="preserve">
+    <value>_labelH</value>
+  </data>
+  <data name="&gt;&gt;_labelH.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;_labelH.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;_labelH.ZOrder" xml:space="preserve">
+    <value>23</value>
+  </data>
+  <data name="_wTextBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Right</value>
+  </data>
+  <data name="_wTextBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>1510, 275</value>
+  </data>
+  <data name="_wTextBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>110, 39</value>
+  </data>
+  <data name="_wTextBox.TabIndex" type="System.Int32, mscorlib">
+    <value>14</value>
+  </data>
+  <data name="&gt;&gt;_wTextBox.Name" xml:space="preserve">
+    <value>_wTextBox</value>
+  </data>
+  <data name="&gt;&gt;_wTextBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;_wTextBox.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;_wTextBox.ZOrder" xml:space="preserve">
+    <value>22</value>
+  </data>
+  <data name="_hTextBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Right</value>
+  </data>
+  <data name="_hTextBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>1653, 275</value>
+  </data>
+  <data name="_hTextBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>110, 39</value>
+  </data>
+  <data name="_hTextBox.TabIndex" type="System.Int32, mscorlib">
+    <value>15</value>
+  </data>
+  <data name="&gt;&gt;_hTextBox.Name" xml:space="preserve">
+    <value>_hTextBox</value>
+  </data>
+  <data name="&gt;&gt;_hTextBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;_hTextBox.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;_hTextBox.ZOrder" xml:space="preserve">
+    <value>21</value>
+  </data>
+  <data name="Color.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Right</value>
+  </data>
+  <data name="Color.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="Color.Location" type="System.Drawing.Point, System.Drawing">
+    <value>1472, 355</value>
+  </data>
+  <data name="Color.Size" type="System.Drawing.Size, System.Drawing">
+    <value>76, 32</value>
+  </data>
+  <data name="Color.TabIndex" type="System.Int32, mscorlib">
+    <value>16</value>
+  </data>
+  <data name="Color.Text" xml:space="preserve">
+    <value>Color:</value>
+  </data>
+  <data name="&gt;&gt;Color.Name" xml:space="preserve">
+    <value>Color</value>
+  </data>
+  <data name="&gt;&gt;Color.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;Color.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;Color.ZOrder" xml:space="preserve">
+    <value>20</value>
+  </data>
+  <data name="Devider.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Right</value>
+  </data>
+  <data name="Devider.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="Devider.Location" type="System.Drawing.Point, System.Drawing">
+    <value>1466, 328</value>
+  </data>
+  <data name="Devider.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 0, 0, 0</value>
+  </data>
+  <data name="Devider.Size" type="System.Drawing.Size, System.Drawing">
+    <value>310, 3</value>
+  </data>
+  <data name="Devider.TabIndex" type="System.Int32, mscorlib">
+    <value>18</value>
+  </data>
+  <data name="&gt;&gt;Devider.Name" xml:space="preserve">
+    <value>Devider</value>
+  </data>
+  <data name="&gt;&gt;Devider.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;Devider.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;Devider.ZOrder" xml:space="preserve">
+    <value>19</value>
+  </data>
+  <data name="_btnBGColorPicker.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Right</value>
+  </data>
+  <data name="_btnBGColorPicker.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 8pt</value>
+  </data>
+  <data name="_btnBGColorPicker.Location" type="System.Drawing.Point, System.Drawing">
+    <value>1472, 8</value>
+  </data>
+  <data name="_btnBGColorPicker.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 0, 0, 0</value>
+  </data>
+  <data name="_btnBGColorPicker.Size" type="System.Drawing.Size, System.Drawing">
+    <value>140, 70</value>
+  </data>
+  <data name="_btnBGColorPicker.TabIndex" type="System.Int32, mscorlib">
+    <value>11</value>
+  </data>
+  <data name="_btnBGColorPicker.Text" xml:space="preserve">
+    <value>Background
+Color</value>
+  </data>
+  <data name="&gt;&gt;_btnBGColorPicker.Name" xml:space="preserve">
+    <value>_btnBGColorPicker</value>
+  </data>
+  <data name="&gt;&gt;_btnBGColorPicker.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;_btnBGColorPicker.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;_btnBGColorPicker.ZOrder" xml:space="preserve">
+    <value>15</value>
+  </data>
+  <metadata name="_colorPicker2.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>239, 17</value>
+  </metadata>
+  <data name="Devider2.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Right</value>
+  </data>
+  <data name="Devider2.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="Devider2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>1463, 152</value>
+  </data>
+  <data name="Devider2.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 0, 0, 0</value>
+  </data>
+  <data name="Devider2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>310, 3</value>
+  </data>
+  <data name="Devider2.TabIndex" type="System.Int32, mscorlib">
+    <value>18</value>
+  </data>
+  <data name="&gt;&gt;Devider2.Name" xml:space="preserve">
+    <value>Devider2</value>
+  </data>
+  <data name="&gt;&gt;Devider2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;Devider2.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;Devider2.ZOrder" xml:space="preserve">
+    <value>16</value>
+  </data>
+  <data name="_btnColorPicker.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Right</value>
+  </data>
+  <data name="_btnColorPicker.Location" type="System.Drawing.Point, System.Drawing">
+    <value>1554, 348</value>
+  </data>
+  <data name="_btnColorPicker.Size" type="System.Drawing.Size, System.Drawing">
+    <value>208, 46</value>
+  </data>
+  <data name="_btnColorPicker.TabIndex" type="System.Int32, mscorlib">
+    <value>16</value>
+  </data>
+  <data name="_btnColorPicker.Text" xml:space="preserve">
+    <value>Pick Color</value>
+  </data>
+  <data name="&gt;&gt;_btnColorPicker.Name" xml:space="preserve">
+    <value>_btnColorPicker</value>
+  </data>
+  <data name="&gt;&gt;_btnColorPicker.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;_btnColorPicker.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;_btnColorPicker.ZOrder" xml:space="preserve">
+    <value>14</value>
+  </data>
+  <data name="_btnClear.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Right</value>
+  </data>
+  <data name="_btnClear.Location" type="System.Drawing.Point, System.Drawing">
+    <value>1472, 80</value>
+  </data>
+  <data name="_btnClear.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 0, 0, 0</value>
+  </data>
+  <data name="_btnClear.Size" type="System.Drawing.Size, System.Drawing">
+    <value>140, 70</value>
+  </data>
+  <data name="_btnClear.TabIndex" type="System.Int32, mscorlib">
+    <value>10</value>
+  </data>
+  <data name="_btnClear.Text" xml:space="preserve">
+    <value>Clear</value>
+  </data>
+  <data name="&gt;&gt;_btnClear.Name" xml:space="preserve">
+    <value>_btnClear</value>
+  </data>
+  <data name="&gt;&gt;_btnClear.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;_btnClear.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;_btnClear.ZOrder" xml:space="preserve">
+    <value>13</value>
+  </data>
+  <data name="label1.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Right</value>
+  </data>
+  <data name="label1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>1617, -2</value>
+  </data>
+  <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>3, 154</value>
+  </data>
+  <data name="label1.TabIndex" type="System.Int32, mscorlib">
+    <value>23</value>
+  </data>
+  <data name="label1.Text" xml:space="preserve">
+    <value>Devider3</value>
+  </data>
+  <data name="&gt;&gt;label1.Name" xml:space="preserve">
+    <value>label1</value>
+  </data>
+  <data name="&gt;&gt;label1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label1.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;label1.ZOrder" xml:space="preserve">
+    <value>12</value>
+  </data>
+  <data name="label2.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Right</value>
+  </data>
+  <data name="label2.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>1464, -2</value>
+  </data>
+  <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>3, 156</value>
+  </data>
+  <data name="label2.TabIndex" type="System.Int32, mscorlib">
+    <value>23</value>
+  </data>
+  <data name="label2.Text" xml:space="preserve">
+    <value>Devider4</value>
+  </data>
+  <data name="&gt;&gt;label2.Name" xml:space="preserve">
+    <value>label2</value>
+  </data>
+  <data name="&gt;&gt;label2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label2.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;label2.ZOrder" xml:space="preserve">
+    <value>11</value>
+  </data>
+  <data name="_btnCopy.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="_btnCopy.Location" type="System.Drawing.Point, System.Drawing">
+    <value>306, 0</value>
+  </data>
+  <data name="_btnCopy.Size" type="System.Drawing.Size, System.Drawing">
+    <value>150, 150</value>
+  </data>
+  <data name="_btnCopy.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="_btnCopy.Text" xml:space="preserve">
+    <value>Copy</value>
+  </data>
+  <data name="_btnCopy.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>BottomCenter</value>
+  </data>
+  <data name="&gt;&gt;_btnCopy.Name" xml:space="preserve">
+    <value>_btnCopy</value>
+  </data>
+  <data name="&gt;&gt;_btnCopy.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;_btnCopy.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;_btnCopy.ZOrder" xml:space="preserve">
+    <value>9</value>
+  </data>
+  <data name="_labelBorder.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Right</value>
+  </data>
+  <data name="_labelBorder.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="_labelBorder.Location" type="System.Drawing.Point, System.Drawing">
+    <value>1472, 480</value>
+  </data>
+  <data name="_labelBorder.Size" type="System.Drawing.Size, System.Drawing">
+    <value>195, 32</value>
+  </data>
+  <data name="_labelBorder.TabIndex" type="System.Int32, mscorlib">
+    <value>24</value>
+  </data>
+  <data name="_labelBorder.Text" xml:space="preserve">
+    <value>Border thickness:</value>
+  </data>
+  <data name="&gt;&gt;_labelBorder.Name" xml:space="preserve">
+    <value>_labelBorder</value>
+  </data>
+  <data name="&gt;&gt;_labelBorder.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;_labelBorder.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;_labelBorder.ZOrder" xml:space="preserve">
+    <value>8</value>
+  </data>
+  <data name="Devider4.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Right</value>
+  </data>
+  <data name="Devider4.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="Devider4.Location" type="System.Drawing.Point, System.Drawing">
+    <value>1463, 410</value>
+  </data>
+  <data name="Devider4.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 0, 0, 0</value>
+  </data>
+  <data name="Devider4.Size" type="System.Drawing.Size, System.Drawing">
+    <value>310, 3</value>
+  </data>
+  <data name="Devider4.TabIndex" type="System.Int32, mscorlib">
+    <value>18</value>
+  </data>
+  <data name="&gt;&gt;Devider4.Name" xml:space="preserve">
+    <value>Devider4</value>
+  </data>
+  <data name="&gt;&gt;Devider4.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;Devider4.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;Devider4.ZOrder" xml:space="preserve">
+    <value>18</value>
+  </data>
+  <data name="label4.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Right</value>
+  </data>
+  <data name="label4.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label4.Location" type="System.Drawing.Point, System.Drawing">
+    <value>1222, 0</value>
+  </data>
+  <data name="label4.Size" type="System.Drawing.Size, System.Drawing">
+    <value>3, 152</value>
+  </data>
+  <data name="label4.TabIndex" type="System.Int32, mscorlib">
+    <value>23</value>
+  </data>
+  <data name="label4.Text" xml:space="preserve">
+    <value>Devider4</value>
+  </data>
+  <data name="&gt;&gt;label4.Name" xml:space="preserve">
+    <value>label4</value>
+  </data>
+  <data name="&gt;&gt;label4.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label4.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;label4.ZOrder" xml:space="preserve">
+    <value>10</value>
+  </data>
+  <data name="button1.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Right</value>
+  </data>
+  <data name="button1.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="button1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>1227, 0</value>
+  </data>
+  <data name="button1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>115, 150</value>
+  </data>
+  <data name="button1.TabIndex" type="System.Int32, mscorlib">
+    <value>25</value>
+  </data>
+  <data name="button1.Text" xml:space="preserve">
+    <value>Undo</value>
+  </data>
+  <data name="button1.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>BottomCenter</value>
+  </data>
+  <data name="&gt;&gt;button1.Name" xml:space="preserve">
+    <value>button1</value>
+  </data>
+  <data name="&gt;&gt;button1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;button1.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;button1.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="button2.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Right</value>
+  </data>
+  <data name="button2.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="button2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>1342, 0</value>
+  </data>
+  <data name="button2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>115, 150</value>
+  </data>
+  <data name="button2.TabIndex" type="System.Int32, mscorlib">
+    <value>26</value>
+  </data>
+  <data name="button2.Text" xml:space="preserve">
+    <value>Redo</value>
+  </data>
+  <data name="button2.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>BottomCenter</value>
+  </data>
+  <data name="&gt;&gt;button2.Name" xml:space="preserve">
+    <value>button2</value>
+  </data>
+  <data name="&gt;&gt;button2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;button2.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;button2.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="_thicknessTextBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Right</value>
+  </data>
+  <data name="_thicknessTextBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>1673, 477</value>
+  </data>
+  <data name="_thicknessTextBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>37, 39</value>
+  </data>
+  <data name="_thicknessTextBox.TabIndex" type="System.Int32, mscorlib">
+    <value>27</value>
+  </data>
+  <data name="_thicknessTextBox.Text" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="_thicknessTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Center</value>
+  </data>
+  <data name="&gt;&gt;_thicknessTextBox.Name" xml:space="preserve">
+    <value>_thicknessTextBox</value>
+  </data>
+  <data name="&gt;&gt;_thicknessTextBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;_thicknessTextBox.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;_thicknessTextBox.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="_labelCurrentSelection.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Right</value>
+  </data>
+  <data name="_labelCurrentSelection.Location" type="System.Drawing.Point, System.Drawing">
+    <value>1472, 156</value>
+  </data>
+  <data name="_labelCurrentSelection.Size" type="System.Drawing.Size, System.Drawing">
+    <value>293, 64</value>
+  </data>
+  <data name="_labelCurrentSelection.TabIndex" type="System.Int32, mscorlib">
+    <value>28</value>
+  </data>
+  <data name="_labelCurrentSelection.Text" xml:space="preserve">
+    <value>Place Holder</value>
+  </data>
+  <data name="_labelCurrentSelection.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="&gt;&gt;_labelCurrentSelection.Name" xml:space="preserve">
+    <value>_labelCurrentSelection</value>
+  </data>
+  <data name="&gt;&gt;_labelCurrentSelection.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;_labelCurrentSelection.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;_labelCurrentSelection.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="_fillCheckBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Right</value>
+  </data>
+  <data name="_fillCheckBox.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="_fillCheckBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>1472, 430</value>
+  </data>
+  <data name="_fillCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>149, 36</value>
+  </data>
+  <data name="_fillCheckBox.TabIndex" type="System.Int32, mscorlib">
+    <value>29</value>
+  </data>
+  <data name="_fillCheckBox.Text" xml:space="preserve">
+    <value>Fill Shape</value>
+  </data>
+  <data name="&gt;&gt;_fillCheckBox.Name" xml:space="preserve">
+    <value>_fillCheckBox</value>
+  </data>
+  <data name="&gt;&gt;_fillCheckBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;_fillCheckBox.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;_fillCheckBox.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="label3.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Right</value>
+  </data>
+  <data name="label3.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label3.Location" type="System.Drawing.Point, System.Drawing">
+    <value>1716, 480</value>
+  </data>
+  <data name="label3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>39, 32</value>
+  </data>
+  <data name="label3.TabIndex" type="System.Int32, mscorlib">
+    <value>30</value>
+  </data>
+  <data name="label3.Text" xml:space="preserve">
+    <value>px</value>
+  </data>
+  <data name="&gt;&gt;label3.Name" xml:space="preserve">
+    <value>label3</value>
+  </data>
+  <data name="&gt;&gt;label3.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label3.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;label3.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="label5.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Right</value>
+  </data>
+  <data name="label5.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label5.Location" type="System.Drawing.Point, System.Drawing">
+    <value>1466, 530</value>
+  </data>
+  <data name="label5.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 0, 0, 0</value>
+  </data>
+  <data name="label5.Size" type="System.Drawing.Size, System.Drawing">
+    <value>310, 3</value>
+  </data>
+  <data name="label5.TabIndex" type="System.Int32, mscorlib">
+    <value>18</value>
+  </data>
+  <data name="&gt;&gt;label5.Name" xml:space="preserve">
+    <value>label5</value>
+  </data>
+  <data name="&gt;&gt;label5.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label5.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;label5.ZOrder" xml:space="preserve">
+    <value>17</value>
+  </data>
+  <data name="_labelPerimetar.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Right</value>
+  </data>
+  <data name="_labelPerimetar.Location" type="System.Drawing.Point, System.Drawing">
+    <value>1472, 543</value>
+  </data>
+  <data name="_labelPerimetar.Size" type="System.Drawing.Size, System.Drawing">
+    <value>290, 80</value>
+  </data>
+  <data name="_labelPerimetar.TabIndex" type="System.Int32, mscorlib">
+    <value>31</value>
+  </data>
+  <data name="_labelPerimetar.Text" xml:space="preserve">
+    <value>The perimetar of the shape is:</value>
+  </data>
+  <data name="_labelPerimetar.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="&gt;&gt;_labelPerimetar.Name" xml:space="preserve">
+    <value>_labelPerimetar</value>
+  </data>
+  <data name="&gt;&gt;_labelPerimetar.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;_labelPerimetar.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;_labelPerimetar.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="_labelArea.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Right</value>
+  </data>
+  <data name="_labelArea.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="_labelArea.Location" type="System.Drawing.Point, System.Drawing">
+    <value>1475, 623</value>
+  </data>
+  <data name="_labelArea.Size" type="System.Drawing.Size, System.Drawing">
+    <value>290, 80</value>
+  </data>
+  <data name="_labelArea.TabIndex" type="System.Int32, mscorlib">
+    <value>31</value>
+  </data>
+  <data name="_labelArea.Text" xml:space="preserve">
+    <value>The area of the shape is:</value>
+  </data>
+  <data name="_labelArea.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="&gt;&gt;_labelArea.Name" xml:space="preserve">
+    <value>_labelArea</value>
+  </data>
+  <data name="&gt;&gt;_labelArea.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;_labelArea.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;_labelArea.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
@@ -401,13 +1317,40 @@
     <value>13, 32</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>1574, 1129</value>
+    <value>1774, 1129</value>
+  </data>
+  <data name="$this.MinimumSize" type="System.Drawing.Size, System.Drawing">
+    <value>1800, 1000</value>
   </data>
   <data name="$this.StartPosition" type="System.Windows.Forms.FormStartPosition, System.Windows.Forms">
     <value>CenterScreen</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>MainWindow</value>
+  </data>
+  <data name="&gt;&gt;_saveFile.Name" xml:space="preserve">
+    <value>_saveFile</value>
+  </data>
+  <data name="&gt;&gt;_saveFile.Type" xml:space="preserve">
+    <value>System.Windows.Forms.SaveFileDialog, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;_colorPicker.Name" xml:space="preserve">
+    <value>_colorPicker</value>
+  </data>
+  <data name="&gt;&gt;_colorPicker.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ColorDialog, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;_openFile.Name" xml:space="preserve">
+    <value>_openFile</value>
+  </data>
+  <data name="&gt;&gt;_openFile.Type" xml:space="preserve">
+    <value>System.Windows.Forms.OpenFileDialog, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;_colorPicker2.Name" xml:space="preserve">
+    <value>_colorPicker2</value>
+  </data>
+  <data name="&gt;&gt;_colorPicker2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ColorDialog, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>Scene</value>

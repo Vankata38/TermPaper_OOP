@@ -6,8 +6,10 @@ using System.Threading.Tasks;
 
 namespace TermPaper_OOP.Interfaces
 {
-    public interface IShape : IPositionable, IDrawableAndSelectable
+    public interface IShape : IPositionable, IDrawableAndSelectable, IResizable
     {
+        bool IsFilled { get; set; }
+
         float CalculatePerimeter();
         float CalculateArea();
     }

@@ -9,28 +9,42 @@ namespace TermPaper_OOP.Classes
 {
     public class Circle : IShape
     {
-        private PointF Position;
+        private PointF _position;
+
+        public bool IsFilled { get; set; }
         public float Radius { get; set; }
+        public float Thickness { get; set; }
         public Color Color { get; set; }
 
-        public Circle(float x, float y, float radius, Color color)
+        public Circle(float x, float y, float radius, bool isFilled, 
+                      Color color, float thickness = 1.0f)
         {
-            Position = new PointF(x, y);
+            _position = new PointF(x, y);
+            IsFilled = isFilled;
             Radius = radius;
+            Thickness = thickness;
             Color = color;
+        }
+
+        public IDrawableAndSelectable Copy()
+        {
+            return new Circle(_position.X, _position.Y, Radius, IsFilled, Color, Thickness);
         }
 
         float IPositionable.X
         {
-            get { return Position.X; }
-            set { Position.X = value; }
+            get { return _position.X; }
+            set { _position.X = value; }
         }
 
         float IPositionable.Y
         {
-            get { return Position.Y; }
-            set { Position.Y = value; }
+            get { return _position.Y; }
+            set { _position.Y = value; }
         }
+
+        public float Width { get => Radius; set => Radius = value; }
+        public float Height { get => Radius; set => Radius = value; }
 
         public float CalculatePerimeter()
         {
@@ -44,33 +58,29 @@ namespace TermPaper_OOP.Classes
 
         public override string ToString()
         {
-            return $"Circle at {Position} with radius of {Radius}";
+            return $"Circle at {_position} with radius of {Radius}";
         }
 
-        public bool pointIsInside(PointF point)
+        public bool PointIsInside(PointF point)
         {
-            return MathF.Sqrt(MathF.Pow(point.X - Position.X, 2) + 
-                   MathF.Pow(point.Y - Position.Y, 2)) <= Radius;
+            return MathF.Sqrt(MathF.Pow(point.X - _position.X, 2) + 
+                   MathF.Pow(point.Y - _position.Y, 2)) <= Radius;
         }
 
-        public void Draw(Graphics graphics, DrawType drawType, float thickness) {
+        public void Draw(Graphics graphics) {
             if (graphics == null) return;
             
-            switch (drawType)
+            if (IsFilled) {
+                DrawingResources.SetBrushColor(Color);
+                graphics.FillEllipse(DrawingResources.SharedBrush,
+                                    _position.X, _position.Y,
+                                    Radius, Radius);
+            } else
             {
-                case DrawType.Pen:
-                    graphics.DrawEllipse(new Pen(Color, thickness),
-                        Position.X, Position.Y,
-                        Radius, Radius
-                    ); 
-                    break;
-
-                case DrawType.Brush:
-                    graphics.FillEllipse(new SolidBrush(Color),
-                        Position.X, Position.Y,
-                        Radius, Radius
-                    );
-                    break;
+                DrawingResources.SetPen(Color, Thickness);
+                graphics.DrawEllipse(DrawingResources.SharedPen,
+                                    _position.X, _position.Y,
+                                    Radius, Radius);
             }
         }
     }
