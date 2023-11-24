@@ -73,15 +73,11 @@ namespace TermPaper_OOP.Classes
             
             if (IsFilled) {
                 DrawingResources.SetBrushColor(Color);
-                graphics.FillEllipse(DrawingResources.SharedBrush,
-                                    _position.X, _position.Y,
-                                    Radius, Radius);
+                graphics.FillEllipse(DrawingResources.SharedBrush, _position.X, _position.Y, Radius, Radius);
             } else
             {
                 DrawingResources.SetPen(Color, Thickness);
-                graphics.DrawEllipse(DrawingResources.SharedPen,
-                                    _position.X, _position.Y,
-                                    Radius, Radius);
+                graphics.DrawEllipse(DrawingResources.SharedPen, _position.X, _position.Y, Radius, Radius);
             }
         }
     }
