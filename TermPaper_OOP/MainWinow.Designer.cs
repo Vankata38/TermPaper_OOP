@@ -33,7 +33,6 @@
             _btnLine = new Button();
             _btnRectangle = new Button();
             _btnTriangle = new Button();
-            DrawPanel = new Panel();
             _btnSelect = new Button();
             _btnCircle = new Button();
             _btnEllipse = new Button();
@@ -76,6 +75,8 @@
             label7 = new Label();
             label8 = new Label();
             label9 = new Label();
+            DrawPanel = new PictureBox();
+            ((System.ComponentModel.ISupportInitialize)DrawPanel).BeginInit();
             SuspendLayout();
             // 
             // _btnMove
@@ -116,15 +117,6 @@
             _btnTriangle.Name = "_btnTriangle";
             _btnTriangle.UseVisualStyleBackColor = false;
             _btnTriangle.Click += Btn_Click;
-            // 
-            // DrawPanel
-            // 
-            resources.ApplyResources(DrawPanel, "DrawPanel");
-            DrawPanel.BackColor = SystemColors.AppWorkspace;
-            DrawPanel.Name = "DrawPanel";
-            DrawPanel.Paint += DrawPanel_Paint;
-            DrawPanel.MouseDown += DrawPanel_MouseDown;
-            DrawPanel.MouseUp += DrawPanel_MouseUp;
             // 
             // _btnSelect
             // 
@@ -358,10 +350,21 @@
             resources.ApplyResources(label9, "label9");
             label9.Name = "label9";
             // 
+            // DrawPanel
+            // 
+            DrawPanel.BackColor = SystemColors.AppWorkspace;
+            resources.ApplyResources(DrawPanel, "DrawPanel");
+            DrawPanel.Name = "DrawPanel";
+            DrawPanel.TabStop = false;
+            DrawPanel.Paint += DrawPanel_Paint;
+            DrawPanel.MouseDown += DrawPanel_MouseDown;
+            DrawPanel.MouseUp += DrawPanel_MouseUp;
+            // 
             // Scene
             // 
             resources.ApplyResources(this, "$this");
             AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(DrawPanel);
             Controls.Add(_labelArea);
             Controls.Add(_labelPerimetar);
             Controls.Add(label7);
@@ -400,13 +403,14 @@
             Controls.Add(_btnEllipse);
             Controls.Add(_btnCircle);
             Controls.Add(_btnSelect);
-            Controls.Add(DrawPanel);
             Controls.Add(_btnTriangle);
             Controls.Add(_btnRectangle);
             Controls.Add(_btnLine);
             Controls.Add(_btnMove);
+            DoubleBuffered = true;
             Name = "Scene";
             KeyUp += Scene_KeyUp;
+            ((System.ComponentModel.ISupportInitialize)DrawPanel).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -418,7 +422,6 @@
         private Button _btnDrawRectangle;
         private Button _btnDrawTriangle;
         private Panel panel1;
-        private Panel DrawPanel;
         private Button button1;
         private Button button2;
         private Button button3;
@@ -466,5 +469,6 @@
         private Label label7;
         private Label label8;
         private Label label9;
+        private PictureBox DrawPanel;
     }
 }

@@ -7,7 +7,7 @@ namespace TermPaper_OOP
     {
         // TODO: - Implement undo/redo
         // TODO : - Implement save/load
-        // Fix a bug while selecting moves triangle down
+        // Fix a bug whrere while shape is selected and you draw a line it stays selected on the shape
 
         private readonly List<IDrawableAndSelectable> _objects = new();
         private IDrawableAndSelectable? _selectedObject = null;
@@ -107,8 +107,13 @@ namespace TermPaper_OOP
                         break;
 
                     case ActionType.Line:
-                        if (float.TryParse(_thicknessTextBox.Text, out float thickness))
-                            _objects.Add(new Line(_startingPosition, e.Location, _colorPicker.Color, thickness));
+                        float.TryParse(_thicknessTextBox.Text, out float thickness);
+                        
+                        Line line = new(_startingPosition, e.Location, _colorPicker.Color, thickness);
+                        
+                        _objects.Add(line);
+                        _selectedObject = line;
+
                         break;
 
                     case ActionType.Rectangle:
@@ -122,7 +127,6 @@ namespace TermPaper_OOP
                             _fillCheckBox.Checked, _colorPicker.Color, thickness);
 
                         _selectedObject = rect;
-
                         _objects.Add(rect);
                         break;
 
@@ -137,7 +141,6 @@ namespace TermPaper_OOP
                             _fillCheckBox.Checked, _colorPicker.Color, thickness);
 
                         _selectedObject = triangle;
-
                         _objects.Add(triangle);
                         break;
 
@@ -151,7 +154,6 @@ namespace TermPaper_OOP
                             _fillCheckBox.Checked, _colorPicker.Color, thickness);
 
                         _selectedObject = circle;
-
                         _objects.Add(circle);
                         break;
 
@@ -162,10 +164,12 @@ namespace TermPaper_OOP
 
                 }
             }
+            Refresh();
             updateUI();
         }
 
         // TODO: - Optimize the nesting, might not need all the casts
+        // Fix H box showing when moving a line
         private void updateUI()
         {
             _hTextBox.Visible = true;
@@ -175,12 +179,12 @@ namespace TermPaper_OOP
             {
                 _labelCurrentSelection.Text = $"Select an object";
 
-                _xTextBox.Text = "";
-                _yTextBox.Text = "";
-                _wTextBox.Text = "";
-                _hTextBox.Text = "";
+                _xTextBox.Clear();
+                _yTextBox.Clear();
+                _wTextBox.Clear();
+                _hTextBox.Clear();
                 _fillCheckBox.Checked = false;
-                _thicknessTextBox.Text = "";
+                _thicknessTextBox.Text = "1";
 
                 _labelPerimetar.Text = $"The perimetar of the shape is: px";
                 _labelArea.Text = $"The area of the shape is: sq. px.";
