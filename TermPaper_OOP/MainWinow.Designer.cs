@@ -162,13 +162,13 @@
             // 
             resources.ApplyResources(_xTextBox, "_xTextBox");
             _xTextBox.Name = "_xTextBox";
-            _xTextBox.TextChanged += _xTextBox_TextChanged;
+            _xTextBox.TextChanged += XTextBox_TextChanged;
             // 
             // _yTextBox
             // 
             resources.ApplyResources(_yTextBox, "_yTextBox");
             _yTextBox.Name = "_yTextBox";
-            _yTextBox.TextChanged += _yTextBox_TextChanged;
+            _yTextBox.TextChanged += YTextBox_TextChanged;
             // 
             // _labelX
             // 
@@ -194,13 +194,13 @@
             // 
             resources.ApplyResources(_wTextBox, "_wTextBox");
             _wTextBox.Name = "_wTextBox";
-            _wTextBox.TextChanged += _wTextBox_TextChanged;
+            _wTextBox.TextChanged += WTextBox_TextChanged;
             // 
             // _hTextBox
             // 
             resources.ApplyResources(_hTextBox, "_hTextBox");
             _hTextBox.Name = "_hTextBox";
-            _hTextBox.TextChanged += _hTextBox_TextChanged;
+            _hTextBox.TextChanged += HTextBox_TextChanged;
             // 
             // Color
             // 
@@ -218,7 +218,7 @@
             resources.ApplyResources(_btnBGColorPicker, "_btnBGColorPicker");
             _btnBGColorPicker.Name = "_btnBGColorPicker";
             _btnBGColorPicker.UseVisualStyleBackColor = true;
-            _btnBGColorPicker.Click += _btnColorPicker2_Click;
+            _btnBGColorPicker.Click += BtnColorPicker2_Click;
             // 
             // Devider2
             // 
@@ -231,14 +231,14 @@
             resources.ApplyResources(_btnColorPicker, "_btnColorPicker");
             _btnColorPicker.Name = "_btnColorPicker";
             _btnColorPicker.UseVisualStyleBackColor = true;
-            _btnColorPicker.Click += btnColorPicker_Click;
+            _btnColorPicker.Click += BtnColorPicker_Click;
             // 
             // _btnClear
             // 
             resources.ApplyResources(_btnClear, "_btnClear");
             _btnClear.Name = "_btnClear";
             _btnClear.UseVisualStyleBackColor = true;
-            _btnClear.Click += _btnClear_Click;
+            _btnClear.Click += BtnClear_Click;
             // 
             // label1
             // 
@@ -295,7 +295,7 @@
             // 
             resources.ApplyResources(_thicknessTextBox, "_thicknessTextBox");
             _thicknessTextBox.Name = "_thicknessTextBox";
-            _thicknessTextBox.TextChanged += _thicknessTextBox_TextChanged;
+            _thicknessTextBox.TextChanged += ThicknessTextBox_TextChanged;
             // 
             // _labelCurrentSelection
             // 
@@ -307,7 +307,7 @@
             resources.ApplyResources(_fillCheckBox, "_fillCheckBox");
             _fillCheckBox.Name = "_fillCheckBox";
             _fillCheckBox.UseVisualStyleBackColor = true;
-            _fillCheckBox.CheckedChanged += _fillCheckBox_CheckedChanged;
+            _fillCheckBox.CheckedChanged += FillCheckBox_CheckedChanged;
             // 
             // label3
             // 

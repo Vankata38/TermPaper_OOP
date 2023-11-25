@@ -1,3 +1,4 @@
+using System.Diagnostics.Eventing.Reader;
 using TermPaper_OOP.Classes;
 using TermPaper_OOP.Interfaces;
 using static System.Windows.Forms.LinkLabel;
@@ -35,7 +36,7 @@ namespace TermPaper_OOP
             if (_currentAction == ActionType.Select && _selectedObject != null)
             {
                 _selectedObject = null;
-                updateUI();
+                UpdateUI();
             }
 
             if ((_currentAction == ActionType.Move || _currentAction == ActionType.Copy)
@@ -61,7 +62,8 @@ namespace TermPaper_OOP
             if (e.Button == MouseButtons.Left)
             {
                 _startingPosition = e.Location;
-                float.TryParse(_thicknessTextBox.Text, out float thickness);
+                if(!float.TryParse(_thicknessTextBox.Text, out float thickness)) 
+                    thickness = 3.0f;
 
                 switch (_currentAction)
                 {
@@ -93,7 +95,8 @@ namespace TermPaper_OOP
                         _selectedObject = rect;
                         break;
                     case ActionType.Triangle:
-                        float.TryParse(_thicknessTextBox.Text, out thickness);
+                        if (!float.TryParse(_thicknessTextBox.Text, out thickness)) 
+                            thickness = 3.0f;
 
                         Triangle triangle = new(
                             MathF.Min(_startingPosition.X, e.X),
@@ -135,8 +138,8 @@ namespace TermPaper_OOP
                             {
                                 var line = _selectedObject as Line;
 
-                                line.EndX = line.EndX - (line.X - e.X + _offset.X);
-                                line.EndY = line.EndY - (line.Y - e.Y + _offset.Y);
+                                line!.EndX = line.EndX - (line.X - e.X + _offset.X);
+                                line!.EndY = line.EndY - (line.Y - e.Y + _offset.Y);
 
                                 _selectedObject = line;
                             }
@@ -159,8 +162,8 @@ namespace TermPaper_OOP
                             {
                                 var line = _selectedObject as Line;
 
-                                line.EndX = line.EndX - (line.X - e.X + _offset.X);
-                                line.EndY = line.EndY - (line.Y - e.Y + _offset.Y);
+                                line!.EndX = line.EndX - (line.X - e.X + _offset.X);
+                                line!.EndY = line.EndY - (line.Y - e.Y + _offset.Y);
 
                                 _selectedObject = line;
                             }
@@ -179,8 +182,8 @@ namespace TermPaper_OOP
                         {
                             var line = _selectedObject as Line;
 
-                            line.EndX = e.X;
-                            line.EndY = e.Y;
+                            line!.EndX = e.X;
+                            line!.EndY = e.Y;
 
                             _selectedObject = line;
                         }
@@ -193,10 +196,10 @@ namespace TermPaper_OOP
                         {
                             var rectangle = _selectedObject as Classes.Rectangle;
 
-                            rectangle.X = MathF.Min(_startingPosition.X, e.X);
-                            rectangle.Y = MathF.Min(_startingPosition.Y, e.Y);
-                            rectangle.Width = MathF.Abs(e.Location.X - _startingPosition.X);
-                            rectangle.Height = MathF.Abs(e.Location.Y - _startingPosition.Y);
+                            rectangle!.X = MathF.Min(_startingPosition.X, e.X);
+                            rectangle!.Y = MathF.Min(_startingPosition.Y, e.Y);
+                            rectangle!.Width = MathF.Abs(e.Location.X - _startingPosition.X);
+                            rectangle!.Height = MathF.Abs(e.Location.Y - _startingPosition.Y);
 
                             _selectedObject = rectangle;
                         }
@@ -208,9 +211,9 @@ namespace TermPaper_OOP
                         {
                             var triangle = _selectedObject as Triangle;
 
-                            triangle.X = MathF.Min(_startingPosition.X, e.X);
-                            triangle.Width = MathF.Abs(e.Location.X - _startingPosition.X);
-                            triangle.Height = MathF.Abs(e.Location.Y - _startingPosition.Y);
+                            triangle!.X = MathF.Min(_startingPosition.X, e.X);
+                            triangle!.Width = MathF.Abs(e.Location.X - _startingPosition.X);
+                            triangle!.Height = MathF.Abs(e.Location.Y - _startingPosition.Y);
 
                             _selectedObject = triangle;
                         }
@@ -221,8 +224,8 @@ namespace TermPaper_OOP
                         {
                             var circle = _selectedObject as Circle;
 
-                            circle.X = MathF.Min(_startingPosition.X, e.X);
-                            circle.Radius = MathF.Abs(e.Location.X - _startingPosition.X);
+                            circle!.X = MathF.Min(_startingPosition.X, e.X);
+                            circle!.Radius = MathF.Abs(e.Location.X - _startingPosition.X);
 
                             _selectedObject = circle;
                         }
@@ -253,8 +256,8 @@ namespace TermPaper_OOP
                         {
                             var line = _selectedObject as Line;
 
-                            line.EndX = line.EndX - (line.X - e.X + _offset.X);
-                            line.EndY = line.EndY - (line.Y - e.Y + _offset.Y);
+                            line!.EndX = line.EndX - (line.X - e.X + _offset.X);
+                            line!.EndY = line.EndY - (line.Y - e.Y + _offset.Y);
 
                             _selectedObject = line;
                         }
@@ -271,8 +274,8 @@ namespace TermPaper_OOP
                         {
                             var line = _selectedObject as Line;
 
-                            line.EndX = line.EndX - (line.X - e.X + _offset.X);
-                            line.EndY = line.EndY - (line.Y - e.Y + _offset.Y);
+                            line!.EndX = line.EndX - (line.X - e.X + _offset.X);
+                            line!.EndY = line.EndY - (line.Y - e.Y + _offset.Y);
 
                             _selectedObject = line;
                         }
@@ -310,14 +313,13 @@ namespace TermPaper_OOP
 
                     case ActionType.Ellipse:
                         throw new NotImplementedException();
-                        break;
                 }
             }
-            updateUI();
+            UpdateUI();
         }
 
         // TODO: - Optimize the nesting, might not need all the casts
-        private void updateUI()
+        private void UpdateUI()
         {
             _wLabel.Visible = true;
             _hLabel.Visible = true;
@@ -351,6 +353,8 @@ namespace TermPaper_OOP
 
             if (_selectedObject is IResizable)
             {
+                var currentObject = _selectedObject as IResizable;
+
                 if (_selectedObject is Circle)
                 {
                     _wLabel.Text = "R:";
@@ -365,8 +369,8 @@ namespace TermPaper_OOP
                     _wLabel.Text = "W:";
                 }
 
-                _wTextBox.Text = ((IResizable)_selectedObject).Width.ToString();
-                _hTextBox.Text = ((IResizable)_selectedObject).Height.ToString();
+                _wTextBox.Text = currentObject!.Width.ToString();
+                _hTextBox.Text = currentObject!.Height.ToString();
 
             }
             else if (_selectedObject is Line line)
@@ -380,20 +384,20 @@ namespace TermPaper_OOP
             _colorPicker.Color = _selectedObject.Color;
             _thicknessTextBox.Text = _selectedObject.Thickness.ToString();
 
-            if (_selectedObject is IShape)
+            if (_selectedObject is IShape shape)
             {
-                _fillCheckBox.Checked = ((IShape)_selectedObject).IsFilled;
+                _fillCheckBox.Checked = shape.IsFilled;
 
                 _labelPerimetar.Text = $"The perimetar of the shape is: " +
-                                       $"{((IShape)_selectedObject).CalculatePerimeter().ToString("0.0")} px.";
+                                       $"{shape.CalculatePerimeter():0.0} px.";
                 _labelArea.Text = $"The area of the shape is: " +
-                                  $"{((IShape)_selectedObject).CalculateArea().ToString("0.0")} sq. px.";
+                                  $"{shape.CalculateArea():0.0} sq. px.";
             }
 
             DrawPanel.Invalidate();
         }
 
-        private void _btnColorPicker2_Click(object sender, EventArgs e)
+        private void BtnColorPicker2_Click(object sender, EventArgs e)
         {
             if (_colorPicker2.ShowDialog() == DialogResult.OK)
             {
@@ -401,7 +405,7 @@ namespace TermPaper_OOP
             }
         }
 
-        private void btnColorPicker_Click(object sender, EventArgs e)
+        private void BtnColorPicker_Click(object sender, EventArgs e)
         {
             if (_colorPicker.ShowDialog() == DialogResult.OK)
             {
@@ -415,11 +419,11 @@ namespace TermPaper_OOP
             }
         }
 
-        private void _btnClear_Click(object sender, EventArgs e)
+        private void BtnClear_Click(object sender, EventArgs e)
         {
             _objects.Clear();
             _selectedObject = null;
-            updateUI();
+            UpdateUI();
         }
 
         private void Scene_KeyUp(object sender, KeyEventArgs e)
@@ -432,55 +436,55 @@ namespace TermPaper_OOP
             }
         }
 
-        private void _thicknessTextBox_TextChanged(object sender, EventArgs e)
+        private void ThicknessTextBox_TextChanged(object sender, EventArgs e)
         {
             if (_selectedObject != null)
             {
-                float.TryParse(_thicknessTextBox.Text, out float thickness);
+                if(float.TryParse(_thicknessTextBox.Text, out float thickness))
                 _selectedObject.Thickness = thickness;
                 DrawPanel.Invalidate();
             }
         }
 
-        private void _fillCheckBox_CheckedChanged(object sender, EventArgs e)
+        private void FillCheckBox_CheckedChanged(object sender, EventArgs e)
         {
-            if (_selectedObject != null && _selectedObject is IShape)
+            if (_selectedObject != null && _selectedObject is IShape shape)
             {
-                ((IShape)_selectedObject).IsFilled = _fillCheckBox.Checked;
+                shape.IsFilled = _fillCheckBox.Checked;
                 DrawPanel.Invalidate();
             }
         }
 
-        private void _xTextBox_TextChanged(object sender, EventArgs e)
+        private void XTextBox_TextChanged(object sender, EventArgs e)
         {
             if (_selectedObject != null)
             {
-                float.TryParse(_xTextBox.Text, out float x);
+                if(float.TryParse(_xTextBox.Text, out float x))
                 _selectedObject.X = x;
                 DrawPanel.Invalidate();
             }
         }
 
-        private void _yTextBox_TextChanged(object sender, EventArgs e)
+        private void YTextBox_TextChanged(object sender, EventArgs e)
         {
             if (_selectedObject != null)
             {
-                float.TryParse(_yTextBox.Text, out float y);
+                if(float.TryParse(_yTextBox.Text, out float y))
                 _selectedObject.Y = y;
                 DrawPanel.Invalidate();
             }
         }
 
-        private void _wTextBox_TextChanged(object sender, EventArgs e)
+        private void WTextBox_TextChanged(object sender, EventArgs e)
         {
             if (_selectedObject != null)
             {
-                float.TryParse(_wTextBox.Text, out float width);
+                if(float.TryParse(_wTextBox.Text, out float width))
                 
                 if (_selectedObject is IShape)
                 {
                     var currentObject = _selectedObject as IShape;
-                    currentObject.Width = width;
+                    currentObject!.Width = width;
 
                     _selectedObject = currentObject;
                 }
@@ -488,7 +492,7 @@ namespace TermPaper_OOP
                 if (_selectedObject is Line)
                 {
                     var line = _selectedObject as Line;
-                    line.EndX = width;
+                    line!.EndX = width;
 
                     _selectedObject = line;
                 }
@@ -496,16 +500,16 @@ namespace TermPaper_OOP
             }
         }
 
-        private void _hTextBox_TextChanged(object sender, EventArgs e)
+        private void HTextBox_TextChanged(object sender, EventArgs e)
         {
             if (_selectedObject != null)
             {
-                float.TryParse(_hTextBox.Text, out float height);
+                if(float.TryParse(_hTextBox.Text, out float height))
 
                 if (_selectedObject is IShape)
                 {
                     var currentObject = _selectedObject as IShape;
-                    currentObject.Height = height;
+                    currentObject!.Height = height;
 
                     _selectedObject = currentObject;
                 }
@@ -513,7 +517,7 @@ namespace TermPaper_OOP
                 if (_selectedObject is Line)
                 {
                     var line = _selectedObject as Line;
-                    line.EndY = height;
+                    line!.EndY = height;
 
                     _selectedObject = line;
                 }
