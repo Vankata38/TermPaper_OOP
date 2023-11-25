@@ -83,8 +83,7 @@ namespace TermPaper_OOP.Classes
             float C = EndX * Y - X * EndY;
 
             // Calculate the distance from the point to the line
-            float distance = MathF.Abs(A * current.X + B * current.Y + C) / 
-                                       MathF.Sqrt(A * A + B * B);
+            float distance = MathF.Abs(A * current.X + B * current.Y + C) / MathF.Sqrt(A * A + B * B);
 
             // Check if the distance is within the specified Thickness
             float thickness = 5f;
@@ -96,11 +95,7 @@ namespace TermPaper_OOP.Classes
             if (graphics == null) return;
 
             DrawingResources.SetPen(Color, Thickness);
-            graphics.DrawLine(
-                DrawingResources.SharedPen,
-                _startPoint,
-                _endPoint
-            );
+            graphics.DrawLine(DrawingResources.SharedPen, _startPoint, _endPoint);
         }
     }
 }

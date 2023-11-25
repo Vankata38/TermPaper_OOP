@@ -476,7 +476,7 @@
     <value>True</value>
   </data>
   <data name="_labelX.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1468, 220</value>
+    <value>1466, 220</value>
   </data>
   <data name="_labelX.Size" type="System.Drawing.Size, System.Drawing">
     <value>33, 32</value>
@@ -506,7 +506,7 @@
     <value>True</value>
   </data>
   <data name="_labelY.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1620, 220</value>
+    <value>1618, 220</value>
   </data>
   <data name="_labelY.Size" type="System.Drawing.Size, System.Drawing">
     <value>32, 32</value>
@@ -529,67 +529,67 @@
   <data name="&gt;&gt;_labelY.ZOrder" xml:space="preserve">
     <value>30</value>
   </data>
-  <data name="_labelW.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+  <data name="_wLabel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Right</value>
   </data>
-  <data name="_labelW.AutoSize" type="System.Boolean, mscorlib">
+  <data name="_wLabel.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="_labelW.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+  <data name="_wLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
-  <data name="_labelW.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1468, 278</value>
+  <data name="_wLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>1466, 278</value>
   </data>
-  <data name="_labelW.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="_wLabel.Size" type="System.Drawing.Size, System.Drawing">
     <value>41, 32</value>
   </data>
-  <data name="_labelW.TabIndex" type="System.Int32, mscorlib">
+  <data name="_wLabel.TabIndex" type="System.Int32, mscorlib">
     <value>13</value>
   </data>
-  <data name="_labelW.Text" xml:space="preserve">
+  <data name="_wLabel.Text" xml:space="preserve">
     <value>W:</value>
   </data>
-  <data name="&gt;&gt;_labelW.Name" xml:space="preserve">
-    <value>_labelW</value>
+  <data name="&gt;&gt;_wLabel.Name" xml:space="preserve">
+    <value>_wLabel</value>
   </data>
-  <data name="&gt;&gt;_labelW.Type" xml:space="preserve">
+  <data name="&gt;&gt;_wLabel.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;_labelW.Parent" xml:space="preserve">
+  <data name="&gt;&gt;_wLabel.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;_labelW.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;_wLabel.ZOrder" xml:space="preserve">
     <value>29</value>
   </data>
-  <data name="_labelH.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+  <data name="_hLabel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Right</value>
   </data>
-  <data name="_labelH.AutoSize" type="System.Boolean, mscorlib">
+  <data name="_hLabel.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="_labelH.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1620, 278</value>
+  <data name="_hLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>1617, 278</value>
   </data>
-  <data name="_labelH.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="_hLabel.Size" type="System.Drawing.Size, System.Drawing">
     <value>36, 32</value>
   </data>
-  <data name="_labelH.TabIndex" type="System.Int32, mscorlib">
+  <data name="_hLabel.TabIndex" type="System.Int32, mscorlib">
     <value>14</value>
   </data>
-  <data name="_labelH.Text" xml:space="preserve">
+  <data name="_hLabel.Text" xml:space="preserve">
     <value>H:</value>
   </data>
-  <data name="&gt;&gt;_labelH.Name" xml:space="preserve">
-    <value>_labelH</value>
+  <data name="&gt;&gt;_hLabel.Name" xml:space="preserve">
+    <value>_hLabel</value>
   </data>
-  <data name="&gt;&gt;_labelH.Type" xml:space="preserve">
+  <data name="&gt;&gt;_hLabel.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;_labelH.Parent" xml:space="preserve">
+  <data name="&gt;&gt;_hLabel.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;_labelH.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;_hLabel.ZOrder" xml:space="preserve">
     <value>28</value>
   </data>
   <data name="_wTextBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
@@ -1080,7 +1080,7 @@ Color</value>
     <value>27</value>
   </data>
   <data name="_thicknessTextBox.Text" xml:space="preserve">
-    <value>1</value>
+    <value>3</value>
   </data>
   <data name="_thicknessTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Center</value>
@@ -1313,37 +1313,37 @@ Color</value>
   <data name="&gt;&gt;label6.ZOrder" xml:space="preserve">
     <value>6</value>
   </data>
-  <data name="label7.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+  <data name="_wPxLabel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Right</value>
   </data>
-  <data name="label7.AutoSize" type="System.Boolean, mscorlib">
+  <data name="_wPxLabel.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="label7.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+  <data name="_wPxLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
-  <data name="label7.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="_wPxLabel.Location" type="System.Drawing.Point, System.Drawing">
     <value>1583, 278</value>
   </data>
-  <data name="label7.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="_wPxLabel.Size" type="System.Drawing.Size, System.Drawing">
     <value>39, 32</value>
   </data>
-  <data name="label7.TabIndex" type="System.Int32, mscorlib">
+  <data name="_wPxLabel.TabIndex" type="System.Int32, mscorlib">
     <value>30</value>
   </data>
-  <data name="label7.Text" xml:space="preserve">
+  <data name="_wPxLabel.Text" xml:space="preserve">
     <value>px</value>
   </data>
-  <data name="&gt;&gt;label7.Name" xml:space="preserve">
-    <value>label7</value>
+  <data name="&gt;&gt;_wPxLabel.Name" xml:space="preserve">
+    <value>_wPxLabel</value>
   </data>
-  <data name="&gt;&gt;label7.Type" xml:space="preserve">
+  <data name="&gt;&gt;_wPxLabel.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;label7.Parent" xml:space="preserve">
+  <data name="&gt;&gt;_wPxLabel.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;label7.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;_wPxLabel.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
   <data name="label8.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
@@ -1379,38 +1379,41 @@ Color</value>
   <data name="&gt;&gt;label8.ZOrder" xml:space="preserve">
     <value>5</value>
   </data>
-  <data name="label9.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+  <data name="_hPxLabel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Right</value>
   </data>
-  <data name="label9.AutoSize" type="System.Boolean, mscorlib">
+  <data name="_hPxLabel.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="label9.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+  <data name="_hPxLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
-  <data name="label9.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="_hPxLabel.Location" type="System.Drawing.Point, System.Drawing">
     <value>1734, 278</value>
   </data>
-  <data name="label9.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="_hPxLabel.Size" type="System.Drawing.Size, System.Drawing">
     <value>39, 32</value>
   </data>
-  <data name="label9.TabIndex" type="System.Int32, mscorlib">
+  <data name="_hPxLabel.TabIndex" type="System.Int32, mscorlib">
     <value>30</value>
   </data>
-  <data name="label9.Text" xml:space="preserve">
+  <data name="_hPxLabel.Text" xml:space="preserve">
     <value>px</value>
   </data>
-  <data name="&gt;&gt;label9.Name" xml:space="preserve">
-    <value>label9</value>
+  <data name="&gt;&gt;_hPxLabel.Name" xml:space="preserve">
+    <value>_hPxLabel</value>
   </data>
-  <data name="&gt;&gt;label9.Type" xml:space="preserve">
+  <data name="&gt;&gt;_hPxLabel.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;label9.Parent" xml:space="preserve">
+  <data name="&gt;&gt;_hPxLabel.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;label9.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;_hPxLabel.ZOrder" xml:space="preserve">
     <value>4</value>
+  </data>
+  <data name="DrawPanel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Bottom, Left, Right</value>
   </data>
   <data name="DrawPanel.Location" type="System.Drawing.Point, System.Drawing">
     <value>2, 152</value>

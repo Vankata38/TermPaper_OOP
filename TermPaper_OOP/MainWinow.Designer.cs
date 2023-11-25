@@ -45,8 +45,8 @@
             _yTextBox = new TextBox();
             _labelX = new Label();
             _labelY = new Label();
-            _labelW = new Label();
-            _labelH = new Label();
+            _wLabel = new Label();
+            _hLabel = new Label();
             _wTextBox = new TextBox();
             _hTextBox = new TextBox();
             Color = new Label();
@@ -72,9 +72,9 @@
             _labelPerimetar = new Label();
             _labelArea = new Label();
             label6 = new Label();
-            label7 = new Label();
+            _wPxLabel = new Label();
             label8 = new Label();
-            label9 = new Label();
+            _hPxLabel = new Label();
             DrawPanel = new PictureBox();
             ((System.ComponentModel.ISupportInitialize)DrawPanel).BeginInit();
             SuspendLayout();
@@ -180,15 +180,15 @@
             resources.ApplyResources(_labelY, "_labelY");
             _labelY.Name = "_labelY";
             // 
-            // _labelW
+            // _wLabel
             // 
-            resources.ApplyResources(_labelW, "_labelW");
-            _labelW.Name = "_labelW";
+            resources.ApplyResources(_wLabel, "_wLabel");
+            _wLabel.Name = "_wLabel";
             // 
-            // _labelH
+            // _hLabel
             // 
-            resources.ApplyResources(_labelH, "_labelH");
-            _labelH.Name = "_labelH";
+            resources.ApplyResources(_hLabel, "_hLabel");
+            _hLabel.Name = "_hLabel";
             // 
             // _wTextBox
             // 
@@ -335,29 +335,30 @@
             resources.ApplyResources(label6, "label6");
             label6.Name = "label6";
             // 
-            // label7
+            // _wPxLabel
             // 
-            resources.ApplyResources(label7, "label7");
-            label7.Name = "label7";
+            resources.ApplyResources(_wPxLabel, "_wPxLabel");
+            _wPxLabel.Name = "_wPxLabel";
             // 
             // label8
             // 
             resources.ApplyResources(label8, "label8");
             label8.Name = "label8";
             // 
-            // label9
+            // _hPxLabel
             // 
-            resources.ApplyResources(label9, "label9");
-            label9.Name = "label9";
+            resources.ApplyResources(_hPxLabel, "_hPxLabel");
+            _hPxLabel.Name = "_hPxLabel";
             // 
             // DrawPanel
             // 
-            DrawPanel.BackColor = SystemColors.AppWorkspace;
             resources.ApplyResources(DrawPanel, "DrawPanel");
+            DrawPanel.BackColor = SystemColors.AppWorkspace;
             DrawPanel.Name = "DrawPanel";
             DrawPanel.TabStop = false;
             DrawPanel.Paint += DrawPanel_Paint;
             DrawPanel.MouseDown += DrawPanel_MouseDown;
+            DrawPanel.MouseMove += DrawPanel_MouseMove;
             DrawPanel.MouseUp += DrawPanel_MouseUp;
             // 
             // Scene
@@ -367,8 +368,8 @@
             Controls.Add(DrawPanel);
             Controls.Add(_labelArea);
             Controls.Add(_labelPerimetar);
-            Controls.Add(label7);
-            Controls.Add(label9);
+            Controls.Add(_wPxLabel);
+            Controls.Add(_hPxLabel);
             Controls.Add(label8);
             Controls.Add(label6);
             Controls.Add(label3);
@@ -392,8 +393,8 @@
             Controls.Add(Color);
             Controls.Add(_hTextBox);
             Controls.Add(_wTextBox);
-            Controls.Add(_labelH);
-            Controls.Add(_labelW);
+            Controls.Add(_hLabel);
+            Controls.Add(_wLabel);
             Controls.Add(_labelY);
             Controls.Add(_labelX);
             Controls.Add(_yTextBox);
@@ -441,8 +442,8 @@
         private TextBox _yTextBox;
         private Label _labelX;
         private Label _labelY;
-        private Label _labelW;
-        private Label _labelH;
+        private Label _wLabel;
+        private Label _hLabel;
         private TextBox _wTextBox;
         private TextBox _hTextBox;
         private Label Color;
@@ -466,9 +467,9 @@
         private Label _labelPerimetar;
         private Label _labelArea;
         private Label label6;
-        private Label label7;
+        private Label _wPxLabel;
         private Label label8;
-        private Label label9;
+        private Label _hPxLabel;
         private PictureBox DrawPanel;
     }
 }

@@ -19,7 +19,7 @@ namespace TermPaper_OOP.Classes
         public Circle(float x, float y, float radius, bool isFilled, 
                       Color color, float thickness = 1.0f)
         {
-            _position = new PointF(x, y);
+            _position = new PointF(x - Radius / 2, y - radius / 2);
             IsFilled = isFilled;
             Radius = radius;
             Thickness = thickness;
@@ -31,20 +31,40 @@ namespace TermPaper_OOP.Classes
             return new Circle(_position.X, _position.Y, Radius, IsFilled, Color, Thickness);
         }
 
-        float IPositionable.X
+        public float X
         {
             get { return _position.X; }
             set { _position.X = value; }
         }
 
-        float IPositionable.Y
+        public float Y
         {
             get { return _position.Y; }
             set { _position.Y = value; }
         }
 
-        public float Width { get => Radius; set => Radius = value; }
-        public float Height { get => Radius; set => Radius = value; }
+        public float Width { 
+            get => Radius;
+            set
+            {
+                _position.X -= Radius / 2;
+                _position.Y += Radius / 2;
+                Radius = value;
+                _position.X += Radius / 2;
+                _position.Y -= Radius / 2;
+            }
+        }
+        public float Height {
+            get => Radius;
+            set 
+            {
+                _position.X += Radius / 2;
+                _position.Y += Radius / 2;
+                Radius = value;
+                _position.X -= Radius / 2;
+                _position.Y -= Radius / 2;
+            } 
+        }
 
         public float CalculatePerimeter()
         {
@@ -64,7 +84,7 @@ namespace TermPaper_OOP.Classes
         // TODO: - Fix a bug where the circle is selected with the mouse outside of it
         public bool PointIsInside(PointF point)
         {
-            return MathF.Sqrt(MathF.Pow(point.X - _position.X, 2) + 
+            return MathF.Sqrt(MathF.Pow(point.X - _position.X, 2) +
                    MathF.Pow(point.Y - _position.Y, 2)) <= Radius;
         }
 
@@ -73,11 +93,11 @@ namespace TermPaper_OOP.Classes
             
             if (IsFilled) {
                 DrawingResources.SetBrushColor(Color);
-                graphics.FillEllipse(DrawingResources.SharedBrush, _position.X, _position.Y, Radius, Radius);
+                graphics.FillEllipse(DrawingResources.SharedBrush, _position.X, _position.Y - Radius / 2, Radius, Radius);
             } else
             {
                 DrawingResources.SetPen(Color, Thickness);
-                graphics.DrawEllipse(DrawingResources.SharedPen, _position.X, _position.Y, Radius, Radius);
+                graphics.DrawEllipse(DrawingResources.SharedPen, _position.X, _position.Y - Radius / 2, Radius, Radius);
             }
         }
     }

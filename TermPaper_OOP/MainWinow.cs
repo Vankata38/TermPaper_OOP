@@ -1,5 +1,6 @@
 using TermPaper_OOP.Classes;
 using TermPaper_OOP.Interfaces;
+using static System.Windows.Forms.LinkLabel;
 
 namespace TermPaper_OOP
 {
@@ -7,7 +8,6 @@ namespace TermPaper_OOP
     {
         // TODO: - Implement undo/redo
         // TODO : - Implement save/load
-        // Fix a bug whrere while shape is selected and you draw a line it stays selected on the shape
 
         private readonly List<IDrawableAndSelectable> _objects = new();
         private IDrawableAndSelectable? _selectedObject = null;
@@ -30,7 +30,6 @@ namespace TermPaper_OOP
         private void Btn_Click(object sender, EventArgs e)
         {
             Button button = (Button)sender;
-
             _currentAction = (ActionType)button.TabIndex;
 
             if (_currentAction == ActionType.Select && _selectedObject != null)
@@ -53,72 +52,37 @@ namespace TermPaper_OOP
             {
                 obj.Draw(graph);
             }
+            _selectedObject?.Draw(graph);
         }
 
         protected void DrawPanel_MouseDown(object sender, MouseEventArgs e)
         {
             base.OnMouseDown(e);
-
             if (e.Button == MouseButtons.Left)
             {
                 _startingPosition = e.Location;
+                float.TryParse(_thicknessTextBox.Text, out float thickness);
 
-                if (_currentAction == ActionType.Move)
-                {
-                    _offset = new PointF(e.X - _selectedObject!.X,
-                                         e.Y - _selectedObject.Y);
-                }
-            }
-
-        }
-
-        private void DrawPanel_MouseUp(object sender, MouseEventArgs e)
-        {
-            if (e.Button == MouseButtons.Left)
-            {
-                // TODO: - Check if we need to parse or its filled
                 switch (_currentAction)
                 {
-                    case ActionType.Select:
-                        _selectedObject = _objects.LastOrDefault(
-                            obj => obj.PointIsInside(_startingPosition) == true);
-
-                        break;
-
                     case ActionType.Move:
-                        if (_selectedObject == null) return;
-
-                        // TODO: - Fix moving for lines
-                        _selectedObject.X = e.X - _offset.X;
-                        _selectedObject.Y = e.Y - _offset.Y;
-
+                        if (_selectedObject != null)
+                            _offset = new PointF(e.X - _selectedObject!.X, e.Y - _selectedObject.Y);
                         break;
 
                     case ActionType.Copy:
                         if (_selectedObject == null) return;
+                        _offset = new PointF(e.X - _selectedObject!.X, e.Y - _selectedObject.Y);
 
                         IDrawableAndSelectable copy = _selectedObject.Copy();
-                        copy.X = e.X - _offset.X;
-                        copy.Y = e.Y - _offset.Y;
-                        _objects.Add(copy);
-
                         _selectedObject = copy;
-
                         break;
-
                     case ActionType.Line:
-                        float.TryParse(_thicknessTextBox.Text, out float thickness);
-                        
                         Line line = new(_startingPosition, e.Location, _colorPicker.Color, thickness);
-                        
-                        _objects.Add(line);
+
                         _selectedObject = line;
-
                         break;
-
                     case ActionType.Rectangle:
-                        float.TryParse(_thicknessTextBox.Text, out thickness);
-
                         Classes.Rectangle rect = new(
                             MathF.Min(_startingPosition.X, e.X),
                             MathF.Min(_startingPosition.Y, e.Y),
@@ -127,9 +91,7 @@ namespace TermPaper_OOP
                             _fillCheckBox.Checked, _colorPicker.Color, thickness);
 
                         _selectedObject = rect;
-                        _objects.Add(rect);
                         break;
-
                     case ActionType.Triangle:
                         float.TryParse(_thicknessTextBox.Text, out thickness);
 
@@ -141,12 +103,8 @@ namespace TermPaper_OOP
                             _fillCheckBox.Checked, _colorPicker.Color, thickness);
 
                         _selectedObject = triangle;
-                        _objects.Add(triangle);
                         break;
-
                     case ActionType.Circle:
-                        float.TryParse(_thicknessTextBox.Text, out thickness);
-
                         Circle circle = new(
                             MathF.Min(_startingPosition.X, e.X),
                             MathF.Min(_startingPosition.Y, e.Y),
@@ -154,26 +112,219 @@ namespace TermPaper_OOP
                             _fillCheckBox.Checked, _colorPicker.Color, thickness);
 
                         _selectedObject = circle;
-                        _objects.Add(circle);
+                        break;
+                    case ActionType.Ellipse:
+                        break;
+                }
+            }
+        }
+
+        private void DrawPanel_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                switch(_currentAction)
+                {
+                    case ActionType.Move:
+
+                        if (_selectedObject == null) return;
+                        if (_selectedObject is IPositionable)
+                        {
+                            var shape = _selectedObject as IPositionable;
+                            if (_selectedObject is Line)
+                            {
+                                var line = _selectedObject as Line;
+
+                                line.EndX = line.EndX - (line.X - e.X + _offset.X);
+                                line.EndY = line.EndY - (line.Y - e.Y + _offset.Y);
+
+                                _selectedObject = line;
+                            }
+
+                            shape.X = e.X - _offset.X;
+                            shape.Y = e.Y - _offset.Y;
+
+                            _selectedObject = shape as IDrawableAndSelectable;
+                        }
+
+                        DrawPanel.Invalidate();
+                        break;
+                    case ActionType.Copy:
+                        if (_selectedObject == null) return;
+                        if (_selectedObject is IPositionable)
+                        {
+                            var shape = _selectedObject as IPositionable;
+
+                            if (_selectedObject is Line)
+                            {
+                                var line = _selectedObject as Line;
+
+                                line.EndX = line.EndX - (line.X - e.X + _offset.X);
+                                line.EndY = line.EndY - (line.Y - e.Y + _offset.Y);
+
+                                _selectedObject = line;
+                            }
+
+                            shape.X = e.X - _offset.X;
+                            shape.Y = e.Y - _offset.Y;
+
+                            _selectedObject = shape as IDrawableAndSelectable;
+                        }
+
+                        DrawPanel.Invalidate();
+                        break;
+                    case ActionType.Line:
+
+                        if (_selectedObject is Line)
+                        {
+                            var line = _selectedObject as Line;
+
+                            line.EndX = e.X;
+                            line.EndY = e.Y;
+
+                            _selectedObject = line;
+                        }
+                        
+                        DrawPanel.Invalidate();
+
+                        break;
+                    case ActionType.Rectangle:
+                        if (_selectedObject is Classes.Rectangle)
+                        {
+                            var rectangle = _selectedObject as Classes.Rectangle;
+
+                            rectangle.X = MathF.Min(_startingPosition.X, e.X);
+                            rectangle.Y = MathF.Min(_startingPosition.Y, e.Y);
+                            rectangle.Width = MathF.Abs(e.Location.X - _startingPosition.X);
+                            rectangle.Height = MathF.Abs(e.Location.Y - _startingPosition.Y);
+
+                            _selectedObject = rectangle;
+                        }
+
+                        DrawPanel.Invalidate();
+                        break;
+                    case ActionType.Triangle:
+                        if (_selectedObject is Triangle)
+                        {
+                            var triangle = _selectedObject as Triangle;
+
+                            triangle.X = MathF.Min(_startingPosition.X, e.X);
+                            triangle.Width = MathF.Abs(e.Location.X - _startingPosition.X);
+                            triangle.Height = MathF.Abs(e.Location.Y - _startingPosition.Y);
+
+                            _selectedObject = triangle;
+                        }
+                        DrawPanel.Invalidate();
+                        break;
+                    case ActionType.Circle:
+                        if (_selectedObject is Circle)
+                        {
+                            var circle = _selectedObject as Circle;
+
+                            circle.X = MathF.Min(_startingPosition.X, e.X);
+                            circle.Radius = MathF.Abs(e.Location.X - _startingPosition.X);
+
+                            _selectedObject = circle;
+                        }
+                        DrawPanel.Invalidate();
+                        break;
+                    case ActionType.Ellipse:
+                        break;
+                }
+            }
+        }
+
+        private void DrawPanel_MouseUp(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                switch (_currentAction)
+                {
+                    case ActionType.Select:
+                        _selectedObject = _objects.LastOrDefault(
+                            obj => obj.PointIsInside(_startingPosition) == true);
+
+                        break;
+
+                    case ActionType.Move:
+                        if (_selectedObject == null) return;
+
+                        if (_selectedObject is Line)
+                        {
+                            var line = _selectedObject as Line;
+
+                            line.EndX = line.EndX - (line.X - e.X + _offset.X);
+                            line.EndY = line.EndY - (line.Y - e.Y + _offset.Y);
+
+                            _selectedObject = line;
+                        }
+
+                        _selectedObject.X = e.X - _offset.X;
+                        _selectedObject.Y = e.Y - _offset.Y;
+
+                        break;
+
+                    case ActionType.Copy:
+                        if (_selectedObject == null) return;
+
+                        if (_selectedObject is Line)
+                        {
+                            var line = _selectedObject as Line;
+
+                            line.EndX = line.EndX - (line.X - e.X + _offset.X);
+                            line.EndY = line.EndY - (line.Y - e.Y + _offset.Y);
+
+                            _selectedObject = line;
+                        }
+
+                        _selectedObject.X = e.X - _offset.X;
+                        _selectedObject.Y = e.Y - _offset.Y;
+
+                        _objects.Add(_selectedObject);
+
+                        break;
+
+                    case ActionType.Line:
+                        
+                        if (_selectedObject != null)
+                            _objects.Add(_selectedObject);
+
+                        break;
+
+                    case ActionType.Rectangle:
+                        if (_selectedObject != null)
+                            _objects.Add(_selectedObject);
+
+                        break;
+
+                    case ActionType.Triangle:
+                        if (_selectedObject != null)
+                            _objects.Add(_selectedObject);
+
+                        break;
+
+                    case ActionType.Circle:
+                        if (_selectedObject != null)
+                            _objects.Add(_selectedObject);
                         break;
 
                     case ActionType.Ellipse:
                         throw new NotImplementedException();
                         break;
-
-
                 }
             }
-            Refresh();
             updateUI();
         }
 
         // TODO: - Optimize the nesting, might not need all the casts
-        // Fix H box showing when moving a line
         private void updateUI()
         {
+            _wLabel.Visible = true;
+            _hLabel.Visible = true;
+            _wTextBox.Visible = true;
             _hTextBox.Visible = true;
-            _labelH.Visible = true;
+            _wPxLabel.Visible = true;
+            _hPxLabel.Visible = true;
 
             if (_selectedObject == null)
             {
@@ -184,16 +335,17 @@ namespace TermPaper_OOP
                 _wTextBox.Clear();
                 _hTextBox.Clear();
                 _fillCheckBox.Checked = false;
-                _thicknessTextBox.Text = "1";
+                _thicknessTextBox.Text = "3";
 
                 _labelPerimetar.Text = $"The perimetar of the shape is: px";
                 _labelArea.Text = $"The area of the shape is: sq. px.";
 
+                DrawPanel.Invalidate();
                 return;
             }
 
             _labelCurrentSelection.Text = $"Current selection: {_selectedObject.GetType().Name}";
-            
+
             _xTextBox.Text = _selectedObject!.X.ToString();
             _yTextBox.Text = _selectedObject!.Y.ToString();
 
@@ -201,13 +353,16 @@ namespace TermPaper_OOP
             {
                 if (_selectedObject is Circle)
                 {
-                    _labelW.Text = "R:";
+                    _wLabel.Text = "R:";
 
+                    _hLabel.Visible = false;
                     _hTextBox.Visible = false;
-                    _labelH.Visible = false;
-                } else
+                    _hPxLabel.Visible = false;
+                }
+                else
                 {
-                    _labelW.Text = "W:";
+                    _hLabel.Text = "H:";
+                    _wLabel.Text = "W:";
                 }
 
                 _wTextBox.Text = ((IResizable)_selectedObject).Width.ToString();
@@ -216,10 +371,10 @@ namespace TermPaper_OOP
             }
             else if (_selectedObject is Line line)
             {
-                _labelW.Visible = false;
-                _wTextBox.Visible = false;
-                _labelH.Visible = false;
-                _hTextBox.Visible = false;
+                _wLabel.Text = "eX:";
+                _hLabel.Text = "eY:";
+                _wTextBox.Text = line.EndX.ToString();
+                _hTextBox.Text = line.EndY.ToString();
             }
 
             _colorPicker.Color = _selectedObject.Color;
@@ -235,6 +390,7 @@ namespace TermPaper_OOP
                                   $"{((IShape)_selectedObject).CalculateArea().ToString("0.0")} sq. px.";
             }
 
+            DrawPanel.Invalidate();
         }
 
         private void _btnColorPicker2_Click(object sender, EventArgs e)
@@ -263,7 +419,7 @@ namespace TermPaper_OOP
         {
             _objects.Clear();
             _selectedObject = null;
-            Refresh();
+            updateUI();
         }
 
         private void Scene_KeyUp(object sender, KeyEventArgs e)
@@ -282,7 +438,7 @@ namespace TermPaper_OOP
             {
                 float.TryParse(_thicknessTextBox.Text, out float thickness);
                 _selectedObject.Thickness = thickness;
-                Refresh();
+                DrawPanel.Invalidate();
             }
         }
 
@@ -291,7 +447,7 @@ namespace TermPaper_OOP
             if (_selectedObject != null && _selectedObject is IShape)
             {
                 ((IShape)_selectedObject).IsFilled = _fillCheckBox.Checked;
-                Refresh();
+                DrawPanel.Invalidate();
             }
         }
 
@@ -301,7 +457,7 @@ namespace TermPaper_OOP
             {
                 float.TryParse(_xTextBox.Text, out float x);
                 _selectedObject.X = x;
-                Refresh();
+                DrawPanel.Invalidate();
             }
         }
 
@@ -311,27 +467,59 @@ namespace TermPaper_OOP
             {
                 float.TryParse(_yTextBox.Text, out float y);
                 _selectedObject.Y = y;
-                Refresh();
+                DrawPanel.Invalidate();
             }
         }
 
         private void _wTextBox_TextChanged(object sender, EventArgs e)
         {
-            if (_selectedObject != null && _selectedObject is IResizable)
+            if (_selectedObject != null)
             {
                 float.TryParse(_wTextBox.Text, out float width);
-                ((IResizable)_selectedObject).Width = width;
-                Refresh();
+                
+                if (_selectedObject is IShape)
+                {
+                    var currentObject = _selectedObject as IShape;
+                    currentObject.Width = width;
+
+                    _selectedObject = currentObject;
+                }
+
+                if (_selectedObject is Line)
+                {
+                    var line = _selectedObject as Line;
+                    line.EndX = width;
+
+                    _selectedObject = line;
+                }
+                DrawPanel.Invalidate();
             }
         }
 
         private void _hTextBox_TextChanged(object sender, EventArgs e)
         {
-            if (_selectedObject != null && _selectedObject is IResizable)
+            if (_selectedObject != null)
             {
                 float.TryParse(_hTextBox.Text, out float height);
-                ((IResizable)_selectedObject).Height = height;
-                Refresh();
+
+                if (_selectedObject is IShape)
+                {
+                    var currentObject = _selectedObject as IShape;
+                    currentObject.Height = height;
+
+                    _selectedObject = currentObject;
+                }
+
+                if (_selectedObject is Line)
+                {
+                    var line = _selectedObject as Line;
+                    line.EndY = height;
+
+                    _selectedObject = line;
+                }
+
+
+                DrawPanel.Invalidate();
             }
         }
     }
