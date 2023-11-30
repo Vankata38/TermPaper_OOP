@@ -283,6 +283,7 @@
             button1.Image = Properties.Resources.Undo;
             button1.Name = "button1";
             button1.UseVisualStyleBackColor = true;
+            button1.Click += BtnUndo_Click;
             // 
             // button2
             // 
@@ -290,6 +291,7 @@
             button2.Image = Properties.Resources.Redo;
             button2.Name = "button2";
             button2.UseVisualStyleBackColor = true;
+            button2.Click += BtnRedo_Click;
             // 
             // _thicknessTextBox
             // 

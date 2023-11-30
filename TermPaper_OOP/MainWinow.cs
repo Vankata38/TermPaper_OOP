@@ -1,5 +1,6 @@
 using System.Diagnostics.Eventing.Reader;
 using TermPaper_OOP.Classes;
+using TermPaper_OOP.Commands;
 using TermPaper_OOP.Interfaces;
 using static System.Windows.Forms.LinkLabel;
 
@@ -7,11 +8,12 @@ namespace TermPaper_OOP
 {
     public partial class Scene : Form
     {
-        // TODO: - Implement undo/redo
+        // TODO: - Implement undo/redo for thickness, and fix line move undo, fix the bugs with the system
         // TODO : - Implement save/load
+        public static List<IDrawableAndSelectable> Objects = new();
+        public static IDrawableAndSelectable? _selectedObject = null;
 
-        private readonly List<IDrawableAndSelectable> _objects = new();
-        private IDrawableAndSelectable? _selectedObject = null;
+        private static readonly CommandManager _commandManager = new();
         private ActionType _currentAction = ActionType.Select;
         private PointF _startingPosition;
         private PointF _offset;
@@ -49,7 +51,7 @@ namespace TermPaper_OOP
         private void DrawPanel_Paint(object sender, PaintEventArgs e)
         {
             Graphics graph = e.Graphics;
-            foreach (var obj in _objects)
+            foreach (var obj in Objects)
             {
                 obj.Draw(graph);
             }
@@ -62,14 +64,14 @@ namespace TermPaper_OOP
             if (e.Button == MouseButtons.Left)
             {
                 _startingPosition = e.Location;
-                if(!float.TryParse(_thicknessTextBox.Text, out float thickness)) 
+                if (!float.TryParse(_thicknessTextBox.Text, out float thickness))
                     thickness = 3.0f;
 
                 switch (_currentAction)
                 {
                     case ActionType.Move:
-                        if (_selectedObject != null)
-                            _offset = new PointF(e.X - _selectedObject!.X, e.Y - _selectedObject.Y);
+                        if (_selectedObject == null) return;
+                        _offset = new PointF(e.X - _selectedObject!.X, e.Y - _selectedObject.Y);
                         break;
 
                     case ActionType.Copy:
@@ -95,7 +97,7 @@ namespace TermPaper_OOP
                         _selectedObject = rect;
                         break;
                     case ActionType.Triangle:
-                        if (!float.TryParse(_thicknessTextBox.Text, out thickness)) 
+                        if (!float.TryParse(_thicknessTextBox.Text, out thickness))
                             thickness = 3.0f;
 
                         Triangle triangle = new(
@@ -126,7 +128,7 @@ namespace TermPaper_OOP
         {
             if (e.Button == MouseButtons.Left)
             {
-                switch(_currentAction)
+                switch (_currentAction)
                 {
                     case ActionType.Move:
 
@@ -187,7 +189,7 @@ namespace TermPaper_OOP
 
                             _selectedObject = line;
                         }
-                        
+
                         DrawPanel.Invalidate();
 
                         break;
@@ -244,7 +246,7 @@ namespace TermPaper_OOP
                 switch (_currentAction)
                 {
                     case ActionType.Select:
-                        _selectedObject = _objects.LastOrDefault(
+                        _selectedObject = Objects.LastOrDefault(
                             obj => obj.PointIsInside(_startingPosition) == true);
 
                         break;
@@ -252,63 +254,56 @@ namespace TermPaper_OOP
                     case ActionType.Move:
                         if (_selectedObject == null) return;
 
-                        if (_selectedObject is Line)
-                        {
-                            var line = _selectedObject as Line;
+                        var mouseX = e.X - _offset.X;
+                        var mouseY = e.Y - _offset.Y;
 
-                            line!.EndX = line.EndX - (line.X - e.X + _offset.X);
-                            line!.EndY = line.EndY - (line.Y - e.Y + _offset.Y);
-
-                            _selectedObject = line;
-                        }
-
-                        _selectedObject.X = e.X - _offset.X;
-                        _selectedObject.Y = e.Y - _offset.Y;
+                        var moveCommand = new Move(_selectedObject, new PointF(mouseX, mouseY));
+                        _commandManager.ExecuteCommand(moveCommand);
 
                         break;
 
                     case ActionType.Copy:
                         if (_selectedObject == null) return;
 
-                        if (_selectedObject is Line)
-                        {
-                            var line = _selectedObject as Line;
+                        mouseX = e.X - _offset.X;
+                        mouseY = e.Y - _offset.Y;
 
-                            line!.EndX = line.EndX - (line.X - e.X + _offset.X);
-                            line!.EndY = line.EndY - (line.Y - e.Y + _offset.Y);
-
-                            _selectedObject = line;
-                        }
-
-                        _selectedObject.X = e.X - _offset.X;
-                        _selectedObject.Y = e.Y - _offset.Y;
-
-                        _objects.Add(_selectedObject);
+                        var copyCommand = new Copy(_selectedObject, new PointF(mouseX, mouseY));
+                        _commandManager.ExecuteCommand(copyCommand);
 
                         break;
 
                     case ActionType.Line:
-                        
-                        if (_selectedObject != null)
-                            _objects.Add(_selectedObject);
+
+                        if (_selectedObject == null) return;
+
+                        var drawCommand = new Draw(_selectedObject);
+                        _commandManager.ExecuteCommand(drawCommand);
 
                         break;
 
                     case ActionType.Rectangle:
-                        if (_selectedObject != null)
-                            _objects.Add(_selectedObject);
+                        if (_selectedObject == null) return;
+
+                        drawCommand = new Draw(_selectedObject);
+                        _commandManager.ExecuteCommand(drawCommand);
 
                         break;
 
                     case ActionType.Triangle:
-                        if (_selectedObject != null)
-                            _objects.Add(_selectedObject);
+                        if (_selectedObject == null) return;
+
+                        drawCommand = new Draw(_selectedObject);
+                        _commandManager.ExecuteCommand(drawCommand);
 
                         break;
 
                     case ActionType.Circle:
-                        if (_selectedObject != null)
-                            _objects.Add(_selectedObject);
+                        if (_selectedObject == null) return;
+
+                        drawCommand = new Draw(_selectedObject);
+                        _commandManager.ExecuteCommand(drawCommand);
+
                         break;
 
                     case ActionType.Ellipse:
@@ -397,14 +392,6 @@ namespace TermPaper_OOP
             DrawPanel.Invalidate();
         }
 
-        private void BtnColorPicker2_Click(object sender, EventArgs e)
-        {
-            if (_colorPicker2.ShowDialog() == DialogResult.OK)
-            {
-                DrawPanel.BackColor = _colorPicker2.Color;
-            }
-        }
-
         private void BtnColorPicker_Click(object sender, EventArgs e)
         {
             if (_colorPicker.ShowDialog() == DialogResult.OK)
@@ -413,15 +400,24 @@ namespace TermPaper_OOP
 
                 if (_selectedObject != null)
                 {
-                    _selectedObject.Color = _colorPicker.Color;
+                    var command = new ChangeColor(_selectedObject, _colorPicker.Color);
+                    _commandManager.ExecuteCommand(command);
                     DrawPanel.Invalidate();
                 }
             }
         }
 
+        private void BtnColorPicker2_Click(object sender, EventArgs e)
+        {
+            if (_colorPicker2.ShowDialog() == DialogResult.OK)
+            {
+                DrawPanel.BackColor = _colorPicker2.Color;
+            }
+        }
+
         private void BtnClear_Click(object sender, EventArgs e)
         {
-            _objects.Clear();
+            Objects.Clear();
             _selectedObject = null;
             UpdateUI();
         }
@@ -430,7 +426,7 @@ namespace TermPaper_OOP
         {
             if (_selectedObject != null && e.KeyCode == Keys.Delete)
             {
-                _objects.Remove(_selectedObject);
+                Objects.Remove(_selectedObject);
                 _selectedObject = null;
                 DrawPanel.Invalidate();
             }
@@ -440,8 +436,8 @@ namespace TermPaper_OOP
         {
             if (_selectedObject != null)
             {
-                if(float.TryParse(_thicknessTextBox.Text, out float thickness))
-                _selectedObject.Thickness = thickness;
+                if (float.TryParse(_thicknessTextBox.Text, out float thickness))
+                    _selectedObject.Thickness = thickness;
                 DrawPanel.Invalidate();
             }
         }
@@ -450,7 +446,8 @@ namespace TermPaper_OOP
         {
             if (_selectedObject != null && _selectedObject is IShape shape)
             {
-                shape.IsFilled = _fillCheckBox.Checked;
+                var command = new ChangeFilled(shape, _fillCheckBox.Checked);
+                _commandManager.ExecuteCommand(command);
                 DrawPanel.Invalidate();
             }
         }
@@ -459,8 +456,8 @@ namespace TermPaper_OOP
         {
             if (_selectedObject != null)
             {
-                if(float.TryParse(_xTextBox.Text, out float x))
-                _selectedObject.X = x;
+                if (float.TryParse(_xTextBox.Text, out float x))
+                    _selectedObject.X = x;
                 DrawPanel.Invalidate();
             }
         }
@@ -469,8 +466,8 @@ namespace TermPaper_OOP
         {
             if (_selectedObject != null)
             {
-                if(float.TryParse(_yTextBox.Text, out float y))
-                _selectedObject.Y = y;
+                if (float.TryParse(_yTextBox.Text, out float y))
+                    _selectedObject.Y = y;
                 DrawPanel.Invalidate();
             }
         }
@@ -479,15 +476,15 @@ namespace TermPaper_OOP
         {
             if (_selectedObject != null)
             {
-                if(float.TryParse(_wTextBox.Text, out float width))
-                
-                if (_selectedObject is IShape)
-                {
-                    var currentObject = _selectedObject as IShape;
-                    currentObject!.Width = width;
+                if (float.TryParse(_wTextBox.Text, out float width))
 
-                    _selectedObject = currentObject;
-                }
+                    if (_selectedObject is IShape)
+                    {
+                        var currentObject = _selectedObject as IShape;
+                        currentObject!.Width = width;
+
+                        _selectedObject = currentObject;
+                    }
 
                 if (_selectedObject is Line)
                 {
@@ -504,15 +501,15 @@ namespace TermPaper_OOP
         {
             if (_selectedObject != null)
             {
-                if(float.TryParse(_hTextBox.Text, out float height))
+                if (float.TryParse(_hTextBox.Text, out float height))
 
-                if (_selectedObject is IShape)
-                {
-                    var currentObject = _selectedObject as IShape;
-                    currentObject!.Height = height;
+                    if (_selectedObject is IShape)
+                    {
+                        var currentObject = _selectedObject as IShape;
+                        currentObject!.Height = height;
 
-                    _selectedObject = currentObject;
-                }
+                        _selectedObject = currentObject;
+                    }
 
                 if (_selectedObject is Line)
                 {
@@ -522,9 +519,22 @@ namespace TermPaper_OOP
                     _selectedObject = line;
                 }
 
-
                 DrawPanel.Invalidate();
             }
+        }
+
+        private void BtnUndo_Click(object sender, EventArgs e)
+        {
+            _selectedObject = null;
+            _commandManager.Undo();
+            UpdateUI();
+        }
+
+        private void BtnRedo_Click(object sender, EventArgs e)
+        {
+            _selectedObject = null;
+            _commandManager.Redo();
+            UpdateUI();
         }
     }
 }
