@@ -297,7 +297,7 @@
             // 
             resources.ApplyResources(_thicknessTextBox, "_thicknessTextBox");
             _thicknessTextBox.Name = "_thicknessTextBox";
-            _thicknessTextBox.TextChanged += ThicknessTextBox_TextChanged;
+            _thicknessTextBox.TextChanged += ThicknessTextBox_OnTextChanged;
             // 
             // _labelCurrentSelection
             // 

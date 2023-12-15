@@ -14,10 +14,10 @@ namespace TermPaper_OOP.Commands
         private readonly PointF _oldPosition;
         private readonly PointF _newPosition;
 
-        public Move(IDrawableAndSelectable obj, PointF newPosition)
+        public Move(IDrawableAndSelectable obj, PointF oldPosition ,PointF newPosition)
         {
             _object = obj;
-            _oldPosition = new PointF(obj.X, obj.Y);
+            _oldPosition = oldPosition;
             _newPosition = newPosition;
         }   
 
@@ -41,6 +41,16 @@ namespace TermPaper_OOP.Commands
 
         public void Undo()
         {
+            if (_object is Line)
+            {
+                var line = _object as Line;
+
+                line!.EndX = line.EndX - (line.X - _oldPosition.X);
+                line!.EndY = line.EndY - (line.Y - _oldPosition.Y);
+
+                _object = line;
+            }
+
             _object.X = _oldPosition.X;
             _object.Y = _oldPosition.Y;
 

@@ -2,7 +2,6 @@ using System.Diagnostics.Eventing.Reader;
 using TermPaper_OOP.Classes;
 using TermPaper_OOP.Commands;
 using TermPaper_OOP.Interfaces;
-using static System.Windows.Forms.LinkLabel;
 
 namespace TermPaper_OOP
 {
@@ -15,12 +14,14 @@ namespace TermPaper_OOP
 
         private static readonly CommandManager _commandManager = new();
         private ActionType _currentAction = ActionType.Select;
+        private System.Windows.Forms.Timer _timer;
         private PointF _startingPosition;
         private PointF _offset;
 
         public Scene()
         {
             InitializeComponent();
+            _timer = new System.Windows.Forms.Timer();
             KeyPreview = true;
         }
 
@@ -257,7 +258,7 @@ namespace TermPaper_OOP
                         var mouseX = e.X - _offset.X;
                         var mouseY = e.Y - _offset.Y;
 
-                        var moveCommand = new Move(_selectedObject, new PointF(mouseX, mouseY));
+                        var moveCommand = new Move(_selectedObject, _startingPosition, new PointF(mouseX, mouseY));
                         _commandManager.ExecuteCommand(moveCommand);
 
                         break;
@@ -418,6 +419,7 @@ namespace TermPaper_OOP
         private void BtnClear_Click(object sender, EventArgs e)
         {
             Objects.Clear();
+            _commandManager.Clear();
             _selectedObject = null;
             UpdateUI();
         }
@@ -432,12 +434,30 @@ namespace TermPaper_OOP
             }
         }
 
-        private void ThicknessTextBox_TextChanged(object sender, EventArgs e)
+        private void ThicknessTextBox_OnTextChanged(object sender, EventArgs e)
         {
+            if (_timer != null)
+                _timer.Stop();
+
+            if (_timer == null)
+            {
+                _timer = new System.Windows.Forms.Timer();
+                _timer.Tick += TimerTick;
+                _timer.Interval = 500;
+            }
+
+            _timer.Start();
+        }
+
+        private void TimerTick(object sender, EventArgs e)
+        { 
+            _timer.Stop();
+
             if (_selectedObject != null)
             {
-                if (float.TryParse(_thicknessTextBox.Text, out float thickness))
-                    _selectedObject.Thickness = thickness;
+                if (float.TryParse(_thicknessTextBox.Text, out float thickness));
+                var command = new ChangeThickness(_selectedObject, thickness);
+                _commandManager.ExecuteCommand(command);
                 DrawPanel.Invalidate();
             }
         }

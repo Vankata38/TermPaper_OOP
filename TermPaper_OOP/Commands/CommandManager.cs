@@ -10,8 +10,8 @@ namespace TermPaper_OOP.Commands
     public class CommandManager
     {
         private static int _stackSize = 50;
-        private readonly Stack<ICommand> _undoStack = new Stack<ICommand>(_stackSize);
-        private readonly Stack<ICommand> _redoStack = new Stack<ICommand>(_stackSize);
+        private Stack<ICommand> _undoStack = new Stack<ICommand>(_stackSize);
+        private Stack<ICommand> _redoStack = new Stack<ICommand>(_stackSize);
 
         public void ExecuteCommand(ICommand command)
         {
@@ -34,9 +34,14 @@ namespace TermPaper_OOP.Commands
             if (_redoStack.Count > 0)
             {
                 var command = _redoStack.Pop();
-                command.Execute();
-                _undoStack.Push(command);
+                ExecuteCommand(command);
             }
+        }
+
+        public void Clear()
+        {
+            _undoStack.Clear();
+            _redoStack.Clear();
         }
     }
 }
