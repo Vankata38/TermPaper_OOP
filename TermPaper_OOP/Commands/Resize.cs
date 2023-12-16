@@ -4,37 +4,73 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TermPaper_OOP.Interfaces;
+using TermPaper_OOP.Classes;
 
 namespace TermPaper_OOP.Commands
 {
-    public class ResizeCommand : ICommand
+    public class Resize : ICommand
     {
-        private readonly IResizable _resizable;
+        private readonly IDrawableAndSelectable _object;
         private readonly SizeF _oldSize;
         private readonly SizeF _newSize;
 
-        public ResizeCommand(IDrawableAndSelectable obj, SizeF newSize)
+        public Resize(IDrawableAndSelectable obj, SizeF newSize)
         {
-            _resizable = obj as IResizable ?? throw new Exception("Object is not resizable");
+            _object = obj;
 
-            _oldSize = new SizeF(_resizable.Width, _resizable.Height);
+            if (_object is IShape shape)
+            {
+                _oldSize = new SizeF(shape.Width, shape.Height);
+            }
+
+            if (_object is Line line)
+            {
+                _oldSize = new SizeF(line.EndX, line.EndY);
+            }
+
             _newSize = newSize;
         }
 
         public void Execute()
         {
-            _resizable.Width = _newSize.Width;
-            _resizable.Height = _newSize.Height;
+            if (_object is IShape shape)
+            {
+                shape.Width = _newSize.Width;
 
-            Scene._selectedObject = _resizable as IDrawableAndSelectable;
+                if (shape is not Circle)
+                    shape.Height = _newSize.Height;
+
+                Scene._selectedObject = shape;
+            }
+
+            if (_object is Line line)
+            {
+                line!.EndX = _newSize.Width;
+                line!.EndY = _newSize.Height;
+
+                Scene._selectedObject = line;
+            }
         }
 
         public void Undo()
         {
-            _resizable.Width = _oldSize.Width;
-            _resizable.Height = _oldSize.Height;
+            if (_object is IShape shape)
+            {
+                shape.Width = _oldSize.Width;
 
-            Scene._selectedObject = _resizable as IDrawableAndSelectable;
+                if (shape is not Circle)
+                    shape.Height = _oldSize.Height;
+
+                Scene._selectedObject = shape;
+            }
+
+            if (_object is Line line)
+            {
+                line!.EndX = _oldSize.Width;
+                line!.EndY = _oldSize.Height;
+
+                Scene._selectedObject = line;
+            }
         }
     }
 }

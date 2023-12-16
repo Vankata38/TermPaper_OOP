@@ -7,7 +7,6 @@ namespace TermPaper_OOP
 {
     public partial class Scene : Form
     {
-        // TODO: - Implement undo/redo for thickness, and fix line move undo, fix the bugs with the system
         // TODO : - Implement save/load
         public static List<IDrawableAndSelectable> Objects = new();
         public static IDrawableAndSelectable? _selectedObject = null;
@@ -21,7 +20,6 @@ namespace TermPaper_OOP
         public Scene()
         {
             InitializeComponent();
-            _timer = new System.Windows.Forms.Timer();
             KeyPreview = true;
         }
 
@@ -29,24 +27,6 @@ namespace TermPaper_OOP
         {
             base.OnLoad(e);
             _colorPicker.Color = System.Drawing.Color.Black;
-        }
-
-        private void Btn_Click(object sender, EventArgs e)
-        {
-            Button button = (Button)sender;
-            _currentAction = (ActionType)button.TabIndex;
-
-            if (_currentAction == ActionType.Select && _selectedObject != null)
-            {
-                _selectedObject = null;
-                UpdateUI();
-            }
-
-            if ((_currentAction == ActionType.Move || _currentAction == ActionType.Copy)
-                && _selectedObject == null)
-            {
-                _currentAction = ActionType.Select;
-            }
         }
 
         private void DrawPanel_Paint(object sender, PaintEventArgs e)
@@ -59,6 +39,7 @@ namespace TermPaper_OOP
             _selectedObject?.Draw(graph);
         }
 
+        // MARK: Mouse Handeling
         protected void DrawPanel_MouseDown(object sender, MouseEventArgs e)
         {
             base.OnMouseDown(e);
@@ -73,6 +54,7 @@ namespace TermPaper_OOP
                     case ActionType.Move:
                         if (_selectedObject == null) return;
                         _offset = new PointF(e.X - _selectedObject!.X, e.Y - _selectedObject.Y);
+                        _startingPosition = _startingPosition - new SizeF(_offset.X, _offset.Y);
                         break;
 
                     case ActionType.Copy:
@@ -120,7 +102,7 @@ namespace TermPaper_OOP
                         _selectedObject = circle;
                         break;
                     case ActionType.Ellipse:
-                        break;
+                        throw new NotImplementedException();
                 }
             }
         }
@@ -235,7 +217,7 @@ namespace TermPaper_OOP
                         DrawPanel.Invalidate();
                         break;
                     case ActionType.Ellipse:
-                        break;
+                        throw new NotImplementedException();
                 }
             }
         }
@@ -314,6 +296,214 @@ namespace TermPaper_OOP
             UpdateUI();
         }
 
+        // MARK: - UI Inputs
+        /// <summary>
+        /// This function is called on any of the mode buttons, 
+        /// it selects the current action we are trying to do
+        /// </summary>
+        private void Btn_Click(object sender, EventArgs e)
+        {
+            Button button = (Button)sender;
+            _currentAction = (ActionType)button.TabIndex;
+
+            if (_currentAction == ActionType.Select && _selectedObject != null)
+            {
+                _selectedObject = null;
+                UpdateUI();
+            }
+
+            if ((_currentAction == ActionType.Move || _currentAction == ActionType.Copy)
+                && _selectedObject == null)
+            {
+                _currentAction = ActionType.Select;
+            }
+        }
+
+        private void BtnColorPicker_Click(object sender, EventArgs e)
+        {
+            if (_colorPicker.ShowDialog() == DialogResult.OK)
+            {
+                _btnColorPicker.BackColor = _colorPicker.Color;
+
+                if (_selectedObject != null)
+                {
+                    var command = new ChangeColor(_selectedObject, _colorPicker.Color);
+                    _commandManager.ExecuteCommand(command);
+                    DrawPanel.Invalidate();
+                }
+            }
+        }
+
+        private void BtnBackgroundColor_Click(object sender, EventArgs e)
+        {
+            if (_colorPicker2.ShowDialog() == DialogResult.OK)
+            {
+                DrawPanel.BackColor = _colorPicker2.Color;
+            }
+        }
+
+        private void Scene_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (_selectedObject != null && e.KeyCode == Keys.Delete)
+            {
+                Objects.Remove(_selectedObject);
+                _selectedObject = null;
+                DrawPanel.Invalidate();
+            }
+        }
+
+        private void FillCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            if (_selectedObject != null && _selectedObject is IShape shape)
+            {
+                var command = new ChangeFilled(shape, _fillCheckBox.Checked);
+                _commandManager.ExecuteCommand(command);
+                DrawPanel.Invalidate();
+            }
+        }
+
+        private void StartTimer(Action action)
+        {
+            if (_timer != null)
+            {
+                _timer.Stop();
+            }
+
+            _timer = new System.Windows.Forms.Timer();
+            _timer.Tick += (s, e) =>
+            {
+                if (_timer != null)
+                {
+                    _timer.Stop();
+                    _timer = null;
+                    action?.Invoke();
+                }
+            };
+
+            _timer.Interval = 500;
+            _timer.Start();
+        }
+
+        private void ThicknessTextBox_OnTextChanged(object sender, EventArgs e)
+        {
+            StartTimer(() =>
+            {
+                if (_selectedObject != null)
+                {
+                    if (float.TryParse(_thicknessTextBox.Text, out float thickness)) ;
+                    var command = new ChangeThickness(_selectedObject, _selectedObject.Thickness, thickness);
+                    _commandManager.ExecuteCommand(command);
+                    DrawPanel.Invalidate();
+                }
+            });
+        }
+
+        private void XTextBox_TextChanged(object sender, EventArgs e)
+        {
+            StartTimer(() =>
+            {
+                if (_selectedObject != null && float.TryParse(_xTextBox.Text, out float x))
+                {
+                    var oldPosition = new PointF(_selectedObject.X, _selectedObject.Y);
+                    var newPosition = new PointF(x, _selectedObject.Y);
+                    
+                    var command = new Move(_selectedObject, oldPosition, newPosition);
+                    _commandManager.ExecuteCommand(command);
+
+                    DrawPanel.Invalidate();
+                }
+            });
+        }
+
+        private void YTextBox_TextChanged(object sender, EventArgs e)
+        {
+            StartTimer(() =>
+            {
+                if (_selectedObject != null && float.TryParse(_yTextBox.Text, out float y))
+                {
+                    var oldPosition = new PointF(_selectedObject.X, _selectedObject.Y);
+                    var newPosition = new PointF(_selectedObject.X, y);
+
+                    var command = new Move(_selectedObject, oldPosition, newPosition);
+                    _commandManager.ExecuteCommand(command);
+
+                    DrawPanel.Invalidate();
+                }
+            });
+        }
+
+        private void WTextBox_TextChanged(object sender, EventArgs e)
+        {
+            StartTimer(() =>
+            {
+                if (_selectedObject != null && float.TryParse(_wTextBox.Text, out float width))
+                {
+                    SizeF newSize;
+                    if (_selectedObject is IShape shape)
+                    {
+                        newSize = new SizeF(width, shape.Height);
+                    }
+                    else if (_selectedObject is Line line)
+                    {
+                        newSize = new SizeF(width, line.EndY);
+                    }
+                    else return;
+
+                    var command = new Resize(_selectedObject, newSize);
+                    _commandManager.ExecuteCommand(command);
+
+                    DrawPanel.Invalidate();
+                }
+            });
+        }
+
+        private void HTextBox_TextChanged(object sender, EventArgs e)
+        {
+            StartTimer(() =>
+            {
+                if (_selectedObject != null && float.TryParse(_hTextBox.Text, out float height))
+                {
+                    SizeF newSize;
+                    if (_selectedObject is IShape shape)
+                    {
+                        newSize = new SizeF(shape.Width, height);
+                    }
+                    else if (_selectedObject is Line line)
+                    {
+                        newSize = new SizeF(line.EndX, height);
+                    }
+                    else return;
+
+                    var command = new Resize(_selectedObject, newSize);
+                    _commandManager.ExecuteCommand(command);
+
+                    DrawPanel.Invalidate();
+                }
+            });
+        }
+
+        private void BtnUndo_Click(object sender, EventArgs e)
+        {
+            _commandManager.Undo();
+            UpdateUI();
+        }
+
+        private void BtnRedo_Click(object sender, EventArgs e)
+        {
+            _commandManager.Redo();
+            UpdateUI();
+        }
+
+        private void BtnClear_Click(object sender, EventArgs e)
+        {
+            Objects.Clear();
+            _commandManager.Clear();
+            _selectedObject = null;
+            UpdateUI();
+        }
+
+
+        // MARK: - UI Handeling 
         private void UpdateUI()
         {
             FreezeOnChange();
@@ -425,169 +615,6 @@ namespace TermPaper_OOP
         {
             _labelPerimetar.Text = $"The perimetar of the shape is: {shape.CalculatePerimeter():0.0} px.";
             _labelArea.Text = $"The area of the shape is: {shape.CalculateArea():0.0} sq. px.";
-        }
-
-
-        private void BtnColorPicker_Click(object sender, EventArgs e)
-        {
-            if (_colorPicker.ShowDialog() == DialogResult.OK)
-            {
-                _btnColorPicker.BackColor = _colorPicker.Color;
-
-                if (_selectedObject != null)
-                {
-                    var command = new ChangeColor(_selectedObject, _colorPicker.Color);
-                    _commandManager.ExecuteCommand(command);
-                    DrawPanel.Invalidate();
-                }
-            }
-        }
-
-        private void BtnColorPicker2_Click(object sender, EventArgs e)
-        {
-            if (_colorPicker2.ShowDialog() == DialogResult.OK)
-            {
-                DrawPanel.BackColor = _colorPicker2.Color;
-            }
-        }
-
-        private void BtnClear_Click(object sender, EventArgs e)
-        {
-            Objects.Clear();
-            _commandManager.Clear();
-            _selectedObject = null;
-            UpdateUI();
-        }
-
-        private void Scene_KeyUp(object sender, KeyEventArgs e)
-        {
-            if (_selectedObject != null && e.KeyCode == Keys.Delete)
-            {
-                Objects.Remove(_selectedObject);
-                _selectedObject = null;
-                DrawPanel.Invalidate();
-            }
-        }
-
-        private void ThicknessTextBox_OnTextChanged(object sender, EventArgs e)
-        {
-            if (_timer != null)
-                _timer.Stop();
-
-            if (_timer == null)
-            {
-                _timer = new System.Windows.Forms.Timer();
-                _timer.Tick += TimerTick;
-                _timer.Interval = 500;
-            }
-
-            _timer.Start();
-        }
-
-        private void TimerTick(object sender, EventArgs e)
-        {
-            _timer.Stop();
-
-            if (_selectedObject != null)
-            {
-                if (float.TryParse(_thicknessTextBox.Text, out float thickness)) ;
-                var command = new ChangeThickness(_selectedObject, _selectedObject.Thickness, thickness);
-                _commandManager.ExecuteCommand(command);
-                DrawPanel.Invalidate();
-            }
-        }
-
-        private void FillCheckBox_CheckedChanged(object sender, EventArgs e)
-        {
-            if (_selectedObject != null && _selectedObject is IShape shape)
-            {
-                var command = new ChangeFilled(shape, _fillCheckBox.Checked);
-                _commandManager.ExecuteCommand(command);
-                DrawPanel.Invalidate();
-            }
-        }
-
-        private void XTextBox_TextChanged(object sender, EventArgs e)
-        {
-            if (_selectedObject != null)
-            {
-                if (float.TryParse(_xTextBox.Text, out float x))
-                    _selectedObject.X = x;
-                DrawPanel.Invalidate();
-            }
-        }
-
-        private void YTextBox_TextChanged(object sender, EventArgs e)
-        {
-            if (_selectedObject != null)
-            {
-                if (float.TryParse(_yTextBox.Text, out float y))
-                    _selectedObject.Y = y;
-                DrawPanel.Invalidate();
-            }
-        }
-
-        private void WTextBox_TextChanged(object sender, EventArgs e)
-        {
-            if (_selectedObject != null)
-            {
-                if (float.TryParse(_wTextBox.Text, out float width))
-
-                    if (_selectedObject is IShape)
-                    {
-                        var currentObject = _selectedObject as IShape;
-                        currentObject!.Width = width;
-
-                        _selectedObject = currentObject;
-                    }
-
-                if (_selectedObject is Line)
-                {
-                    var line = _selectedObject as Line;
-                    line!.EndX = width;
-
-                    _selectedObject = line;
-                }
-                DrawPanel.Invalidate();
-            }
-        }
-
-        private void HTextBox_TextChanged(object sender, EventArgs e)
-        {
-            if (_selectedObject != null)
-            {
-                if (float.TryParse(_hTextBox.Text, out float height))
-
-                    if (_selectedObject is IShape)
-                    {
-                        var currentObject = _selectedObject as IShape;
-                        currentObject!.Height = height;
-
-                        _selectedObject = currentObject;
-                    }
-
-                if (_selectedObject is Line)
-                {
-                    var line = _selectedObject as Line;
-                    line!.EndY = height;
-
-                    _selectedObject = line;
-                }
-
-                DrawPanel.Invalidate();
-            }
-        }
-
-        private void BtnUndo_Click(object sender, EventArgs e)
-        {
-            _commandManager.Undo();
-            UpdateUI();
-        }
-
-        private void BtnRedo_Click(object sender, EventArgs e)
-        {
-            _commandManager.Redo();
-            UpdateUI();
         }
     }
 }

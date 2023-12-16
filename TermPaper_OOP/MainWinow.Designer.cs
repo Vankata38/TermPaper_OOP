@@ -218,7 +218,7 @@
             resources.ApplyResources(_btnBGColorPicker, "_btnBGColorPicker");
             _btnBGColorPicker.Name = "_btnBGColorPicker";
             _btnBGColorPicker.UseVisualStyleBackColor = true;
-            _btnBGColorPicker.Click += BtnColorPicker2_Click;
+            _btnBGColorPicker.Click += BtnBackgroundColor_Click;
             // 
             // Devider2
             // 
