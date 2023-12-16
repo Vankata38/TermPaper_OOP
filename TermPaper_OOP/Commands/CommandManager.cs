@@ -23,6 +23,7 @@ namespace TermPaper_OOP.Commands
         {
             if (_undoStack.Count > 0)
             {
+                Scene._selectedObject = null;
                 var command = _undoStack.Pop();
                 command.Undo();
                 _redoStack.Push(command);
@@ -33,6 +34,7 @@ namespace TermPaper_OOP.Commands
         {
             if (_redoStack.Count > 0)
             {
+                Scene._selectedObject = null;
                 var command = _redoStack.Pop();
                 ExecuteCommand(command);
             }

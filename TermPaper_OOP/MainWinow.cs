@@ -314,39 +314,89 @@ namespace TermPaper_OOP
             UpdateUI();
         }
 
-        // TODO: - Optimize the nesting, might not need all the casts
         private void UpdateUI()
         {
-            _wLabel.Visible = true;
-            _hLabel.Visible = true;
-            _wTextBox.Visible = true;
-            _hTextBox.Visible = true;
-            _wPxLabel.Visible = true;
-            _hPxLabel.Visible = true;
+            FreezeOnChange();
 
             if (_selectedObject == null)
+                ResetUI();
+            else
+                DisplayObjectInfo();
+
+            UnfreezeOnChange();
+            DrawPanel.Invalidate();
+        }
+
+        private void FreezeOnChange()
+        {
+            _thicknessTextBox.TextChanged -= ThicknessTextBox_OnTextChanged;
+            _fillCheckBox.CheckedChanged -= FillCheckBox_CheckedChanged;
+            _xTextBox.TextChanged -= XTextBox_TextChanged;
+            _yTextBox.TextChanged -= YTextBox_TextChanged;
+            _wTextBox.TextChanged -= WTextBox_TextChanged;
+            _hTextBox.TextChanged -= HTextBox_TextChanged;
+        }
+
+        private void UnfreezeOnChange()
+        {
+            _thicknessTextBox.TextChanged += ThicknessTextBox_OnTextChanged;
+            _fillCheckBox.CheckedChanged += FillCheckBox_CheckedChanged;
+            _xTextBox.TextChanged += XTextBox_TextChanged;
+            _yTextBox.TextChanged += YTextBox_TextChanged;
+            _wTextBox.TextChanged += WTextBox_TextChanged;
+            _hTextBox.TextChanged += HTextBox_TextChanged;
+        }
+
+        private void ResetUI()
+        {
+            _labelCurrentSelection.Text = "Select an object";
+            _fillCheckBox.Checked = false;
+            _thicknessTextBox.Text = "3";
+            ClearTextBoxes();
+            SetDefaultLabels();
+        }
+
+        private void DisplayObjectInfo()
+        {
+            _labelCurrentSelection.Text = $"Current selection: {_selectedObject!.GetType().Name}";
+            UpdatePositionTextBoxes();
+            UpdateDimensionTextBoxes();
+
+            _colorPicker.Color = _selectedObject.Color;
+            _thicknessTextBox.Text = _selectedObject.Thickness.ToString();
+
+            if (_selectedObject is IShape shape)
             {
-                _labelCurrentSelection.Text = $"Select an object";
-
-                _xTextBox.Clear();
-                _yTextBox.Clear();
-                _wTextBox.Clear();
-                _hTextBox.Clear();
-                _fillCheckBox.Checked = false;
-                _thicknessTextBox.Text = "3";
-
-                _labelPerimetar.Text = $"The perimetar of the shape is: px";
-                _labelArea.Text = $"The area of the shape is: sq. px.";
-
-                DrawPanel.Invalidate();
-                return;
+                _fillCheckBox.Checked = shape.IsFilled;
+                DisplayPerimeterAndArea(shape);
             }
+        }
 
-            _labelCurrentSelection.Text = $"Current selection: {_selectedObject.GetType().Name}";
+        private void ClearTextBoxes()
+        {
+            _xTextBox.Clear();
+            _yTextBox.Clear();
+            _wTextBox.Clear();
+            _hTextBox.Clear();
+        }
 
+        private void SetDefaultLabels()
+        {
+            _wLabel.Text = "W:";
+            _hLabel.Text = "H:";
+            _hLabel.Visible = true;
+            _hTextBox.Visible = true;
+            _hPxLabel.Visible = true;
+        }
+
+        private void UpdatePositionTextBoxes()
+        {
             _xTextBox.Text = _selectedObject!.X.ToString();
             _yTextBox.Text = _selectedObject!.Y.ToString();
+        }
 
+        private void UpdateDimensionTextBoxes()
+        {
             if (_selectedObject is IResizable)
             {
                 var currentObject = _selectedObject as IResizable;
@@ -354,20 +404,13 @@ namespace TermPaper_OOP
                 if (_selectedObject is Circle)
                 {
                     _wLabel.Text = "R:";
-
                     _hLabel.Visible = false;
                     _hTextBox.Visible = false;
                     _hPxLabel.Visible = false;
                 }
-                else
-                {
-                    _hLabel.Text = "H:";
-                    _wLabel.Text = "W:";
-                }
 
                 _wTextBox.Text = currentObject!.Width.ToString();
                 _hTextBox.Text = currentObject!.Height.ToString();
-
             }
             else if (_selectedObject is Line line)
             {
@@ -376,22 +419,14 @@ namespace TermPaper_OOP
                 _wTextBox.Text = line.EndX.ToString();
                 _hTextBox.Text = line.EndY.ToString();
             }
-
-            _colorPicker.Color = _selectedObject.Color;
-            _thicknessTextBox.Text = _selectedObject.Thickness.ToString();
-
-            if (_selectedObject is IShape shape)
-            {
-                _fillCheckBox.Checked = shape.IsFilled;
-
-                _labelPerimetar.Text = $"The perimetar of the shape is: " +
-                                       $"{shape.CalculatePerimeter():0.0} px.";
-                _labelArea.Text = $"The area of the shape is: " +
-                                  $"{shape.CalculateArea():0.0} sq. px.";
-            }
-
-            DrawPanel.Invalidate();
         }
+
+        private void DisplayPerimeterAndArea(IShape shape)
+        {
+            _labelPerimetar.Text = $"The perimetar of the shape is: {shape.CalculatePerimeter():0.0} px.";
+            _labelArea.Text = $"The area of the shape is: {shape.CalculateArea():0.0} sq. px.";
+        }
+
 
         private void BtnColorPicker_Click(object sender, EventArgs e)
         {
@@ -450,13 +485,13 @@ namespace TermPaper_OOP
         }
 
         private void TimerTick(object sender, EventArgs e)
-        { 
+        {
             _timer.Stop();
 
             if (_selectedObject != null)
             {
-                if (float.TryParse(_thicknessTextBox.Text, out float thickness));
-                var command = new ChangeThickness(_selectedObject, thickness);
+                if (float.TryParse(_thicknessTextBox.Text, out float thickness)) ;
+                var command = new ChangeThickness(_selectedObject, _selectedObject.Thickness, thickness);
                 _commandManager.ExecuteCommand(command);
                 DrawPanel.Invalidate();
             }
@@ -545,14 +580,12 @@ namespace TermPaper_OOP
 
         private void BtnUndo_Click(object sender, EventArgs e)
         {
-            _selectedObject = null;
             _commandManager.Undo();
             UpdateUI();
         }
 
         private void BtnRedo_Click(object sender, EventArgs e)
         {
-            _selectedObject = null;
             _commandManager.Redo();
             UpdateUI();
         }
