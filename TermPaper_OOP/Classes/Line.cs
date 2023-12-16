@@ -1,19 +1,33 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 using TermPaper_OOP.Interfaces;
 
 namespace TermPaper_OOP.Classes
 {
+    [Serializable]
     public class Line : IPositionable, IDrawableAndSelectable
     {
         private PointF _startPoint;
         private PointF _endPoint;
 
         public float Thickness { get; set; }
+
+        [XmlIgnore]
         public Color Color { get; set; }
+
+        [XmlElement("Color")]
+        public int ColorAsArgb
+        {
+            get { return Color.ToArgb(); }
+            set { Color = Color.FromArgb(value); }
+        }
+
+        public Line() { }
 
         public Line(float x, float y, float endX, float endY, 
                     Color color, float thickness = 1.0f)
@@ -24,14 +38,6 @@ namespace TermPaper_OOP.Classes
 
             if (thickness < 1.0f) thickness = 1.0f;
             Thickness = thickness;
-        }
-
-        public Line(Line original)
-        {
-            _startPoint = original._startPoint;
-            _endPoint = original._endPoint;
-            Thickness = original.Thickness;
-            Color = original.Color;
         }
 
         public Line(PointF startPoint, PointF endPoint,

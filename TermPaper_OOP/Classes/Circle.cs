@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 using TermPaper_OOP.Interfaces;
 
 namespace TermPaper_OOP.Classes
 {
+    [Serializable]
     public class Circle : IShape
     {
         private PointF _position;
@@ -14,8 +16,18 @@ namespace TermPaper_OOP.Classes
         public bool IsFilled { get; set; }
         public float Radius { get; set; }
         public float Thickness { get; set; }
+
+        [XmlIgnore]
         public Color Color { get; set; }
 
+        [XmlElement("Color")]
+        public int ColorAsArgb
+        {
+            get { return Color.ToArgb(); }
+            set { Color = Color.FromArgb(value); }
+        }
+
+        public Circle() { }
         public Circle(float x, float y, float radius, bool isFilled, 
                       Color color, float thickness = 1.0f)
         {
@@ -81,7 +93,6 @@ namespace TermPaper_OOP.Classes
             return $"Circle at {_position} with radius of {Radius}";
         }
 
-        // TODO: - Fix a bug where the circle is selected with the mouse outside of it
         public bool PointIsInside(PointF point)
         {
             return MathF.Sqrt(MathF.Pow(point.X - _position.X, 2) +

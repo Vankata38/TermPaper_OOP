@@ -1,12 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 using TermPaper_OOP.Interfaces;
 
 namespace TermPaper_OOP.Classes
 {
+    [Serializable]
     public class Rectangle : IShape
     {
         private PointF _position;
@@ -15,8 +18,18 @@ namespace TermPaper_OOP.Classes
         public float Width { get; set; }
         public float Height { get; set; }
         public float Thickness { get; set; }
+
+        [XmlIgnore]
         public Color Color { get; set; }
 
+        [XmlElement("Color")]
+        public int ColorAsArgb
+        {
+            get { return Color.ToArgb(); }
+            set { Color = Color.FromArgb(value); }
+        }
+
+        public Rectangle() { }
         public Rectangle(float x, float y, float width, float height, 
                          bool isFilled, Color color, float thickness = 1.0f)
         {

@@ -36,8 +36,8 @@
             _btnSelect = new Button();
             _btnCircle = new Button();
             _btnEllipse = new Button();
-            button4 = new Button();
-            button5 = new Button();
+            _btnSave = new Button();
+            _btnLoad = new Button();
             _saveFile = new SaveFileDialog();
             _colorPicker = new ColorDialog();
             _openFile = new OpenFileDialog();
@@ -62,8 +62,8 @@
             _labelBorder = new Label();
             Devider4 = new Label();
             label4 = new Label();
-            button1 = new Button();
-            button2 = new Button();
+            _btnUndo = new Button();
+            _btnRedo = new Button();
             _thicknessTextBox = new TextBox();
             _labelCurrentSelection = new Label();
             _fillCheckBox = new CheckBox();
@@ -142,17 +142,19 @@
             _btnEllipse.UseVisualStyleBackColor = false;
             _btnEllipse.Click += Btn_Click;
             // 
-            // button4
+            // _btnSave
             // 
-            resources.ApplyResources(button4, "button4");
-            button4.Name = "button4";
-            button4.UseVisualStyleBackColor = true;
+            resources.ApplyResources(_btnSave, "_btnSave");
+            _btnSave.Name = "_btnSave";
+            _btnSave.UseVisualStyleBackColor = true;
+            _btnSave.Click += BtnSave_Click;
             // 
-            // button5
+            // _btnLoad
             // 
-            resources.ApplyResources(button5, "button5");
-            button5.Name = "button5";
-            button5.UseVisualStyleBackColor = true;
+            resources.ApplyResources(_btnLoad, "_btnLoad");
+            _btnLoad.Name = "_btnLoad";
+            _btnLoad.UseVisualStyleBackColor = true;
+            _btnLoad.Click += BtnLoad_Click;
             // 
             // _openFile
             // 
@@ -277,21 +279,21 @@
             label4.BorderStyle = BorderStyle.Fixed3D;
             label4.Name = "label4";
             // 
-            // button1
+            // _btnUndo
             // 
-            resources.ApplyResources(button1, "button1");
-            button1.Image = Properties.Resources.Undo;
-            button1.Name = "button1";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += BtnUndo_Click;
+            resources.ApplyResources(_btnUndo, "_btnUndo");
+            _btnUndo.Image = Properties.Resources.Undo;
+            _btnUndo.Name = "_btnUndo";
+            _btnUndo.UseVisualStyleBackColor = true;
+            _btnUndo.Click += BtnUndo_Click;
             // 
-            // button2
+            // _btnRedo
             // 
-            resources.ApplyResources(button2, "button2");
-            button2.Image = Properties.Resources.Redo;
-            button2.Name = "button2";
-            button2.UseVisualStyleBackColor = true;
-            button2.Click += BtnRedo_Click;
+            resources.ApplyResources(_btnRedo, "_btnRedo");
+            _btnRedo.Image = Properties.Resources.Redo;
+            _btnRedo.Name = "_btnRedo";
+            _btnRedo.UseVisualStyleBackColor = true;
+            _btnRedo.Click += BtnRedo_Click;
             // 
             // _thicknessTextBox
             // 
@@ -378,8 +380,8 @@
             Controls.Add(_fillCheckBox);
             Controls.Add(_labelCurrentSelection);
             Controls.Add(_thicknessTextBox);
-            Controls.Add(button2);
-            Controls.Add(button1);
+            Controls.Add(_btnRedo);
+            Controls.Add(_btnUndo);
             Controls.Add(_labelBorder);
             Controls.Add(_btnCopy);
             Controls.Add(label4);
@@ -401,8 +403,8 @@
             Controls.Add(_labelX);
             Controls.Add(_yTextBox);
             Controls.Add(_xTextBox);
-            Controls.Add(button5);
-            Controls.Add(button4);
+            Controls.Add(_btnLoad);
+            Controls.Add(_btnSave);
             Controls.Add(_btnEllipse);
             Controls.Add(_btnCircle);
             Controls.Add(_btnSelect);
@@ -425,8 +427,8 @@
         private Button _btnDrawRectangle;
         private Button _btnDrawTriangle;
         private Panel panel1;
-        private Button button1;
-        private Button button2;
+        private Button _btnUndo;
+        private Button _btnRedo;
         private Button button3;
         private Button _btnLine;
         private Button _btnRectangle;
@@ -435,8 +437,8 @@
         private Button _btnCircle;
         private Button _btnEllipse;
         private Button _btnSelect;
-        private Button button4;
-        private Button button5;
+        private Button _btnSave;
+        private Button _btnLoad;
         private SaveFileDialog _saveFile;
         private ColorDialog _colorPicker;
         private OpenFileDialog _openFile;

@@ -4,10 +4,12 @@ using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 using TermPaper_OOP.Interfaces;
 
 namespace TermPaper_OOP.Classes
 {
+    [Serializable]
     public class Triangle : IShape
     {
         private PointF _leftBottom;
@@ -18,8 +20,18 @@ namespace TermPaper_OOP.Classes
 
         public bool IsFilled { get; set; }
         public float Thickness { get; set; }
+
+        [XmlIgnore]
         public Color Color { get; set; }
 
+        [XmlElement("Color")]
+        public int ColorAsArgb
+        {
+            get { return Color.ToArgb(); }
+            set { Color = Color.FromArgb(value); }
+        }
+
+        public Triangle() { }
         public Triangle(float x, float y, float width, float height,
                         bool isFilled, Color color, float thickness = 1.0f)
         {

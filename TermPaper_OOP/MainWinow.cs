@@ -406,7 +406,7 @@ namespace TermPaper_OOP
                 {
                     var oldPosition = new PointF(_selectedObject.X, _selectedObject.Y);
                     var newPosition = new PointF(x, _selectedObject.Y);
-                    
+
                     var command = new Move(_selectedObject, oldPosition, newPosition);
                     _commandManager.ExecuteCommand(command);
 
@@ -615,6 +615,19 @@ namespace TermPaper_OOP
         {
             _labelPerimetar.Text = $"The perimetar of the shape is: {shape.CalculatePerimeter():0.0} px.";
             _labelArea.Text = $"The area of the shape is: {shape.CalculateArea():0.0} sq. px.";
+        }
+
+        private void BtnSave_Click(object sender, EventArgs e)
+        {
+            // TODO: Make it user selectable
+            SVGHandler.SaveShapesToSVG(Objects, "test.svg");
+        }
+
+        private void BtnLoad_Click(object sender, EventArgs e)
+        {
+            // TODO: Make it user selectable
+            Objects = SVGHandler.LoadShapesFromSVG("test.svg");
+            DrawPanel.Invalidate();
         }
     }
 }
