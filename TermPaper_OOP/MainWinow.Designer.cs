@@ -49,7 +49,7 @@
             _hLabel = new Label();
             _wTextBox = new TextBox();
             _hTextBox = new TextBox();
-            Color = new Label();
+            Black = new Label();
             Devider = new Label();
             _btnBGColorPicker = new Button();
             _colorPicker2 = new ColorDialog();
@@ -206,8 +206,8 @@
             // 
             // Color
             // 
-            resources.ApplyResources(Color, "Color");
-            Color.Name = "Color";
+            resources.ApplyResources(Black, "Color");
+            Black.Name = "Color";
             // 
             // Devider
             // 
@@ -394,7 +394,7 @@
             Controls.Add(label5);
             Controls.Add(Devider4);
             Controls.Add(Devider);
-            Controls.Add(Color);
+            Controls.Add(Black);
             Controls.Add(_hTextBox);
             Controls.Add(_wTextBox);
             Controls.Add(_hLabel);
@@ -450,7 +450,7 @@
         private Label _hLabel;
         private TextBox _wTextBox;
         private TextBox _hTextBox;
-        private Label Color;
+        private Label Black;
         private Label Devider;
         private Button _btnBGColorPicker;
         private ColorDialog _colorPicker2;

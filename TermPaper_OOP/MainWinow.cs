@@ -102,7 +102,15 @@ namespace TermPaper_OOP
                         _selectedObject = circle;
                         break;
                     case ActionType.Ellipse:
-                        throw new NotImplementedException();
+                        Ellipse ellipse = new(
+                            _startingPosition.X,
+                            _startingPosition.Y,
+                            MathF.Abs(e.Location.X - _startingPosition.X),
+                            20,
+                            _fillCheckBox.Checked, _colorPicker.Color, thickness);
+
+                        _selectedObject = ellipse;
+                        break;
                 }
             }
         }
@@ -217,7 +225,17 @@ namespace TermPaper_OOP
                         DrawPanel.Invalidate();
                         break;
                     case ActionType.Ellipse:
-                        throw new NotImplementedException();
+                        if (_selectedObject is Ellipse)
+                        {
+                            var ellipse = _selectedObject as Ellipse;
+                            
+                            ellipse!.Width = MathF.Abs(e.Location.X - _startingPosition.X);
+                            ellipse!.Height = MathF.Abs(e.Location.Y - _startingPosition.Y);
+
+                            _selectedObject = ellipse;
+                        }
+                        DrawPanel.Invalidate();
+                        break;
                 }
             }
         }
@@ -290,7 +308,12 @@ namespace TermPaper_OOP
                         break;
 
                     case ActionType.Ellipse:
-                        throw new NotImplementedException();
+                        if (_selectedObject == null) return;
+
+                        drawCommand = new Draw(_selectedObject);
+                        _commandManager.ExecuteCommand(drawCommand);
+
+                        break;
                 }
             }
             UpdateUI();
