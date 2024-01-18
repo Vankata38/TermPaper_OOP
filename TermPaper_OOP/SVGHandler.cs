@@ -41,6 +41,7 @@ namespace TermPaper_OOP
         {
             XmlSerializer serializer = new XmlSerializer(typeof(List<SerializableObject>));
 
+            if (!File.Exists(filePath)) return new List<IDrawableAndSelectable>();
             using (TextReader reader = new StreamReader(filePath))
             {
                 var serializableObjects = (List<SerializableObject>)serializer.Deserialize(reader);

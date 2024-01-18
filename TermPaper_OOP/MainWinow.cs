@@ -7,7 +7,6 @@ namespace TermPaper_OOP
 {
     public partial class Scene : Form
     {
-        // TODO : - Implement save/load
         public static List<IDrawableAndSelectable> Objects = new();
         public static IDrawableAndSelectable? _selectedObject = null;
 
