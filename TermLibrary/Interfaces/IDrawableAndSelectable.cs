@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Drawing;
 
-namespace TermPaper_OOP.Interfaces
+namespace TermLibrary.Interfaces
 {
     public interface IDrawableAndSelectable : IPositionable, ICopyable<IDrawableAndSelectable>
     {
@@ -12,6 +13,6 @@ namespace TermPaper_OOP.Interfaces
         Color Color { get; set; }
 
         bool PointIsInside(PointF point);
-        void Draw(Graphics graphics);
+        void Draw(IGraphics graphics);
     }
 }

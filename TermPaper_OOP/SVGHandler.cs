@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
 using TermPaper_OOP.Classes;
-using TermPaper_OOP.Interfaces;
+using TermLibrary.Interfaces;
 
 namespace TermPaper_OOP
 {

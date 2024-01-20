@@ -5,9 +5,10 @@ using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
-using TermPaper_OOP.Interfaces;
+using TermLibrary.Interfaces;
+using System.Drawing;
 
-namespace TermPaper_OOP.Classes
+namespace TermLibrary.Classes
 {
     [Serializable]
     public class Line : IPositionable, IDrawableAndSelectable
@@ -96,12 +97,9 @@ namespace TermPaper_OOP.Classes
             return distance <= thickness;
         }
 
-        public void Draw(Graphics graphics)
+        public void Draw(IGraphics graphics)
         {
-            if (graphics == null) return;
-
-            DrawingResources.SetPen(Color, Thickness);
-            graphics.DrawLine(DrawingResources.SharedPen, _startPoint, _endPoint);
+            graphics.DrawLine(_startPoint, _endPoint, Thickness, Color);
         }
     }
 }

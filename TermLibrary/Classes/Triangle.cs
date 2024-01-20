@@ -5,9 +5,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
-using TermPaper_OOP.Interfaces;
+using TermLibrary.Interfaces;
+using System.Drawing;
 
-namespace TermPaper_OOP.Classes
+namespace TermLibrary.Classes
 {
     [Serializable]
     public class Triangle : IShape
@@ -53,7 +54,8 @@ namespace TermPaper_OOP.Classes
         public float X
         {
             get { return _leftBottom.X; }
-            set { 
+            set
+            {
                 _leftBottom.X = value;
                 _rightBottom.X = value + _width;
                 _top.X = value + _width / 2;
@@ -63,7 +65,8 @@ namespace TermPaper_OOP.Classes
         public float Y
         {
             get { return _leftBottom.Y; }
-            set {
+            set
+            {
                 _leftBottom.Y = value;
                 _rightBottom.Y = value;
                 _top.Y = value - _height;
@@ -139,22 +142,12 @@ namespace TermPaper_OOP.Classes
             w = 1 - u - v;
         }
 
-        public void Draw(Graphics graphics)
+        public void Draw(IGraphics graphics)
         {
-            if (graphics == null) return;
-
-            GraphicsPath path = new GraphicsPath();
-            path.AddLines(new PointF[] { _leftBottom, _rightBottom, _top, _leftBottom });
-
             if (IsFilled)
-            {
-                DrawingResources.SetBrushColor(Color);
-                graphics.FillPath(DrawingResources.SharedBrush, path);
-            } else
-            {
-                DrawingResources.SetPen(Color, Thickness);
-                graphics.DrawPath(DrawingResources.SharedPen, path);
-            }
+                graphics.FillPath([_leftBottom, _rightBottom, _top, _leftBottom], Color);
+            else
+                graphics.DrawPath([_leftBottom, _rightBottom, _top, _leftBottom], Thickness, Color);
         }
     }
 }

@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
-using TermPaper_OOP.Interfaces;
+using TermLibrary.Interfaces;
+using System.Drawing;
 
-namespace TermPaper_OOP.Classes
+namespace TermLibrary.Classes
 {
     public class Ellipse : IShape
     {
@@ -78,22 +79,12 @@ namespace TermPaper_OOP.Classes
                 + MathF.Pow((point.Y - _position.Y), 2) / MathF.Pow(Height / 2, 2) <= 1;
         }
 
-        public void Draw(Graphics graphics)
+        public void Draw(IGraphics graphics)
         {
-            if (graphics == null) return;
-
             if (IsFilled)
-            {
-                DrawingResources.SetBrushColor(Color);
-                graphics.FillEllipse(DrawingResources.SharedBrush, _position.X - Width / 2,
-                    _position.Y - Height / 2, Width, Height);
-            }
+                graphics.FillEllipse(_position.X - Width / 2, _position.Y - Height / 2, Width, Height, Color);
             else
-            {
-                DrawingResources.SetPen(Color, Thickness);
-                graphics.DrawEllipse(DrawingResources.SharedPen, _position.X - Width / 2,
-                    _position.Y - Height / 2, Width, Height);
-            }
+                graphics.DrawEllipse(_position.X - Width / 2, _position.Y - Height / 2, Width, Height, Thickness, Color);
         }
     }
 }

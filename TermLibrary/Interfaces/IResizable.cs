@@ -4,10 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TermPaper_OOP.Interfaces
+namespace TermLibrary.Interfaces
 {
-    public interface ICopyable<T>
+    public interface IResizable
     {
-        T Copy();
+        float Width { get; set; }
+        float Height { get; set; }
     }
 }

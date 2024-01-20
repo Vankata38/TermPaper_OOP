@@ -1,16 +1,18 @@
 using System.Diagnostics.Eventing.Reader;
 using TermPaper_OOP.Classes;
 using TermPaper_OOP.Commands;
-using TermPaper_OOP.Interfaces;
+using TermLibrary.Interfaces;
+using TermLibrary.Classes;
 
 namespace TermPaper_OOP
 {
     public partial class Scene : Form
     {
+        private static readonly CommandManager _commandManager = new();
+
         public static List<IDrawableAndSelectable> Objects = new();
         public static IDrawableAndSelectable? _selectedObject = null;
 
-        private static readonly CommandManager _commandManager = new();
         private ActionType _currentAction = ActionType.Select;
         private System.Windows.Forms.Timer _timer;
         private PointF _startingPosition;
@@ -30,12 +32,13 @@ namespace TermPaper_OOP
 
         private void DrawPanel_Paint(object sender, PaintEventArgs e)
         {
-            Graphics graph = e.Graphics;
+            DrawHandler drawHandler = new(e.Graphics);
             foreach (var obj in Objects)
             {
-                obj.Draw(graph);
+                obj.Draw(drawHandler);
             }
-            _selectedObject?.Draw(graph);
+            if (_selectedObject != null)
+                _selectedObject.Draw(drawHandler);
         }
 
         // MARK: Mouse Handeling
@@ -69,7 +72,7 @@ namespace TermPaper_OOP
                         _selectedObject = line;
                         break;
                     case ActionType.Rectangle:
-                        Classes.Rectangle rect = new(
+                       TermLibrary.Classes.Rectangle rect = new(
                             MathF.Min(_startingPosition.X, e.X),
                             MathF.Min(_startingPosition.Y, e.Y),
                             MathF.Abs(e.Location.X - _startingPosition.X),
@@ -184,9 +187,9 @@ namespace TermPaper_OOP
 
                         break;
                     case ActionType.Rectangle:
-                        if (_selectedObject is Classes.Rectangle)
+                        if (_selectedObject is TermLibrary.Classes.Rectangle)
                         {
-                            var rectangle = _selectedObject as Classes.Rectangle;
+                            var rectangle = _selectedObject as TermLibrary.Classes.Rectangle;
 
                             rectangle!.X = MathF.Min(_startingPosition.X, e.X);
                             rectangle!.Y = MathF.Min(_startingPosition.Y, e.Y);

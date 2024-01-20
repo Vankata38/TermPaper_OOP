@@ -1,3 +1,5 @@
+using System.Runtime.InteropServices;
+
 namespace TermPaper_OOP
 {
     internal static class Program

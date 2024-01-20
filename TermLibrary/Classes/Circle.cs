@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
-using TermPaper_OOP.Interfaces;
+using System.Drawing;
+using TermLibrary.Interfaces;
 
-namespace TermPaper_OOP.Classes
+namespace TermLibrary.Classes
 {
     [Serializable]
     public class Circle : IShape
@@ -99,17 +100,12 @@ namespace TermPaper_OOP.Classes
                    MathF.Pow(point.Y - _position.Y, 2)) <= Radius;
         }
 
-        public void Draw(Graphics graphics) {
-            if (graphics == null) return;
-            
-            if (IsFilled) {
-                DrawingResources.SetBrushColor(Color);
-                graphics.FillEllipse(DrawingResources.SharedBrush, _position.X, _position.Y - Radius / 2, Radius, Radius);
-            } else
-            {
-                DrawingResources.SetPen(Color, Thickness);
-                graphics.DrawEllipse(DrawingResources.SharedPen, _position.X, _position.Y - Radius / 2, Radius, Radius);
-            }
+        public void Draw(IGraphics graph)
+        {
+            if (IsFilled)
+                graph.FillEllipse(X, Y - Radius / 2, Radius, Radius, Color);
+            else
+                graph.DrawEllipse(X, Y - Radius / 2, Radius, Radius, Thickness, Color);
         }
     }
 }

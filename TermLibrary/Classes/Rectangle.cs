@@ -5,9 +5,10 @@ using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
-using TermPaper_OOP.Interfaces;
+using TermLibrary.Interfaces;
+using System.Drawing;
 
-namespace TermPaper_OOP.Classes
+namespace TermLibrary.Classes
 {
     [Serializable]
     public class Rectangle : IShape
@@ -79,23 +80,12 @@ namespace TermPaper_OOP.Classes
                 && point.Y >= _position.Y && point.Y <= _position.Y + Height;
         }
 
-        public void Draw(Graphics graphics)
+        public void Draw(IGraphics graphics)
         {
-            if (graphics == null) return;
-
             if (IsFilled)
-            {
-                DrawingResources.SetBrushColor(Color);
-                graphics.FillRectangle(DrawingResources.SharedBrush,
-                        _position.X, _position.Y,
-                        Width, Height);
-            } else
-            {
-                DrawingResources.SetPen(Color, Thickness);
-                graphics.DrawRectangle(DrawingResources.SharedPen,
-                        _position.X, _position.Y,
-                        Width, Height);
-            }
+                graphics.FillRectangle(_position.X, _position.Y, Width, Height, Color);
+            else
+                graphics.DrawRectangle(_position.X, _position.Y, Width, Height, Thickness, Color);
         }
     }
 }

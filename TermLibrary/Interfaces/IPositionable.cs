@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TermPaper_OOP.Interfaces
+namespace TermLibrary.Interfaces
 {
-    public interface IResizable
+    public interface IPositionable
     {
-        float Width { get; set; }
-        float Height { get; set; }
+        float X { get; set; }
+        float Y { get; set; }
     }
 }

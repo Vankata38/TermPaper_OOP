@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using TermPaper_OOP.Classes;
+using TermLibrary.Classes;
+using TermLibrary.Interfaces;
 using TermPaper_OOP.Interfaces;
 
 namespace TermPaper_OOP.Commands
